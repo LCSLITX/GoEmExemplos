@@ -27,10 +27,10 @@
         
         <tr>
           <td class="docs">
-            <p>When using channels as function parameters, you can
-specify if a channel is meant to only send or receive
-values. This specificity increases the type-safety of
-the program.</p>
+            <p>Ao utilizar canais como parâmetros de funções, é possível
+especificar se o canal servirá apenas para enviar ou receber
+valores. Esta especificidade é uma boa prática pois aumenta a
+tipagem, ou <em>type-safety</em> do código.</p>
 
           </td>
           <td class="code empty leading">
@@ -44,7 +44,7 @@ the program.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/mjNJDHwUH4R"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/uQ-i6iuZ9uS"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -63,9 +63,9 @@ the program.</p>
         
         <tr>
           <td class="docs">
-            <p>This <code>ping</code> function only accepts a channel for sending
-values. It would be a compile-time error to try to
-receive on this channel.</p>
+            <p>Esta função <code>ping</code> apenas aceita um canal para
+enviar valores. Ao tentar receber valores neste
+canal, resultaria em erro de compilação.</p>
 
           </td>
           <td class="code leading">
@@ -80,8 +80,8 @@ receive on this channel.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>pong</code> function accepts one channel for receives
-(<code>pings</code>) and a second for sends (<code>pongs</code>).</p>
+            <p>Esta função <code>pong</code> aceita um canal para receber
+(<code>pings</code>) e um segundo canal para enviar (<code>pongs</code>).</p>
 
           </td>
           <td class="code leading">

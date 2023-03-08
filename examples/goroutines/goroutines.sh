@@ -1,5 +1,5 @@
 # Ao rodar este programa, primeiro é visualizada a saída
-# das chamadas bloqueantes, síncronas,e só então a saída 
+# das chamadas bloqueantes, síncronas, e só então a saída 
 # das duas goroutines. A saída de goroutines podem ser
 # exibidas em ordem diversa da disposta no código,
 # justamente porque goroutines são executadas 

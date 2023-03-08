@@ -27,12 +27,11 @@
         
         <tr>
           <td class="docs">
-            <p>By default channels are <em>unbuffered</em>, meaning that they
-will only accept sends (<code>chan &lt;-</code>) if there is a
-corresponding receive (<code>&lt;- chan</code>) ready to receive the
-sent value. <em>Buffered channels</em> accept a limited
-number of  values without a corresponding receiver for
-those values.</p>
+            <p>Por padrão canais são <em>unbuffered</em>, ou seja, apenas
+aceitam envios (<code>chan &lt;-</code>) se há um recebimento
+correspondente (<code>&lt;- chan</code>) pronto para receber.
+Canais <em>Buffered</em> aceitam um número limitado de valores
+sem um recebimento correspondente.</p>
 
           </td>
           <td class="code empty leading">
@@ -46,7 +45,7 @@ those values.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/3BRCdRnRszb"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/SoW1m9LDBe0"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -76,8 +75,8 @@ those values.</p>
         
         <tr>
           <td class="docs">
-            <p>Here we <code>make</code> a channel of strings buffering up to
-2 values.</p>
+            <p>Aqui é criado um canal de strings que armazena até
+dois valores, ou seja, trata-se de um canal <em>buffered</em>.</p>
 
           </td>
           <td class="code leading">
@@ -90,9 +89,8 @@ those values.</p>
         
         <tr>
           <td class="docs">
-            <p>Because this channel is buffered, we can send these
-values into the channel without a corresponding
-concurrent receive.</p>
+            <p>Por ser <em>buffered</em> é possível enviar valores para o
+canal, sem ter um recebimento correspondente.</p>
 
           </td>
           <td class="code leading">
@@ -106,7 +104,7 @@ concurrent receive.</p>
         
         <tr>
           <td class="docs">
-            <p>Later we can receive these two values as usual.</p>
+            <p>Posteriormente os valores são recebidos normalmente.</p>
 
           </td>
           <td class="code">
