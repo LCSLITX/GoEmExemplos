@@ -27,9 +27,8 @@
         
         <tr>
           <td class="docs">
-            <p>Go&rsquo;s <em>structs</em> are typed collections of fields.
-They&rsquo;re useful for grouping data together to form
-records.</p>
+            <p>As <em>structs</em> em Go são coleções tipadas de dados.
+São úteis para agrupar informações.</p>
 
           </td>
           <td class="code empty leading">
@@ -43,7 +42,7 @@ records.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/n7jt1x3iw4Z"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/GsRCLNRvGJq"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -62,15 +61,15 @@ records.</p>
         
         <tr>
           <td class="docs">
-            <p>This <code>person</code> struct type has <code>name</code> and <code>age</code> fields.</p>
+            <p>A struct do tipo <code>pessoa</code> tem os campos <code>nome</code> e <code>idade</code>.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-<span class="kd">type</span> <span class="nx">person</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">name</span> <span class="kt">string</span>
-    <span class="nx">age</span>  <span class="kt">int</span>
+<span class="kd">type</span> <span class="nx">pessoa</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">nome</span>  <span class="kt">string</span>
+    <span class="nx">idade</span> <span class="kt">int</span>
 <span class="p">}</span>
 </pre>
           </td>
@@ -78,28 +77,29 @@ records.</p>
         
         <tr>
           <td class="docs">
-            <p><code>newPerson</code> constructs a new person struct with the given name.</p>
+            <p>A função <code>novaPessoa</code> constrói uma nova
+struct de pessoa com um determinado nome.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-<span class="kd">func</span> <span class="nf">newPerson</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">person</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">novaPessoa</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">pessoa</span> <span class="p">{</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>You can safely return a pointer to local variable
-as a local variable will survive the scope of the function.</p>
+            <p>O valor atribuído para a variável local
+será retornado pela função.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-    <span class="nx">p</span> <span class="o">:=</span> <span class="nx">person</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="nx">name</span><span class="p">}</span>
-    <span class="nx">p</span><span class="p">.</span><span class="nx">age</span> <span class="p">=</span> <span class="mi">42</span>
+    <span class="nx">p</span> <span class="o">:=</span> <span class="nx">pessoa</span><span class="p">{</span><span class="nx">nome</span><span class="p">:</span> <span class="nx">name</span><span class="p">}</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">idade</span> <span class="p">=</span> <span class="mi">42</span>
     <span class="k">return</span> <span class="o">&amp;</span><span class="nx">p</span>
 <span class="p">}</span>
 </pre>
@@ -119,108 +119,108 @@ as a local variable will survive the scope of the function.</p>
         
         <tr>
           <td class="docs">
-            <p>This syntax creates a new struct.</p>
+            <p>Esta sintaxe cria uma nova <code>struct</code>.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">person</span><span class="p">{</span><span class="s">&#34;Bob&#34;</span><span class="p">,</span> <span class="mi">20</span><span class="p">})</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">pessoa</span><span class="p">{</span><span class="s">&#34;Bob&#34;</span><span class="p">,</span> <span class="mi">20</span><span class="p">})</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>You can name the fields when initializing a struct.</p>
+            <p>E possível nomear os campos ao inicializar a <code>struct</code>.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">person</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&#34;Alice&#34;</span><span class="p">,</span> <span class="nx">age</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">pessoa</span><span class="p">{</span><span class="nx">nome</span><span class="p">:</span> <span class="s">&#34;Alice&#34;</span><span class="p">,</span> <span class="nx">idade</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>Omitted fields will be zero-valued.</p>
+            <p>Os campos omitidos terão valor padrão, ou zero.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">person</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&#34;Fred&#34;</span><span class="p">})</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">pessoa</span><span class="p">{</span><span class="nx">nome</span><span class="p">:</span> <span class="s">&#34;Fred&#34;</span><span class="p">})</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>An <code>&amp;</code> prefix yields a pointer to the struct.</p>
+            <p>O prefixo <code>&amp;</code> signfica um ponteiro para a <code>struct</code>.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">person</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&#34;Ann&#34;</span><span class="p">,</span> <span class="nx">age</span><span class="p">:</span> <span class="mi">40</span><span class="p">})</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">pessoa</span><span class="p">{</span><span class="nx">nome</span><span class="p">:</span> <span class="s">&#34;Ann&#34;</span><span class="p">,</span> <span class="nx">idade</span><span class="p">:</span> <span class="mi">40</span><span class="p">})</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>It&rsquo;s idiomatic to encapsulate new struct creation in constructor functions</p>
+            <p>É idiomático encapsular a criação de uma nova <code>struct</code> em uma função construtora.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">newPerson</span><span class="p">(</span><span class="s">&#34;Jon&#34;</span><span class="p">))</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">novaPessoa</span><span class="p">(</span><span class="s">&#34;Jon&#34;</span><span class="p">))</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>Access struct fields with a dot.</p>
+            <p>É possível acessar campos de determinada <code>struct</code> utilizando notação de pontos.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-    <span class="nx">s</span> <span class="o">:=</span> <span class="nx">person</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&#34;Sean&#34;</span><span class="p">,</span> <span class="nx">age</span><span class="p">:</span> <span class="mi">50</span><span class="p">}</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+    <span class="nx">s</span> <span class="o">:=</span> <span class="nx">pessoa</span><span class="p">{</span><span class="nx">nome</span><span class="p">:</span> <span class="s">&#34;Sean&#34;</span><span class="p">,</span> <span class="nx">idade</span><span class="p">:</span> <span class="mi">50</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">nome</span><span class="p">)</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>You can also use dots with struct pointers - the
-pointers are automatically dereferenced.</p>
+            <p>E também utilizar notação de pontos com ponteiros de <code>structs</code>
+ponteiros serão de-referenciados automaticamente.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
     <span class="nx">sp</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">s</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">sp</span><span class="p">.</span><span class="nx">age</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">sp</span><span class="p">.</span><span class="nx">idade</span><span class="p">)</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>Structs are mutable.</p>
+            <p>Structs são mutáveis.</p>
 
           </td>
           <td class="code">
             
           <pre class="chroma">
-    <span class="nx">sp</span><span class="p">.</span><span class="nx">age</span> <span class="p">=</span> <span class="mi">51</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">sp</span><span class="p">.</span><span class="nx">age</span><span class="p">)</span>
+    <span class="nx">sp</span><span class="p">.</span><span class="nx">idade</span> <span class="p">=</span> <span class="mi">51</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">sp</span><span class="p">.</span><span class="nx">idade</span><span class="p">)</span>
 <span class="p">}</span>
 </pre>
           </td>
@@ -263,7 +263,7 @@ pointers are automatically dereferenced.</p>
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('type person struct {\u000A    name string\u000A    age  int\u000A}\u000A');codeLines.push('func newPerson(name string) *person {\u000A');codeLines.push('    p :\u003D person{name: name}\u000A    p.age \u003D 42\u000A    return \u0026p\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    fmt.Println(person{\"Bob\", 20})\u000A');codeLines.push('    fmt.Println(person{name: \"Alice\", age: 30})\u000A');codeLines.push('    fmt.Println(person{name: \"Fred\"})\u000A');codeLines.push('    fmt.Println(\u0026person{name: \"Ann\", age: 40})\u000A');codeLines.push('    fmt.Println(newPerson(\"Jon\"))\u000A');codeLines.push('    s :\u003D person{name: \"Sean\", age: 50}\u000A    fmt.Println(s.name)\u000A');codeLines.push('    sp :\u003D \u0026s\u000A    fmt.Println(sp.age)\u000A');codeLines.push('    sp.age \u003D 51\u000A    fmt.Println(sp.age)\u000A}\u000A');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('type pessoa struct {\u000A    nome  string\u000A    idade int\u000A}\u000A');codeLines.push('func novaPessoa(name string) *pessoa {\u000A');codeLines.push('    p :\u003D pessoa{nome: name}\u000A    p.idade \u003D 42\u000A    return \u0026p\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    fmt.Println(pessoa{\"Bob\", 20})\u000A');codeLines.push('    fmt.Println(pessoa{nome: \"Alice\", idade: 30})\u000A');codeLines.push('    fmt.Println(pessoa{nome: \"Fred\"})\u000A');codeLines.push('    fmt.Println(\u0026pessoa{nome: \"Ann\", idade: 40})\u000A');codeLines.push('    fmt.Println(novaPessoa(\"Jon\"))\u000A');codeLines.push('    s :\u003D pessoa{nome: \"Sean\", idade: 50}\u000A    fmt.Println(s.nome)\u000A');codeLines.push('    sp :\u003D \u0026s\u000A    fmt.Println(sp.idade)\u000A');codeLines.push('    sp.idade \u003D 51\u000A    fmt.Println(sp.idade)\u000A}\u000A');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>

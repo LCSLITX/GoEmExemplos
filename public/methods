@@ -27,7 +27,7 @@
         
         <tr>
           <td class="docs">
-            <p>Go supports <em>methods</em> defined on struct types.</p>
+            <p>Go suporta <em>métodos</em> definidos em structs.</p>
 
           </td>
           <td class="code empty leading">
@@ -41,7 +41,7 @@
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/4wmDCAydC1e"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/huBLXAHER-1"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -73,7 +73,7 @@
         
         <tr>
           <td class="docs">
-            <p>This <code>area</code> method has a <em>receiver type</em> of <code>*rect</code>.</p>
+            <p>O método <code>area</code> tem um <em>receiver type</em> de <code>*rect</code>.</p>
 
           </td>
           <td class="code leading">
@@ -88,14 +88,14 @@
         
         <tr>
           <td class="docs">
-            <p>Methods can be defined for either pointer or value
-receiver types. Here&rsquo;s an example of a value receiver.</p>
+            <p>Métodos podem ser definidos tanto com <em>receiver types</em> que são
+ponteiros ou valores. Aqui está um exemplo de receiver de valor.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-<span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="nx">rect</span><span class="p">)</span> <span class="nf">perim</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="nx">rect</span><span class="p">)</span> <span class="nf">perimetro</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
     <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="nx">r</span><span class="p">.</span><span class="nx">width</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="nx">r</span><span class="p">.</span><span class="nx">height</span>
 <span class="p">}</span>
 </pre>
@@ -116,25 +116,25 @@ receiver types. Here&rsquo;s an example of a value receiver.</p>
         
         <tr>
           <td class="docs">
-            <p>Here we call the 2 methods defined for our struct.</p>
+            <p>Aqui são chamados dois métodos definidos para a struct.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;area: &#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nf">area</span><span class="p">())</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;perim:&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nf">perim</span><span class="p">())</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;perimetro:&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nf">perimetro</span><span class="p">())</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>Go automatically handles conversion between values
-and pointers for method calls. You may want to use
-a pointer receiver type to avoid copying on method
-calls or to allow the method to mutate the
-receiving struct.</p>
+            <p>Go faz automaticamente conversões entre valores e
+ponteiros para chamadas de métodos. Geralmente se
+usa um <em>pointer receiver</em> para se evitar a necessidade
+de passar uma cópia da struct como parâmetro da função
+ou para permitir que o método altere a struct.</p>
 
           </td>
           <td class="code">
@@ -142,7 +142,7 @@ receiving struct.</p>
           <pre class="chroma">
     <span class="nx">rp</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">r</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;area: &#34;</span><span class="p">,</span> <span class="nx">rp</span><span class="p">.</span><span class="nf">area</span><span class="p">())</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;perim:&#34;</span><span class="p">,</span> <span class="nx">rp</span><span class="p">.</span><span class="nf">perim</span><span class="p">())</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;perimetro:&#34;</span><span class="p">,</span> <span class="nx">rp</span><span class="p">.</span><span class="nf">perimetro</span><span class="p">())</span>
 <span class="p">}</span>
 </pre>
           </td>
@@ -168,8 +168,8 @@ receiving struct.</p>
         
         <tr>
           <td class="docs">
-            <p>Next we&rsquo;ll look at Go&rsquo;s mechanism for grouping and
-naming related sets of methods: interfaces.</p>
+            <p>Em seguida, será apresentado o mecanismo de Go para
+agroupar e nomear conjuntos de métodos: interfaces.</p>
 
           </td>
           <td class="code empty">
@@ -193,7 +193,7 @@ naming related sets of methods: interfaces.</p>
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('type rect struct {\u000A    width, height int\u000A}\u000A');codeLines.push('func (r *rect) area() int {\u000A    return r.width * r.height\u000A}\u000A');codeLines.push('func (r rect) perim() int {\u000A    return 2*r.width + 2*r.height\u000A}\u000A');codeLines.push('func main() {\u000A    r :\u003D rect{width: 10, height: 5}\u000A');codeLines.push('    fmt.Println(\"area: \", r.area())\u000A    fmt.Println(\"perim:\", r.perim())\u000A');codeLines.push('    rp :\u003D \u0026r\u000A    fmt.Println(\"area: \", rp.area())\u000A    fmt.Println(\"perim:\", rp.perim())\u000A}\u000A');codeLines.push('');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('type rect struct {\u000A    width, height int\u000A}\u000A');codeLines.push('func (r *rect) area() int {\u000A    return r.width * r.height\u000A}\u000A');codeLines.push('func (r rect) perimetro() int {\u000A    return 2*r.width + 2*r.height\u000A}\u000A');codeLines.push('func main() {\u000A    r :\u003D rect{width: 10, height: 5}\u000A');codeLines.push('    fmt.Println(\"area: \", r.area())\u000A    fmt.Println(\"perimetro:\", r.perimetro())\u000A');codeLines.push('    rp :\u003D \u0026r\u000A    fmt.Println(\"area: \", rp.area())\u000A    fmt.Println(\"perimetro:\", rp.perimetro())\u000A}\u000A');codeLines.push('');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>

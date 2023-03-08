@@ -1,8 +1,9 @@
-// Go supports _embedding_ of structs and interfaces
-// to express a more seamless _composition_ of types.
-// This is not to be confused with `//go:embed` which is
-// a go directive introduced in Go version 1.16+ to embed
-// files and folders into the application binary.
+// Go suporta _embedding_ ou _incorporação_ de structs e
+// interfaces para expressar uma _composição_ de tipos
+// que faça mais sentido.
+// Não deve ser confundido com `//go:embed` que é uma diretiva de
+// Go, introduzida na versão 1.16+ para incorporar arquivos e
+// diretórios no binário de uma aplicação.
 
 package main
 
@@ -12,12 +13,12 @@ type base struct {
 	num int
 }
 
-func (b base) describe() string {
-	return fmt.Sprintf("base with num=%v", b.num)
+func (b base) descrever() string {
+	return fmt.Sprintf("base com numero=%v", b.num)
 }
 
-// A `container` _embeds_ a `base`. An embedding looks
-// like a field without a name.
+// Uma struct `container` _incorpora_ a struct `base`.
+// Uma incorporação é como um campo da struct, mas sem um nome.
 type container struct {
 	base
 	str string
@@ -25,38 +26,37 @@ type container struct {
 
 func main() {
 
-	// When creating structs with literals, we have to
-	// initialize the embedding explicitly; here the
-	// embedded type serves as the field name.
+	// Ao criar structs com literais, é necessário inicializar
+	// a incorporação explicitamente; aqui, o tipo incorporado
+	// serve como nome do campo.
 	co := container{
 		base: base{
 			num: 1,
 		},
-		str: "some name",
+		str: "algum nome",
 	}
 
-	// We can access the base's fields directly on `co`,
-	// e.g. `co.num`.
+	// É possível acessar o campo da struct `base` diretamente
+	// na variável `co`, por exemplo com `co.num`.
 	fmt.Printf("co={num: %v, str: %v}\n", co.num, co.str)
 
-	// Alternatively, we can spell out the full path using
-	// the embedded type name.
-	fmt.Println("also num:", co.base.num)
+	// Alternativamente, pode ser acessado com o caminho completo
+	// usando o nome do tipo incorporado.
+	fmt.Println("outro número:", co.base.num)
 
-	// Since `container` embeds `base`, the methods of
-	// `base` also become methods of a `container`. Here
-	// we invoke a method that was embedded from `base`
-	// directly on `co`.
-	fmt.Println("describe:", co.describe())
+	// Como `container` incorpora `base`, os métodos de
+	// `base` também se tornam métodos do `container`.
+	// Aqui é invocado o método de `base` diretamente em `co`.
+	fmt.Println("descreva:", co.descrever())
 
-	type describer interface {
-		describe() string
+	type descritor interface {
+		descrever() string
 	}
 
-	// Embedding structs with methods may be used to bestow
-	// interface implementations onto other structs. Here
-	// we see that a `container` now implements the
-	// `describer` interface because it embeds `base`.
-	var d describer = co
-	fmt.Println("describer:", d.describe())
+	// Structs incorporadas com métodos podem ser usadas para
+	// conceder implementações de interfaces em outras structs.
+	// Aqui é visto que um `container` agora implementa a
+	// interface `descritor` porque incorpora `base`.
+	var d descritor = co
+	fmt.Println("descritor:", d.descrever())
 }

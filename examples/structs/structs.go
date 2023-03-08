@@ -1,53 +1,54 @@
-// Go's _structs_ are typed collections of fields.
-// They're useful for grouping data together to form
-// records.
+// As _structs_ em Go são coleções tipadas de dados.
+// São úteis para agrupar informações.
 
 package main
 
 import "fmt"
 
-// This `person` struct type has `name` and `age` fields.
-type person struct {
-	name string
-	age  int
+// A struct do tipo `pessoa` tem os campos `nome` e `idade`.
+type pessoa struct {
+	nome  string
+	idade int
 }
 
-// `newPerson` constructs a new person struct with the given name.
-func newPerson(name string) *person {
-	// You can safely return a pointer to local variable
-	// as a local variable will survive the scope of the function.
-	p := person{name: name}
-	p.age = 42
+// A função `novaPessoa` constrói uma nova
+// struct de pessoa com um determinado nome.
+func novaPessoa(name string) *pessoa {
+
+	// O valor atribuído para a variável local
+	// será retornado pela função.
+	p := pessoa{nome: name}
+	p.idade = 42
 	return &p
 }
 
 func main() {
 
-	// This syntax creates a new struct.
-	fmt.Println(person{"Bob", 20})
+	// Esta sintaxe cria uma nova `struct`.
+	fmt.Println(pessoa{"Bob", 20})
 
-	// You can name the fields when initializing a struct.
-	fmt.Println(person{name: "Alice", age: 30})
+	// E possível nomear os campos ao inicializar a `struct`.
+	fmt.Println(pessoa{nome: "Alice", idade: 30})
 
-	// Omitted fields will be zero-valued.
-	fmt.Println(person{name: "Fred"})
+	// Os campos omitidos terão valor padrão, ou zero.
+	fmt.Println(pessoa{nome: "Fred"})
 
-	// An `&` prefix yields a pointer to the struct.
-	fmt.Println(&person{name: "Ann", age: 40})
+	// O prefixo `&` signfica um ponteiro para a `struct`.
+	fmt.Println(&pessoa{nome: "Ann", idade: 40})
 
-	// It's idiomatic to encapsulate new struct creation in constructor functions
-	fmt.Println(newPerson("Jon"))
+	// É idiomático encapsular a criação de uma nova `struct` em uma função construtora.
+	fmt.Println(novaPessoa("Jon"))
 
-	// Access struct fields with a dot.
-	s := person{name: "Sean", age: 50}
-	fmt.Println(s.name)
+	// É possível acessar campos de determinada `struct` utilizando notação de pontos.
+	s := pessoa{nome: "Sean", idade: 50}
+	fmt.Println(s.nome)
 
-	// You can also use dots with struct pointers - the
-	// pointers are automatically dereferenced.
+	// E também utilizar notação de pontos com ponteiros de `structs`
+	// ponteiros serão de-referenciados automaticamente.
 	sp := &s
-	fmt.Println(sp.age)
+	fmt.Println(sp.idade)
 
-	// Structs are mutable.
-	sp.age = 51
-	fmt.Println(sp.age)
+	// Structs são mutáveis.
+	sp.idade = 51
+	fmt.Println(sp.idade)
 }

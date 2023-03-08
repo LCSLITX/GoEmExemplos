@@ -27,14 +27,15 @@
         
         <tr>
           <td class="docs">
-            <p>In Go it&rsquo;s idiomatic to communicate errors via an
-explicit, separate return value. This contrasts with
-the exceptions used in languages like Java and Ruby and
-the overloaded single result / error value sometimes
-used in C. Go&rsquo;s approach makes it easy to see which
-functions return errors and to handle them using the
-same language constructs employed for any other,
-non-error tasks.</p>
+            <p>Em Go, é considerado idiomático comunicar erros via
+retornos separados e explícitos. Isto contrasta com
+exceções usadas em outras linguagens como Java e Ruby
+com um único resultado sobrecarregado; ou com valores
+de erros por vezes usado em C. O <em>approach</em> de Go torna
+muito mais fácil a verificação de que funções estão
+retornando erros e tratá-los usando os mesmos mecanismos
+empregados pela linguagem em outras tarefas não relacionadas
+a erros.</p>
 
           </td>
           <td class="code empty leading">
@@ -48,7 +49,7 @@ non-error tasks.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/NiJOpCPO3L0"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/oYQy6rfYvx-"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -70,8 +71,8 @@ non-error tasks.</p>
         
         <tr>
           <td class="docs">
-            <p>By convention, errors are the last return value and
-have type <code>error</code>, a built-in interface.</p>
+            <p>Por convenção, erros são os últimos valores retornados
+e implementam a interface nativa <code>erro</code>.</p>
 
           </td>
           <td class="code leading">
@@ -85,8 +86,8 @@ have type <code>error</code>, a built-in interface.</p>
         
         <tr>
           <td class="docs">
-            <p><code>errors.New</code> constructs a basic <code>error</code> value
-with the given error message.</p>
+            <p><code>errors.New</code> constrói um valor <code>error</code> básico
+com a mensagem de erro determinada.</p>
 
           </td>
           <td class="code leading">
@@ -110,8 +111,8 @@ with the given error message.</p>
         
         <tr>
           <td class="docs">
-            <p>A <code>nil</code> value in the error position indicates that
-there was no error.</p>
+            <p>Um valor <code>nil</code> como último retorno de uma determinada função
+indica que não há nenhum erro.</p>
 
           </td>
           <td class="code leading">
@@ -125,10 +126,10 @@ there was no error.</p>
         
         <tr>
           <td class="docs">
-            <p>It&rsquo;s possible to use custom types as <code>error</code>s by
-implementing the <code>Error()</code> method on them. Here&rsquo;s a
-variant on the example above that uses a custom type
-to explicitly represent an argument error.</p>
+            <p>É possível usar tipos de erro customizados implementado
+o método <code>Error()</code>. Aqui está uma variante do exemplo
+acima que usa um tipo erro customizado para representar
+explicitamente um erro de argumento.</p>
 
           </td>
           <td class="code leading">
@@ -169,9 +170,9 @@ to explicitly represent an argument error.</p>
         
         <tr>
           <td class="docs">
-            <p>In this case we use <code>&amp;argError</code> syntax to build
-a new struct, supplying values for the two
-fields <code>arg</code> and <code>prob</code>.</p>
+            <p>Neste caso, pode-se utilizar a sintaxe <code>&amp;argError</code>
+para construir uma nova struct, passando valores para
+os campos <code>arg</code> e <code>prob</code>.</p>
 
           </td>
           <td class="code leading">
@@ -198,10 +199,10 @@ fields <code>arg</code> and <code>prob</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>The two loops below test out each of our
-error-returning functions. Note that the use of an
-inline error check on the <code>if</code> line is a common
-idiom in Go code.</p>
+            <p>Os dois loops abaixo, testam cada uma das funções
+que retornam erros. Note que a utilização de uma
+verificação de erro em linha, junto ao <code>if</code> é algo
+comum em Go.</p>
 
           </td>
           <td class="code leading">
@@ -227,10 +228,10 @@ idiom in Go code.</p>
         
         <tr>
           <td class="docs">
-            <p>If you want to programmatically use the data in
-a custom error, you&rsquo;ll need to get the error as an
-instance of the custom error type via type
-assertion.</p>
+            <p>É possível utilizar programaticamente os dados
+em um erro customizado. Será preciso capturar o
+erro como uma instância do tipo de erro
+customizado via asserção de tipo.</p>
 
           </td>
           <td class="code">
@@ -268,8 +269,8 @@ assertion.</p>
         
         <tr>
           <td class="docs">
-            <p>See this <a href="https://go.dev/blog/error-handling-and-go">great post</a>
-on the Go blog for more on error handling.</p>
+            <p>Veja este <a href="https://go.dev/blog/error-handling-and-go">post</a>
+no Blog de Go para mais sobre tratamento de erros.</p>
 
           </td>
           <td class="code empty">

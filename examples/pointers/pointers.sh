@@ -1,6 +1,6 @@
-# `zeroval` doesn't change the `i` in `main`, but
-# `zeroptr` does because it has a reference to
-# the memory address for that variable.
+# `zeroval` não altera o valor de `i` em `main`, 
+# mas `zeroptr` altera porque recebe uma referência
+# ao endereço de memória para aquela variável.
 $ go run pointers.go
 initial: 1
 zeroval: 1
