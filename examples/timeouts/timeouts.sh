@@ -1,5 +1,5 @@
-# Running this program shows the first operation timing
-# out and the second succeeding.
+# Ao executar este programa, a primeira operação tem
+# seu tempo esgotado e a segunda finaliza
 $ go run timeouts.go 
 timeout 1
 result 2

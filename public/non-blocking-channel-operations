@@ -27,10 +27,10 @@
         
         <tr>
           <td class="docs">
-            <p>Basic sends and receives on channels are blocking.
-However, we can use <code>select</code> with a <code>default</code> clause to
-implement <em>non-blocking</em> sends, receives, and even
-non-blocking multi-way <code>select</code>s.</p>
+            <p>Envios e recebimentos básicos nos canais, são bloqueantes.
+No entanto, é possível usar o <code>select</code> com uma cláusula <code>default</code>
+para implementar envio e recebimentos <em>non-blocking</em> e até
+non-blocking <code>select</code> de multiplos casos.</p>
 
           </td>
           <td class="code empty leading">
@@ -44,7 +44,7 @@ non-blocking multi-way <code>select</code>s.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/TFv6-7OVNVq"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/tFd8VbXR1vG"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -76,10 +76,10 @@ non-blocking multi-way <code>select</code>s.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s a non-blocking receive. If a value is
-available on <code>messages</code> then <code>select</code> will take
-the <code>&lt;-messages</code> <code>case</code> with that value. If not
-it will immediately take the <code>default</code> case.</p>
+            <p>Aqui está um recebimento não bloqueante. Se um valor
+estiver disponível em <code>messages</code> o <code>select</code> prosseguirá
+com o <code>case</code> que tem o <code>&lt;-messages</code>. Se não,
+presseguirá com o case padrão ou <code>default</code>.</p>
 
           </td>
           <td class="code leading">
@@ -97,10 +97,11 @@ it will immediately take the <code>default</code> case.</p>
         
         <tr>
           <td class="docs">
-            <p>A non-blocking send works similarly. Here <code>msg</code>
-cannot be sent to the <code>messages</code> channel, because
-the channel has no buffer and there is no receiver.
-Therefore the <code>default</code> case is selected.</p>
+            <p>Um send não bloqueante funciona de maneira similar.
+Aqui, <code>msg</code> não pode ser enviado para o canal <code>messages</code>,
+justamente porque o canal não tem buffer e
+não tem um recebimento. Portanto, o case <code>default</code>
+será executado.</p>
 
           </td>
           <td class="code leading">
@@ -119,10 +120,9 @@ Therefore the <code>default</code> case is selected.</p>
         
         <tr>
           <td class="docs">
-            <p>We can use multiple <code>case</code>s above the <code>default</code>
-clause to implement a multi-way non-blocking
-select. Here we attempt non-blocking receives
-on both <code>messages</code> and <code>signals</code>.</p>
+            <p>É possível utilizar multiplos <code>case</code>s acima da clausula
+<code>default</code>. Aqui está uma tentativa de recebimento não bloqueante
+em ambos os canais  <code>messages</code> and <code>signals</code>.</p>
 
           </td>
           <td class="code">

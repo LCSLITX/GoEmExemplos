@@ -27,9 +27,9 @@
         
         <tr>
           <td class="docs">
-            <p><em>Closing</em> a channel indicates that no more values
-will be sent on it. This can be useful to communicate
-completion to the channel&rsquo;s receivers.</p>
+            <p>Fechar um canal indica que mais nenhum valor
+será enviado para ele. Isto pode ser útil para
+comunicar a finalização dos recebimentos.</p>
 
           </td>
           <td class="code empty leading">
@@ -43,7 +43,7 @@ completion to the channel&rsquo;s receivers.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/vCvRjcMq7p3"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/GLneFOi_qQl"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -62,10 +62,10 @@ completion to the channel&rsquo;s receivers.</p>
         
         <tr>
           <td class="docs">
-            <p>In this example we&rsquo;ll use a <code>jobs</code> channel to
-communicate work to be done from the <code>main()</code> goroutine
-to a worker goroutine. When we have no more jobs for
-the worker we&rsquo;ll <code>close</code> the <code>jobs</code> channel.</p>
+            <p>Neste exemplo será usado um canal <code>jobs</code> para
+comunicar tarefa a ser executada pela goroutine <code>main()</code>
+para uma worker goroutine. Ao não ter mais tarefas
+para a worker, o canal será fechado com <code>close</code>.</p>
 
           </td>
           <td class="code leading">
@@ -80,13 +80,14 @@ the worker we&rsquo;ll <code>close</code> the <code>jobs</code> channel.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s the worker goroutine. It repeatedly receives
-from <code>jobs</code> with <code>j, more := &lt;-jobs</code>. In this
-special 2-value form of receive, the <code>more</code> value
-will be <code>false</code> if <code>jobs</code> has been <code>close</code>d and all
-values in the channel have already been received.
-We use this to notify on <code>done</code> when we&rsquo;ve worked
-all our jobs.</p>
+            <p>Aqui está a worker goroutine. Ela repetidamente recebe
+de <code>jobs</code> com o loop <code>j, more := &lt;-jobs</code>. Nesta forma de
+recebimento de dois valores, o valor <code>more</code> será falso se
+<code>jobs</code> foi fechado/<code>close</code> e todos os valores do canal já
+tiverem sido recebidos.
+Isto é utilizado para notificar ao <code>done</code> quando todas as
+tarefas já foram executadas.
+Importante notar que <code>jobs</code> é um canal <code>buffered</code>.</p>
 
           </td>
           <td class="code leading">
@@ -110,8 +111,8 @@ all our jobs.</p>
         
         <tr>
           <td class="docs">
-            <p>This sends 3 jobs to the worker over the <code>jobs</code>
-channel, then closes it.</p>
+            <p>Isto envia 3 tarefas para a worker goroutine pelo canal
+<code>jobs</code> e então o fecha.</p>
 
           </td>
           <td class="code leading">
@@ -129,9 +130,9 @@ channel, then closes it.</p>
         
         <tr>
           <td class="docs">
-            <p>We await the worker using the
-<a href="channel-synchronization">synchronization</a> approach
-we saw earlier.</p>
+            <p>A execução é aguardada utilizando a
+<a href="channel-synchronization">sincronização</a>,
+como apresentado anteriormente.</p>
 
           </td>
           <td class="code">
@@ -167,8 +168,8 @@ we saw earlier.</p>
         
         <tr>
           <td class="docs">
-            <p>The idea of closed channels leads naturally to our next
-example: <code>range</code> over channels.</p>
+            <p>A ideia de canais fechados leva naturalmente ao próximo
+exemplo: <code>range</code> em canais.</p>
 
           </td>
           <td class="code empty">
