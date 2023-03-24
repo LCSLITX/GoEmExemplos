@@ -21,7 +21,7 @@
   </script>
   <body>
     <div class="example" id="mutexes">
-      <h2><a href="./">Go by Example</a>: Mutexes</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Mutexes</h2>
       
       <table>
         

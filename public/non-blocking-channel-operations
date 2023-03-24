@@ -21,7 +21,7 @@
   </script>
   <body>
     <div class="example" id="non-blocking-channel-operations">
-      <h2><a href="./">Go by Example</a>: Non-Blocking Channel Operations</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Non-Blocking Channel Operations</h2>
       
       <table>
         

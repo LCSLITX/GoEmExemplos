@@ -21,7 +21,7 @@
   </script>
   <body>
     <div class="example" id="sha256-hashes">
-      <h2><a href="./">Go by Example</a>: SHA256 Hashes</h2>
+      <h2><a href="./">Go Em Exemplos</a>: SHA256 Hashes</h2>
       
       <table>
         

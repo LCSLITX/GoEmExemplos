@@ -21,7 +21,7 @@
   </script>
   <body>
     <div class="example" id="stateful-goroutines">
-      <h2><a href="./">Go by Example</a>: Stateful Goroutines</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Stateful Goroutines</h2>
       
       <table>
         
