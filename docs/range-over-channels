@@ -44,7 +44,7 @@ valores recebidos em um canal.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/f7op2ojaac_v"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/B6eB5xmedPd"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -92,7 +92,7 @@ valores recebidos em um canal.</p>
           <td class="docs">
             <p>Este <code>range</code> itera sobre cada um dos elementos
 na medida que são recebidos de <code>fila</code>.
-Como o canal é fechado, com <code>close</code>, a iteração finaliza
+Como o canal é fechado <code>close</code>, a iteração finaliza
 depois de recebidos os dois elementos.</p>
 
           </td>
