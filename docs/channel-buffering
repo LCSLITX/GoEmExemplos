@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Channel Buffering</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'channels';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'channel-synchronization';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="channel-buffering">
+      <h2><a href="./">Go Em Exemplos</a>: Channel Buffering</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Por padrão canais são <em>unbuffered</em>, ou seja, apenas
+aceitam envios (<code>chan &lt;-</code>) se há um recebimento
+correspondente (<code>&lt;- chan</code>) pronto para receber.
+Canais <em>Buffered</em> aceitam um número limitado de valores
+sem um recebimento correspondente.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/SoW1m9LDBe0"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Aqui é criado um canal de strings que armazena até
+dois valores, ou seja, trata-se de um canal <em>buffered</em>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">messages</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Por ser <em>buffered</em> é possível enviar valores para o
+canal, sem ter um recebimento correspondente.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">messages</span> <span class="o">&lt;-</span> <span class="s">&#34;buffered&#34;</span>
+    <span class="nx">messages</span> <span class="o">&lt;-</span> <span class="s">&#34;channel&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Posteriormente os valores são recebidos normalmente.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">&lt;-</span><span class="nx">messages</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">&lt;-</span><span class="nx">messages</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><span class="gp">$</span> go run channel-buffering.go 
+<span class="go">buffered
+</span><span class="go">channel</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="channel-synchronization">Channel Synchronization</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func main() {\u000A');codeLines.push('    messages :\u003D make(chan string, 2)\u000A');codeLines.push('    messages \u003C- \"buffered\"\u000A    messages \u003C- \"channel\"\u000A');codeLines.push('    fmt.Println(\u003C-messages)\u000A    fmt.Println(\u003C-messages)\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

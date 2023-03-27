@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Functions</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'range';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'multiple-return-values';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="functions">
+      <h2><a href="./">Go Em Exemplos</a>: Functions</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p><em>Functions</em> são centrais em Go. Serão demonstradas
+funções com alguns exemplos diferentes.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/D8sGhZBD4Ai"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Aqui está uma função que recebe dois inteiros <code>int</code> e retorna a soma de ambos como outro inteiro <code>int</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="nf">plus</span><span class="p">(</span><span class="nx">a</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Go exige retornos explícitos. Por exemplo,
+não será retornado automaticamente o valor
+da última expressão</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Ao existir multiplos parâmetros consecutivos de um
+mesmo tipo, é possível omitir o tipo dos parâmetros
+até a declaração do último parâmetro daquele tipo.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="nf">plusPlus</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">c</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Para executar uma função é utilizada a
+sintaxe <code>nomeDaFuncao(argumentos)</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">res</span> <span class="o">:=</span> <span class="nf">plus</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;1+2 =&#34;</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">    <span class="nx">res</span> <span class="p">=</span> <span class="nf">plusPlus</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;1+2+3 =&#34;</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="gp">$</span> go run functions.go 
+<span class="go">1+2 = 3
+</span><span class="go">1+2+3 = 6</span></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Existem muitos outros recursos em Funções,
+um dos quais é chamado de Retorno de Valores
+Múltiplos que será apresentado no próximo exemplo.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="multiple-return-values">Multiple Return Values</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func plus(a int, b int) int {\u000A');codeLines.push('    return a + b\u000A}\u000A');codeLines.push('func plusPlus(a, b, c int) int {\u000A    return a + b + c\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    res :\u003D plus(1, 2)\u000A    fmt.Println(\"1+2 \u003D\", res)\u000A');codeLines.push('    res \u003D plusPlus(1, 2, 3)\u000A    fmt.Println(\"1+2+3 \u003D\", res)\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

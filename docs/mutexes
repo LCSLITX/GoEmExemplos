@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Mutexes</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'atomic-counters';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'stateful-goroutines';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="mutexes">
+      <h2><a href="./">Go Em Exemplos</a>: Mutexes</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>No exemplo anterior, foi apresentado como gerenciar
+estados de contadores simples usando
+<a href="atomic-counters">atomic operations</a>.
+Para estados mais complexos é recomendado utilizar
+<a href="https://en.wikipedia.org/wiki/Mutual_exclusion"><em>mutex</em></a>
+para acessar dados entre múltiplas goroutines seguramente.
+MutEx é abreviação de <em>Mutual Exclusion</em></p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/cbtQ0RjbDxk"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;sync&#34;</span>
+<span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>A struct container possui um map de contadores;
+como a intenção aqui é atualizar concorrentemente
+a partir de múltiplas goroutines, é adicionado <code>Mutex</code>
+para sincronizar o acesso.
+Note que mutex não deve ser copiado, então, se a struct
+é passada para outras funções ou etc, deve ser feito
+com ponteiro.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">type</span> <span class="nx">Container</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">mu</span>       <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+    <span class="nx">counters</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Trava o mutex antes de acessar <code>counters</code>; destrava
+ao final da função utilizando a expressão <a href="defer">defer</a>.
+e incrementa determinado contador.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Container</span><span class="p">)</span> <span class="nf">inc</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">    <span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+    <span class="k">defer</span> <span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">counters</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span><span class="o">++</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Note que o valor padrão, ou zero, de um mutex é utilizável,
+então não é necessária a inicialização aqui.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">Container</span><span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">        <span class="nx">counters</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#34;b&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">    <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Esta função incrementa, em um loop, um contador de
+determinado nome.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">doIncrement</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+            <span class="nx">c</span><span class="p">.</span><span class="nf">inc</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Executando várias goroutines concorrentemente;
+Note que todas tem acesso ao mesmo <code>Container</code>,
+e duas delas tem acesso ao mesmo contador <code>a</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nf">doIncrement</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nf">doIncrement</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nf">doIncrement</span><span class="p">(</span><span class="s">&#34;b&#34;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Aguarda todas as goroutines finalizarem.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">counters</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Executando o programa, é exibido que os
+contadores foram atualizados, conforme esperado.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="gp">$</span> go run mutexes.go
+<span class="go">map[a:20000 b:10000]</span></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Em seguida, será apresentado como implementar este
+mesmo gerenciamento de estado de tarefas usando
+apenas goroutines e canais.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="stateful-goroutines">Stateful Goroutines</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"sync\"\u000A)\u000A');codeLines.push('type Container struct {\u000A    mu       sync.Mutex\u000A    counters map[string]int\u000A}\u000A');codeLines.push('func (c *Container) inc(name string) {\u000A');codeLines.push('    c.mu.Lock()\u000A    defer c.mu.Unlock()\u000A    c.counters[name]++\u000A}\u000A');codeLines.push('func main() {\u000A    c :\u003D Container{\u000A');codeLines.push('        counters: map[string]int{\"a\": 0, \"b\": 0},\u000A    }\u000A');codeLines.push('    var wg sync.WaitGroup\u000A');codeLines.push('    doIncrement :\u003D func(name string, n int) {\u000A        for i :\u003D 0; i \u003C n; i++ {\u000A            c.inc(name)\u000A        }\u000A        wg.Done()\u000A    }\u000A');codeLines.push('    wg.Add(3)\u000A    go doIncrement(\"a\", 10000)\u000A    go doIncrement(\"a\", 10000)\u000A    go doIncrement(\"b\", 10000)\u000A');codeLines.push('    wg.Wait()\u000A    fmt.Println(c.counters)\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

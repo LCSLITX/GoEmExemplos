@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Strings and Runes</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'pointers';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'structs';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="strings-and-runes">
+      <h2><a href="./">Go Em Exemplos</a>: Strings and Runes</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Uma string em Go é um slice de bytes, ou []byte, apenas para leitura.
+A linguagem a biblioteca padrão tratam strings especialmente - como
+containers de text codificado em <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>.
+Em outras linguagens, strings são feitas de &ldquo;caracteres&rdquo;.
+Em Go, o conceito de caractere é chamado de <code>rune</code>, ou runa - é
+um inteiro que representa um ponto de código Unicode.
+<a href="https://go.dev/blog/strings">Este post</a> é uma boa introdução.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/7NWrjURq9en"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;unicode/utf8&#34;</span>
+<span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>s</code> é uma <code>string</code> a que foi atribuida um valor literal
+representando a palavra &ldquo;olá&rdquo; em língua tailandesa.
+As strings literais em Go são textos codificados em UTF-8.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="kd">const</span> <span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;สวัสดี&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Como strings são equivalentes a <code>[]byte</code>, o próximo exemplo
+vai produzir o tamanho em <code>raw bytes</code>, ou bytes crus, constantes
+na string.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Len:&#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">))</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Indexar a string produz os valores em raw byte em cada
+índice. Este loop gera o valor hexadecimal de cada um
+dos bytes que constituem os pontos de código em <code>s</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%x &#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+    <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Para contar quantas <em>runes</em> tem numa string, é possível usar
+o pacote <code>utf8</code>. Note que o tempo de execução da função
+<code>RuneCountInString</code> depende do tamanho da string,
+porque é preciso decodificar cada runa UTF-8 sequencialmente.
+Alguns caracteres do alfabeto Tailandês são representados
+por múltiplos pontos de código UTF-8 então o resultado
+desta contagem pode ser um pouco surpreendente.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Conta runas:&#34;</span><span class="p">,</span> <span class="nx">utf8</span><span class="p">.</span><span class="nf">RuneCountInString</span><span class="p">(</span><span class="nx">s</span><span class="p">))</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Um loop <code>range</code> decodifica cada <code>rune</code>
+junto com sua posição na string.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="k">for</span> <span class="nx">idx</span><span class="p">,</span> <span class="nx">runeValue</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%#U começa em %d\n&#34;</span><span class="p">,</span> <span class="nx">runeValue</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>É possível atingir o mesmo resultado da iteração anterior
+usando a função <code>utf8.DecodeRuneInString</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Usando DecodeRuneInString&#34;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">w</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="nx">i</span> <span class="o">+=</span> <span class="nx">w</span> <span class="p">{</span>
+        <span class="nx">runeValue</span><span class="p">,</span> <span class="nx">width</span> <span class="o">:=</span> <span class="nx">utf8</span><span class="p">.</span><span class="nf">DecodeRuneInString</span><span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">:])</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%#U começa em %d\n&#34;</span><span class="p">,</span> <span class="nx">runeValue</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+        <span class="nx">w</span> <span class="p">=</span> <span class="nx">width</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Isto demonstra uma runa sendo passada para uma função.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+        <span class="nf">examineRune</span><span class="p">(</span><span class="nx">runeValue</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">examineRune</span><span class="p">(</span><span class="nx">r</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Valores encapsulados em aspas simples são <em>rune literals</em>.
+É possível comparar o valor da <code>rune</code> com uma <em>rune literal</em> diretamente.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="k">if</span> <span class="nx">r</span> <span class="o">==</span> <span class="sc">&#39;t&#39;</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Encontrou um &#39;t&#39;&#34;</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">r</span> <span class="o">==</span> <span class="sc">&#39;ส&#39;</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Encontrou uma &#39;saw suea&#39;&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>ส é chamada de <a href="https://pt.wiktionary.org/wiki/%E0%B8%AA">saw suea</a>
+no alfabeto tailandês.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="gp">$</span> go run strings-and-runes.go
+<span class="go">Len: 18
+</span><span class="go">e0 b8 aa e0 b8 a7 e0 b8 b1 e0 b8 aa e0 b8 94 e0 b8 b5 
+</span><span class="go">Contagem de runas: 6
+</span><span class="go">U+0E2A &#39;ส&#39; começa no índice 0
+</span><span class="go">U+0E27 &#39;ว&#39; começa no índice 3
+</span><span class="go">U+0E31 &#39;ั&#39; começa no índice 6
+</span><span class="go">U+0E2A &#39;ส&#39; começa no índice 9
+</span><span class="go">U+0E14 &#39;ด&#39; começa no índice 12
+</span><span class="go">U+0E35 &#39;ี&#39; começa no índice 15
+</span><span class="go">Usando DecodeRuneInString
+</span><span class="go">U+0E2A &#39;ส&#39; começa no índice 0</span></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><span class="go">Encontrou uma &#39;saw suea&#39;
+</span><span class="go">U+0E27 &#39;ว&#39; começa no índice 3
+</span><span class="go">U+0E31 &#39;ั&#39; começa no índice 6
+</span><span class="go">U+0E2A &#39;ส&#39; começa no índice 9
+</span><span class="go">Encontrou uma &#39;saw suea&#39;
+</span><span class="go">U+0E14 &#39;ด&#39; começa no índice 12
+</span><span class="go">U+0E35 &#39;ี&#39; começa no índice 15</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="structs">Structs</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"unicode/utf8\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    const s \u003D \"สวัสดี\"\u000A');codeLines.push('    fmt.Println(\"Len:\", len(s))\u000A');codeLines.push('    for i :\u003D 0; i \u003C len(s); i++ {\u000A        fmt.Printf(\"%x \", s[i])\u000A    }\u000A    fmt.Println()\u000A');codeLines.push('    fmt.Println(\"Conta runas:\", utf8.RuneCountInString(s))\u000A');codeLines.push('    for idx, runeValue :\u003D range s {\u000A        fmt.Printf(\"%#U começa em %d\\n\", runeValue, idx)\u000A    }\u000A');codeLines.push('    fmt.Println(\"Usando DecodeRuneInString\")\u000A    for i, w :\u003D 0, 0; i \u003C len(s); i +\u003D w {\u000A        runeValue, width :\u003D utf8.DecodeRuneInString(s[i:])\u000A        fmt.Printf(\"%#U começa em %d\\n\", runeValue, i)\u000A        w \u003D width\u000A');codeLines.push('        examineRune(runeValue)\u000A    }\u000A}\u000A');codeLines.push('func examineRune(r rune) {\u000A');codeLines.push('    if r \u003D\u003D \'t\' {\u000A        fmt.Println(\"Encontrou um \'t\'\")\u000A    } else if r \u003D\u003D \'ส\' {\u000A        fmt.Println(\"Encontrou uma \'saw suea\'\")\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

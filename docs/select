@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Select</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'channel-directions';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'timeouts';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="select">
+      <h2><a href="./">Go Em Exemplos</a>: Select</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>A ferramenta <em>select</em> permite aguardar múltiplos
+canais. Combinar goroutines e canais com select,
+é um recurso muito útil em Go.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/tivDxG5kJAX"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;time&#34;</span>
+<span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Para este exemplo, o select será utilizado com
+dois canais.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">c1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+    <span class="nx">c2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Cada canal receberá um valor depois de certo tempo
+para simular, por exemplo, operações RPC bloqueantes
+executando em goroutines concorrentes.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+        <span class="nx">c1</span> <span class="o">&lt;-</span> <span class="s">&#34;um&#34;</span>
+    <span class="p">}()</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+        <span class="nx">c2</span> <span class="o">&lt;-</span> <span class="s">&#34;dois&#34;</span>
+    <span class="p">}()</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>O <code>select</code> será utilizado para aguardar ambos os valores
+simultaneamente, imprimindo cada um conforme são recebidos.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">msg1</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">c1</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;recebido&#34;</span><span class="p">,</span> <span class="nx">msg1</span><span class="p">)</span>
+        <span class="k">case</span> <span class="nx">msg2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">c2</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;recebido&#34;</span><span class="p">,</span> <span class="nx">msg2</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p><code>São recebidos os valores</code>&ldquo;um&rdquo;<code>e então</code>&ldquo;dois&rdquo;`,
+conforme esperado.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="gp">$</span> time go run select.go 
+<span class="go">recebido um
+</span><span class="go">recebido dois</span></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Note que o tempo total de execução é aproximadamente 2
+segundos, pois ambas as funções <code>Sleep</code>, com 1 e
+2 segundos executam concorrentemente.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+<span class="go">real    0m2.245s</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="timeouts">Timeouts</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    c1 :\u003D make(chan string)\u000A    c2 :\u003D make(chan string)\u000A');codeLines.push('    go func() {\u000A        time.Sleep(1 * time.Second)\u000A        c1 \u003C- \"um\"\u000A    }()\u000A    go func() {\u000A        time.Sleep(2 * time.Second)\u000A        c2 \u003C- \"dois\"\u000A    }()\u000A');codeLines.push('    for i :\u003D 0; i \u003C 2; i++ {\u000A        select {\u000A        case msg1 :\u003D \u003C-c1:\u000A            fmt.Println(\"recebido\", msg1)\u000A        case msg2 :\u003D \u003C-c2:\u000A            fmt.Println(\"recebido\", msg2)\u000A        }\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

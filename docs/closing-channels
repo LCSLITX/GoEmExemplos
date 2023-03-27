@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Closing Channels</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'non-blocking-channel-operations';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'range-over-channels';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="closing-channels">
+      <h2><a href="./">Go Em Exemplos</a>: Closing Channels</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Fechar um canal indica que mais nenhum valor
+será enviado para ele. Isto pode ser útil para
+comunicar a finalização dos recebimentos.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/dRdK4UwqBqq"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Neste exemplo será usado um canal <code>tarefas</code> para
+comunicar tarefa a ser executada pela função <code>main()</code>
+para uma worker goroutine. Ao não ter mais tarefas
+para a worker, o canal será fechado com <code>close</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">tarefas</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="nx">pronto</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Aqui está a worker goroutine. Ela repetidamente recebe
+do canal <code>tarefas</code> com <code>t, mais := &lt;-tarefas</code>. Nesta forma de
+recebimento de dois valores, o valor <code>mais</code> será falso se
+<code>tarefas</code> foi fechado e todos os valores do canal já
+tiverem sido recebidos.
+Isto é utilizado para notificar ao <code>done</code> quando todas as
+tarefas já foram executadas.
+Importante notar que <code>tarefas</code> é um canal <code>buffered</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">{</span>
+            <span class="nx">t</span><span class="p">,</span> <span class="nx">mais</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">tarefas</span>
+            <span class="k">if</span> <span class="nx">mais</span> <span class="p">{</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;received job&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;received all tarefas&#34;</span><span class="p">)</span>
+                <span class="nx">pronto</span> <span class="o">&lt;-</span> <span class="kc">true</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}()</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Isto envia 3 tarefas para a worker goroutine pelo canal
+<code>tarefas</code> e então o fecha.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="k">for</span> <span class="nx">t</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">t</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">t</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">tarefas</span> <span class="o">&lt;-</span> <span class="nx">t</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;sent job&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nb">close</span><span class="p">(</span><span class="nx">tarefas</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;sent all tarefas&#34;</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>A execução é aguardada utilizando a
+<a href="channel-synchronization">sincronização</a>,
+como apresentado anteriormente.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="o">&lt;-</span><span class="nx">pronto</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="gp">$</span> go run closing-channels.go 
+<span class="go">sent job 1
+</span><span class="go">received job 1
+</span><span class="go">sent job 2
+</span><span class="go">received job 2
+</span><span class="go">sent job 3
+</span><span class="go">received job 3
+</span><span class="go">sent all jobs
+</span><span class="go">received all jobs</span></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>A ideia de canais fechados leva naturalmente ao próximo
+exemplo: <code>range</code> em canais.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="range-over-channels">Range over Channels</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func main() {\u000A    tarefas :\u003D make(chan int, 5)\u000A    pronto :\u003D make(chan bool)\u000A');codeLines.push('    go func() {\u000A        for {\u000A            t, mais :\u003D \u003C-tarefas\u000A            if mais {\u000A                fmt.Println(\"received job\", t)\u000A            } else {\u000A                fmt.Println(\"received all tarefas\")\u000A                pronto \u003C- true\u000A                return\u000A            }\u000A        }\u000A    }()\u000A');codeLines.push('    for t :\u003D 1; t \u003C\u003D 3; t++ {\u000A        tarefas \u003C- t\u000A        fmt.Println(\"sent job\", t)\u000A    }\u000A    close(tarefas)\u000A    fmt.Println(\"sent all tarefas\")\u000A');codeLines.push('    \u003C-pronto\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

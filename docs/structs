@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Structs</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'strings-and-runes';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'methods';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="structs">
+      <h2><a href="./">Go Em Exemplos</a>: Structs</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>As <em>structs</em> em Go são coleções tipadas de dados.
+São úteis para agrupar informações.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/GsRCLNRvGJq"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>A struct do tipo <code>pessoa</code> tem os campos <code>nome</code> e <code>idade</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">type</span> <span class="nx">pessoa</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">nome</span>  <span class="kt">string</span>
+    <span class="nx">idade</span> <span class="kt">int</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>A função <code>novaPessoa</code> constrói uma nova
+struct de pessoa com um determinado nome.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="nf">novaPessoa</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">pessoa</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>O valor atribuído para a variável local
+será retornado pela função.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">p</span> <span class="o">:=</span> <span class="nx">pessoa</span><span class="p">{</span><span class="nx">nome</span><span class="p">:</span> <span class="nx">name</span><span class="p">}</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">idade</span> <span class="p">=</span> <span class="mi">42</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">p</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Esta sintaxe cria uma nova <code>struct</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">pessoa</span><span class="p">{</span><span class="s">&#34;Bob&#34;</span><span class="p">,</span> <span class="mi">20</span><span class="p">})</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>E possível nomear os campos ao inicializar a <code>struct</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">pessoa</span><span class="p">{</span><span class="nx">nome</span><span class="p">:</span> <span class="s">&#34;Alice&#34;</span><span class="p">,</span> <span class="nx">idade</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Os campos omitidos terão valor padrão, ou zero.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">pessoa</span><span class="p">{</span><span class="nx">nome</span><span class="p">:</span> <span class="s">&#34;Fred&#34;</span><span class="p">})</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>O prefixo <code>&amp;</code> signfica um ponteiro para a <code>struct</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">pessoa</span><span class="p">{</span><span class="nx">nome</span><span class="p">:</span> <span class="s">&#34;Ann&#34;</span><span class="p">,</span> <span class="nx">idade</span><span class="p">:</span> <span class="mi">40</span><span class="p">})</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>É idiomático encapsular a criação de uma nova <code>struct</code> em uma função construtora.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">novaPessoa</span><span class="p">(</span><span class="s">&#34;Jon&#34;</span><span class="p">))</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>É possível acessar campos de determinada <code>struct</code> utilizando notação de pontos.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">s</span> <span class="o">:=</span> <span class="nx">pessoa</span><span class="p">{</span><span class="nx">nome</span><span class="p">:</span> <span class="s">&#34;Sean&#34;</span><span class="p">,</span> <span class="nx">idade</span><span class="p">:</span> <span class="mi">50</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">nome</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>E também utilizar notação de pontos com ponteiros de <code>structs</code>
+ponteiros serão de-referenciados automaticamente.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">sp</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">s</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">sp</span><span class="p">.</span><span class="nx">idade</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Structs são mutáveis.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="nx">sp</span><span class="p">.</span><span class="nx">idade</span> <span class="p">=</span> <span class="mi">51</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">sp</span><span class="p">.</span><span class="nx">idade</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><span class="gp">$</span> go run structs.go
+<span class="go">{Bob 20}
+</span><span class="go">{Alice 30}
+</span><span class="go">{Fred 0}
+</span><span class="go">&amp;{Ann 40}
+</span><span class="go">&amp;{Jon 42}
+</span><span class="go">Sean
+</span><span class="go">50
+</span><span class="go">51</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="methods">Methods</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('type pessoa struct {\u000A    nome  string\u000A    idade int\u000A}\u000A');codeLines.push('func novaPessoa(name string) *pessoa {\u000A');codeLines.push('    p :\u003D pessoa{nome: name}\u000A    p.idade \u003D 42\u000A    return \u0026p\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    fmt.Println(pessoa{\"Bob\", 20})\u000A');codeLines.push('    fmt.Println(pessoa{nome: \"Alice\", idade: 30})\u000A');codeLines.push('    fmt.Println(pessoa{nome: \"Fred\"})\u000A');codeLines.push('    fmt.Println(\u0026pessoa{nome: \"Ann\", idade: 40})\u000A');codeLines.push('    fmt.Println(novaPessoa(\"Jon\"))\u000A');codeLines.push('    s :\u003D pessoa{nome: \"Sean\", idade: 50}\u000A    fmt.Println(s.nome)\u000A');codeLines.push('    sp :\u003D \u0026s\u000A    fmt.Println(sp.idade)\u000A');codeLines.push('    sp.idade \u003D 51\u000A    fmt.Println(sp.idade)\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

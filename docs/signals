@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Signals</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'executing-processes';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'exit';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="signals">
+      <h2><a href="./">Go Em Exemplos</a>: Signals</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Por vezes, é necessário que programas em Go tratem
+<a href="https://en.wikipedia.org/wiki/Unix_signal">sinais Unix</a>.
+Por exemplo, pode-se querer que um servidor seja desligado
+graciosamente ao receber um sinal <code>SIGTERM</code>, ou que uma
+ferramenta de linha de comando pare de processar um input
+ao receber um sinal <code>SIGINT</code>.
+Aqui está como tratar estes sinais com canais em Go.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/rIWZmER5EnS"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;os&#34;</span>
+    <span class="s">&#34;os/signal&#34;</span>
+    <span class="s">&#34;syscall&#34;</span>
+<span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>A notificação de sinais em Go, funciona enviando valores
+do tipo <code>os.Signal</code> em um canal. Aqui é criado um canal
+para receber estas notificações. Note que este canal deve
+ser <code>buffered</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">sigs</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>signal.Notify</code> registra determinado canal para
+receber notoficações de sinais específicos.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">signal</span><span class="p">.</span><span class="nf">Notify</span><span class="p">(</span><span class="nx">sigs</span><span class="p">,</span> <span class="nx">syscall</span><span class="p">.</span><span class="nx">SIGINT</span><span class="p">,</span> <span class="nx">syscall</span><span class="p">.</span><span class="nx">SIGTERM</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>O sinal poderia ser recebido pelo <code>sigs</code> aqui
+na função main, mas será feito em uma goroutine
+separada, para demonstrar como pode ser feito o
+desligamento gracioso de maneira mais realista.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Esta goroutine executa um recebimento bloqueante
+de sinais. Ao receber um, o sinal será impresso
+e então o programa será notificado que pode ser
+finalizado.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">        <span class="nx">sig</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">sigs</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">sig</span><span class="p">)</span>
+        <span class="nx">done</span> <span class="o">&lt;-</span> <span class="kc">true</span>
+    <span class="p">}()</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>O código irá aguardar aqui até que seja recebido
+o sinal esperado (como indicado pela goroutine
+acima, que enviará um valor no canal <code>done</code>) e
+então finalizar.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;awaiting signal&#34;</span><span class="p">)</span>
+    <span class="o">&lt;-</span><span class="nx">done</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;exiting&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Ao executar este código, ficará bloqueado aguardando
+um sinal. Ao digitar <code>ctrl-C</code> (que o terminal exibe
+como <code>^C</code>) é enviado um sinal <code>SIGINT</code>, que dispara
+a impressão da palavra <code>interrupt</code> e a
+interrupção do programa.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+<span class="gp">$</span> go run signals.go
+<span class="go">awaiting signal
+</span><span class="go">^C
+</span><span class="go">interrupt
+</span><span class="go">exiting</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="exit">Exit</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"os\"\u000A    \"os/signal\"\u000A    \"syscall\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    sigs :\u003D make(chan os.Signal, 1)\u000A');codeLines.push('    signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)\u000A');codeLines.push('    done :\u003D make(chan bool, 1)\u000A');codeLines.push('    go func() {\u000A');codeLines.push('        sig :\u003D \u003C-sigs\u000A        fmt.Println()\u000A        fmt.Println(sig)\u000A        done \u003C- true\u000A    }()\u000A');codeLines.push('    fmt.Println(\"awaiting signal\")\u000A    \u003C-done\u000A    fmt.Println(\"exiting\")\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

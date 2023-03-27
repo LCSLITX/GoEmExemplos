@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Struct Embedding</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'interfaces';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'generics';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="struct-embedding">
+      <h2><a href="./">Go Em Exemplos</a>: Struct Embedding</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Go suporta <em>embedding</em> ou <em>incorporação</em> de structs e
+interfaces para expressar uma <em>composição</em> de tipos
+que faça mais sentido.
+Não deve ser confundido com <code>//go:embed</code> que é uma diretiva de
+Go, introduzida na versão 1.16+ para incorporar arquivos e
+diretórios no binário de uma aplicação.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/aErZ1olxe7l"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">type</span> <span class="nx">base</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">num</span> <span class="kt">int</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="nx">base</span><span class="p">)</span> <span class="nf">descrever</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;base com numero=%v&#34;</span><span class="p">,</span> <span class="nx">b</span><span class="p">.</span><span class="nx">num</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Uma struct <code>container</code> <em>incorpora</em> a struct <code>base</code>.
+Uma incorporação é como um campo da struct, mas sem um nome.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">type</span> <span class="nx">container</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">base</span>
+    <span class="nx">str</span> <span class="kt">string</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Ao criar structs com literais, é necessário inicializar
+a incorporação explicitamente; aqui, o tipo incorporado
+serve como nome do campo.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">co</span> <span class="o">:=</span> <span class="nx">container</span><span class="p">{</span>
+        <span class="nx">base</span><span class="p">:</span> <span class="nx">base</span><span class="p">{</span>
+            <span class="nx">num</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="nx">str</span><span class="p">:</span> <span class="s">&#34;algum nome&#34;</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>É possível acessar o campo da struct <code>base</code> diretamente
+na variável <code>co</code>, por exemplo com <code>co.num</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;co={num: %v, str: %v}\n&#34;</span><span class="p">,</span> <span class="nx">co</span><span class="p">.</span><span class="nx">num</span><span class="p">,</span> <span class="nx">co</span><span class="p">.</span><span class="nx">str</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Alternativamente, pode ser acessado com o caminho completo
+usando o nome do tipo incorporado.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;outro número:&#34;</span><span class="p">,</span> <span class="nx">co</span><span class="p">.</span><span class="nx">base</span><span class="p">.</span><span class="nx">num</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Como <code>container</code> incorpora <code>base</code>, os métodos de
+<code>base</code> também se tornam métodos do <code>container</code>.
+Aqui é invocado o método de <code>base</code> diretamente em <code>co</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;descreva:&#34;</span><span class="p">,</span> <span class="nx">co</span><span class="p">.</span><span class="nf">descrever</span><span class="p">())</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">    <span class="kd">type</span> <span class="nx">descritor</span> <span class="kd">interface</span> <span class="p">{</span>
+        <span class="nf">descrever</span><span class="p">()</span> <span class="kt">string</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Structs incorporadas com métodos podem ser usadas para
+conceder implementações de interfaces em outras structs.
+Aqui é visto que um <code>container</code> agora implementa a
+interface <code>descritor</code> porque incorpora <code>base</code>.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="kd">var</span> <span class="nx">d</span> <span class="nx">descritor</span> <span class="p">=</span> <span class="nx">co</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;descritor:&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nf">descrever</span><span class="p">())</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><span class="gp">$</span> go run struct-embedding.go
+<span class="go">co={numero: 1, str: algum nome}
+</span><span class="go">outro número: 1
+</span><span class="go">descreva: base com numero=1
+</span><span class="go">descritor: base com numero=1</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="generics">Generics</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('type base struct {\u000A    num int\u000A}\u000A');codeLines.push('func (b base) descrever() string {\u000A    return fmt.Sprintf(\"base com numero\u003D%v\", b.num)\u000A}\u000A');codeLines.push('type container struct {\u000A    base\u000A    str string\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    co :\u003D container{\u000A        base: base{\u000A            num: 1,\u000A        },\u000A        str: \"algum nome\",\u000A    }\u000A');codeLines.push('    fmt.Printf(\"co\u003D{num: %v, str: %v}\\n\", co.num, co.str)\u000A');codeLines.push('    fmt.Println(\"outro número:\", co.base.num)\u000A');codeLines.push('    fmt.Println(\"descreva:\", co.descrever())\u000A');codeLines.push('    type descritor interface {\u000A        descrever() string\u000A    }\u000A');codeLines.push('    var d descritor \u003D co\u000A    fmt.Println(\"descritor:\", d.descrever())\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

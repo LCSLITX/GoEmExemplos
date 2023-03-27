@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Random Numbers</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'time-formatting-parsing';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'number-parsing';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="random-numbers">
+      <h2><a href="./">Go Em Exemplos</a>: Random Numbers</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>O pacote <code>math/rand</code> fornece um gerador de
+<a href="https://pt.wikipedia.org/wiki/Gerador_de_n%C3%BAmeros_pseudoaleat%C3%B3rios">números pseudoaleatórios</a>.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/C99PXOcv7G0"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;math/rand&#34;</span>
+    <span class="s">&#34;time&#34;</span>
+<span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Por exemplo, <code>rand.Intn</code> retorna um <code>int</code> <code>n</code> aleatório,
+em que <code>0 &lt;= n &lt; 100</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">rand</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="s">&#34;,&#34;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">rand</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>rand.Float64</code> retorna um <code>float64</code> <code>f</code>,
+em que <code>0.0 &lt;= f &lt; 1.0</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">rand</span><span class="p">.</span><span class="nf">Float64</span><span class="p">())</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Isto pode ser usado para gerar floats aleatórios em
+outros intervalos, por exemplo <code>5.0 &lt;= f &lt; 10.0</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">((</span><span class="nx">rand</span><span class="p">.</span><span class="nf">Float64</span><span class="p">()</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#34;,&#34;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">((</span><span class="nx">rand</span><span class="p">.</span><span class="nf">Float64</span><span class="p">()</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>O gerador de números padrão é determinístico,
+isso quer dizer que sempre irá produzir a mesma
+sequência de números a cada vez, por padrão.
+Para produzir números variados, é importante utilizar
+uma <code>seed</code> que também varie. Note que NÃO é seguro
+utilizar este método para números aleatórios que devam
+ser secretos. Se esta for a intenção, recomenda-se a
+utilização de <code>crypto/rand</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">s1</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">NewSource</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">())</span>
+    <span class="nx">r1</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">s1</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Chama o <code>rand.Rand</code> resultante da criação anterior,
+da nova instância com seed variante, exatamente como
+a função <code>rand</code> do pacote.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">r1</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="s">&#34;,&#34;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">r1</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Se uma seed constante é fornecida, a aleatoriedade
+produz sempre a mesma sequência de números.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="nx">s2</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">NewSource</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="nx">r2</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">s2</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">r2</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="s">&#34;,&#34;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">r2</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+    <span class="nx">s3</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">NewSource</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="nx">r3</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">s3</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">r3</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="s">&#34;,&#34;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">r3</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>A depender de onde esta amostra for executada, alguns
+números gerados podem ser diferentes. É importante notar
+que no <a href="https://go.dev/play/p/C99PXOcv7G0">playground de Go</a>, utilizar seed com <code>time.Now()</code>
+ainda produz resultados determinísticos, pela forma que
+o playground é implementado.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="gp">$</span> go run random-numbers.go
+<span class="go">81,87
+</span><span class="go">0.6645600532184904
+</span><span class="go">7.123187485356329,8.434115364335547
+</span><span class="go">0,28
+</span><span class="go">5,87
+</span><span class="go">5,87</span></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Veja a documentação do pacote
+<a href="https://pkg.go.dev/math/rand"><code>math/rand</code></a>
+para mais referências sobre outros
+recursos randômicos que Go pode fornecer.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="number-parsing">Number Parsing</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"math/rand\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    fmt.Print(rand.Intn(100), \",\")\u000A    fmt.Print(rand.Intn(100))\u000A    fmt.Println()\u000A');codeLines.push('    fmt.Println(rand.Float64())\u000A');codeLines.push('    fmt.Print((rand.Float64()*5)+5, \",\")\u000A    fmt.Print((rand.Float64() * 5) + 5)\u000A    fmt.Println()\u000A');codeLines.push('    s1 :\u003D rand.NewSource(time.Now().UnixNano())\u000A    r1 :\u003D rand.New(s1)\u000A');codeLines.push('    fmt.Print(r1.Intn(100), \",\")\u000A    fmt.Print(r1.Intn(100))\u000A    fmt.Println()\u000A');codeLines.push('    s2 :\u003D rand.NewSource(42)\u000A    r2 :\u003D rand.New(s2)\u000A    fmt.Print(r2.Intn(100), \",\")\u000A    fmt.Print(r2.Intn(100))\u000A    fmt.Println()\u000A    s3 :\u003D rand.NewSource(42)\u000A    r3 :\u003D rand.New(s3)\u000A    fmt.Print(r3.Intn(100), \",\")\u000A    fmt.Print(r3.Intn(100))\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

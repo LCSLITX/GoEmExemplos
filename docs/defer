@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Defer</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'panic';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'recover';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="defer">
+      <h2><a href="./">Go Em Exemplos</a>: Defer</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p><em>Defer</em> é utilizado para assegurar que uma chamada de função
+é realizada tardiamente numa execução de código, geralmente
+para limpeza de memória. <code>defer</code> é frequentemente utilizada
+em situações que, por exemplo, <code>ensure</code> e <code>finally</code>
+seriam usadas em outras linguagens.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/9jfkvRBWKCf"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;os&#34;</span>
+<span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Suponha que quiséssemos criar um arquivo, escrever
+nele e então fechá-lo quando tivéssemos terminado.
+Aqui está um exemplo de como isso pode ser feito
+utilizando <code>defer</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Imediatamente depois de abrir um arquivo com
+<code>createFile</code>, é colocado o <code>defer</code> para, literalmente,
+<em>adiar</em> o fechamento daquele arquivo com <code>closeFile</code>.
+Isto será executado ao final da função que envolve a
+chamada, no caso a <code>main</code>, depois que <code>writeFile</code>
+for finalizado.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">f</span> <span class="o">:=</span> <span class="nf">createFile</span><span class="p">(</span><span class="s">&#34;/tmp/defer.txt&#34;</span><span class="p">)</span>
+    <span class="k">defer</span> <span class="nf">closeFile</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+    <span class="nf">writeFile</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">createFile</span><span class="p">(</span><span class="nx">p</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">os</span><span class="p">.</span><span class="nx">File</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;creating&#34;</span><span class="p">)</span>
+    <span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">f</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">writeFile</span><span class="p">(</span><span class="nx">f</span> <span class="o">*</span><span class="nx">os</span><span class="p">.</span><span class="nx">File</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;writing&#34;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintln</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="s">&#34;data&#34;</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>É importante verificar erros ao fechar um arquivo,
+mesmo numa função adiada ou <code>defer</code>ida.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">closeFile</span><span class="p">(</span><span class="nx">f</span> <span class="o">*</span><span class="nx">os</span><span class="p">.</span><span class="nx">File</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;closing&#34;</span><span class="p">)</span>
+    <span class="nx">err</span> <span class="o">:=</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span> <span class="s">&#34;error: %v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+        <span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Ao executar o código, é confirmado que o arquivo
+está fechado depois de ter sido escrito.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+<span class="gp">$</span> go run defer.go
+<span class="go">creating
+</span><span class="go">writing
+</span><span class="go">closing</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="recover">Recover</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"os\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    f :\u003D createFile(\"/tmp/defer.txt\")\u000A    defer closeFile(f)\u000A    writeFile(f)\u000A}\u000A');codeLines.push('func createFile(p string) *os.File {\u000A    fmt.Println(\"creating\")\u000A    f, err :\u003D os.Create(p)\u000A    if err !\u003D nil {\u000A        panic(err)\u000A    }\u000A    return f\u000A}\u000A');codeLines.push('func writeFile(f *os.File) {\u000A    fmt.Println(\"writing\")\u000A    fmt.Fprintln(f, \"data\")\u000A');codeLines.push('}\u000A');codeLines.push('func closeFile(f *os.File) {\u000A    fmt.Println(\"closing\")\u000A    err :\u003D f.Close()\u000A');codeLines.push('    if err !\u003D nil {\u000A        fmt.Fprintf(os.Stderr, \"error: %v\\n\", err)\u000A        os.Exit(1)\u000A    }\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

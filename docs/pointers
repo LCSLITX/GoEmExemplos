@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Pointers</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'recursion';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'strings-and-runes';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="pointers">
+      <h2><a href="./">Go Em Exemplos</a>: Pointers</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Go suporta <em><a href="https://en.wikipedia.org/wiki/Pointer_(computer_programming)">ponteiros</a></em>,
+permitindo passar referências a valores
+dentro do programa.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/DKFuPRaJp8m"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Será apresentado como ponteiros funcionam em contraste a valores,
+com duas funcões: <code>zeroval</code> and <code>zeroptr</code>. <code>zeroval</code> recebe um
+<code>int</code> como parâmetro, então argumentos serão passados para dentro
+da função como um valor. <code>zeroval</code> terá uma cópia de <code>ival</code>
+distinta da que foi passada no chamamento da função.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="nf">zeroval</span><span class="p">(</span><span class="nx">ival</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">ival</span> <span class="p">=</span> <span class="mi">0</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>zeroptr</code> de outra forma, recebe um <code>*int</code> como parâmetro,
+ou seja, um ponteiro de <code>int</code>. A expressão <code>*iptr</code>
+no corpo da função <em>dereferencia</em> o ponteiro de seu endereço
+de memória para o atual valor presente naquele endereço.
+Atribuindo um valor 0 ao ponteiro dereferenciado altera o valor
+presente no endereço.
+Em termos mais claros, diferente do <code>zeroval</code>, a função <code>zeroptr</code>
+não recebe uma cópia do valor, mas o próprio endereço de memória
+que o valor ocupa. Ao <em>dereferenciar</em> o endereço e atribuir um novo
+valor, se está alterando o próprio valor e não uma cópia.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="nf">zeroptr</span><span class="p">(</span><span class="nx">iptr</span> <span class="o">*</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">*</span><span class="nx">iptr</span> <span class="p">=</span> <span class="mi">0</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;initial:&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">    <span class="nf">zeroval</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;zeroval:&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>A sintaxe <code>&amp;i</code> se refere ao <code>endereço de memória</code> de <code>i</code>,
+ou seja, ponteiro para <code>i</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nf">zeroptr</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">i</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;zeroptr:&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Ponteiros também podem ser impressos.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;pointer:&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p><code>zeroval</code> não altera o valor de <code>i</code> em <code>main</code>,
+mas <code>zeroptr</code> altera porque recebe uma referência
+ao endereço de memória para aquela variável.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+<span class="gp">$</span> go run pointers.go
+<span class="go">initial: 1
+</span><span class="go">zeroval: 1
+</span><span class="go">zeroptr: 0
+</span><span class="go">pointer: 0x42131100</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="strings-and-runes">Strings and Runes</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func zeroval(ival int) {\u000A    ival \u003D 0\u000A}\u000A');codeLines.push('func zeroptr(iptr *int) {\u000A    *iptr \u003D 0\u000A}\u000A');codeLines.push('func main() {\u000A    i :\u003D 1\u000A    fmt.Println(\"initial:\", i)\u000A');codeLines.push('    zeroval(i)\u000A    fmt.Println(\"zeroval:\", i)\u000A');codeLines.push('    zeroptr(\u0026i)\u000A    fmt.Println(\"zeroptr:\", i)\u000A');codeLines.push('    fmt.Println(\"pointer:\", \u0026i)\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

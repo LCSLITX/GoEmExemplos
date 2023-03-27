@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: URL Parsing</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'number-parsing';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'sha256-hashes';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="url-parsing">
+      <h2><a href="./">Go Em Exemplos</a>: URL Parsing</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>URLs possibilitam <a href="https://adam.herokuapp.com/past/2010/3/30/urls_are_the_uniform_way_to_locate_resources/">uma forma uniforme de encontar recursos</a>.
+Aqui está como parsear URLs em Go.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/WlbactYVHUH"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;net&#34;</span>
+    <span class="s">&#34;net/url&#34;</span>
+<span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Aqui será parseado esta URL de exemplo, que inclui
+schema, informação de autênticação, host, porta,
+caminho (path), query params, e fragmentos de query.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">s</span> <span class="o">:=</span> <span class="s">&#34;postgres://user:pass@host.com:5432/path?k=v#f&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Aqui a URL é parseada e assegurada de que não
+ocorreram erros.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">u</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Para acessar o schema é bem direto.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">Scheme</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>User</code> contem toda informação de autenticação;
+<code>Username</code> e <code>Password</code> exibem a respectiva valor.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">User</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nf">Username</span><span class="p">())</span>
+    <span class="nx">p</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">u</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nf">Password</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>O <code>Host</code> contem tanto hostname quanto a porta,
+se presente. A função <code>SplitHostPort</code> separa
+os dados.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">Host</span><span class="p">)</span>
+    <span class="nx">host</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">SplitHostPort</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">Host</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">host</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">port</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Aqui são extraídos o <code>path</code> e o fragmento
+depois de <code>#</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">Path</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">Fragment</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Para obter os query params em uma string de formato
+<code>chave=valor</code>, usa-se <code>RawQuery</code>. Também é possível
+parsear query params para um <code>map</code>.
+Os maps de query params parseados são formatados em
+<code>map[string][]string</code> então, para acessar o primeiro
+valor da primeira chave, é necessário utilizar <code>[0]</code>.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">RawQuery</span><span class="p">)</span>
+    <span class="nx">m</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">ParseQuery</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">RawQuery</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">m</span><span class="p">[</span><span class="s">&#34;k&#34;</span><span class="p">])</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">m</span><span class="p">[</span><span class="s">&#34;k&#34;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Executando o código de parseamento de URLs, são exibidas
+todas as partes extraídas.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+<span class="gp">$</span> go run url-parsing.go 
+<span class="go">postgres
+</span><span class="go">user:pass
+</span><span class="go">user
+</span><span class="go">pass
+</span><span class="go">host.com:5432
+</span><span class="go">host.com
+</span><span class="go">5432
+</span><span class="go">/path
+</span><span class="go">f
+</span><span class="go">chave=valor&amp;outrachave=outrovalor
+</span><span class="go">map[chave:[valor] outrachave:[outrovalor]]
+</span><span class="go">[valor]
+</span><span class="go">valor</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="sha256-hashes">SHA256 Hashes</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"net\"\u000A    \"net/url\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    s :\u003D \"postgres://user:pass@host.com:5432/path?k\u003Dv#f\"\u000A');codeLines.push('    u, err :\u003D url.Parse(s)\u000A    if err !\u003D nil {\u000A        panic(err)\u000A    }\u000A');codeLines.push('    fmt.Println(u.Scheme)\u000A');codeLines.push('    fmt.Println(u.User)\u000A    fmt.Println(u.User.Username())\u000A    p, _ :\u003D u.User.Password()\u000A    fmt.Println(p)\u000A');codeLines.push('    fmt.Println(u.Host)\u000A    host, port, _ :\u003D net.SplitHostPort(u.Host)\u000A    fmt.Println(host)\u000A    fmt.Println(port)\u000A');codeLines.push('    fmt.Println(u.Path)\u000A    fmt.Println(u.Fragment)\u000A');codeLines.push('    fmt.Println(u.RawQuery)\u000A    m, _ :\u003D url.ParseQuery(u.RawQuery)\u000A    fmt.Println(m)\u000A    fmt.Println(m[\"k\"])\u000A    fmt.Println(m[\"k\"][0])\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

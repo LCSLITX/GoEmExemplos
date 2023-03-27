@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Switch</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'if-else';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'arrays';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="switch">
+      <h2><a href="./">Go Em Exemplos</a>: Switch</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Declarações <em>Switch</em> são geralmente utilizadas
+para condicionais com muitas ramificações.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/Y5mGHTuumK0"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;time&#34;</span>
+<span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Aqui está um <code>switch</code> básico.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">i</span> <span class="o">:=</span> <span class="mi">2</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;Imprima &#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="s">&#34; como &#34;</span><span class="p">)</span>
+    <span class="k">switch</span> <span class="nx">i</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;um&#34;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;dois&#34;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;três&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Vírgulas podem ser utilizadas para separar múltiplas
+expressões na mesma declaração <code>case</code>. A utilização
+de <code>default</code> é opcional.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="k">switch</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Weekday</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Saturday</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Sunday</span><span class="p">:</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;É fim de semana&#34;</span><span class="p">)</span>
+    <span class="k">default</span><span class="p">:</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;É dia de semana&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>switch</code> sem nenhuma expressão é um meio alternativo
+para representar a lógica if/else. Aqui também é exibido como
+as expressões <code>case</code> podem ser não constantes.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">t</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">()</span>
+    <span class="k">switch</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">t</span><span class="p">.</span><span class="nf">Hour</span><span class="p">()</span> <span class="p">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;É antes do meio-dia&#34;</span><span class="p">)</span>
+    <span class="k">default</span><span class="p">:</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;É depois do meio-dia&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Um <code>switch</code> de tipos compara tipos ao invés de valores.
+É possível utilizá-lo para descobrir o valor de um tipo
+interface.  Neste exemplo, a variável <code>t</code> terá o tipo
+correspondente à sua cláusula.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="nx">whatAmI</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="nx">t</span> <span class="o">:=</span> <span class="nx">i</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="kt">bool</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Sou um booleano&#34;</span><span class="p">)</span>
+        <span class="k">case</span> <span class="kt">int</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Sou um inteiro&#34;</span><span class="p">)</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Não sei o meu tipo %T\n&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nf">whatAmI</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+    <span class="nf">whatAmI</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nf">whatAmI</span><span class="p">(</span><span class="s">&#34;hey&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><span class="gp">$</span> go run switch.go 
+<span class="go">Imprima 2 como dois
+</span><span class="go">É fim de semana
+</span><span class="go">É depois do meio-dia
+</span><span class="go">Sou um booleano
+</span><span class="go">Sou um inteiro
+</span><span class="go">Não sei o meu tipo string</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="arrays">Arrays</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    i :\u003D 2\u000A    fmt.Print(\"Imprima \", i, \" como \")\u000A    switch i {\u000A    case 1:\u000A        fmt.Println(\"um\")\u000A    case 2:\u000A        fmt.Println(\"dois\")\u000A    case 3:\u000A        fmt.Println(\"três\")\u000A    }\u000A');codeLines.push('    switch time.Now().Weekday() {\u000A    case time.Saturday, time.Sunday:\u000A        fmt.Println(\"É fim de semana\")\u000A    default:\u000A        fmt.Println(\"É dia de semana\")\u000A    }\u000A');codeLines.push('    t :\u003D time.Now()\u000A    switch {\u000A    case t.Hour() \u003C 12:\u000A        fmt.Println(\"É antes do meio-dia\")\u000A    default:\u000A        fmt.Println(\"É depois do meio-dia\")\u000A    }\u000A');codeLines.push('    whatAmI :\u003D func(i interface{}) {\u000A        switch t :\u003D i.(type) {\u000A        case bool:\u000A            fmt.Println(\"Sou um booleano\")\u000A        case int:\u000A            fmt.Println(\"Sou um inteiro\")\u000A        default:\u000A            fmt.Printf(\"Não sei o meu tipo %T\\n\", t)\u000A        }\u000A    }\u000A    whatAmI(true)\u000A    whatAmI(1)\u000A    whatAmI(\"hey\")\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

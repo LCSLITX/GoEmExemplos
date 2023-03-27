@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Range</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'maps';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'functions';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="range">
+      <h2><a href="./">Go Em Exemplos</a>: Range</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p><em>range</em> itera sobre elementos de uma variedade
+de estrutura de dados. Aqui será demonstrado como
+utilizá-lo com algumas das estruturas de dados já
+apresentadas.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a target="_blank" href="https://go.dev/play/p/0jbhU_qHfKO"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Aqui é utilizado o <code>range</code> para somar os números
+de um slice. Funciona da mesma forma em arrays.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">nums</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+    <span class="nx">sum</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">num</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span> <span class="p">{</span>
+        <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">num</span>
+    <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;soma:&#34;</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>range</code> tanto em arrays quanto em slices fornece
+chave e valor; ou índice e valor para cada entrada.
+No exemplo acima não foi necessário o índice, então
+foi ignorado com identificador vazio <code>_</code>.
+Algumas vezes, entretanto, os índices serão necessários.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">num</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">num</span> <span class="o">==</span> <span class="mi">3</span> <span class="p">{</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;índice:&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>range</code> em mapas itera sobre os pares de chave/valor.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">kvs</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">:</span> <span class="s">&#34;apple&#34;</span><span class="p">,</span> <span class="s">&#34;b&#34;</span><span class="p">:</span> <span class="s">&#34;banana&#34;</span><span class="p">}</span>
+    <span class="k">for</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">kvs</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s -&gt; %s\n&#34;</span><span class="p">,</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>range</code> pode iterar apenas sobre as chaves de um mapa.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="k">for</span> <span class="nx">k</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">kvs</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;key:&#34;</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>range</code> em strings itera sobre pontos de código Unicode.
+O primeiro valor é o byte de índice de início da <code>rune</code>,
+e o segundo, da própria <code>rune</code>.
+Veja a seção <a href="strings-and-runes">Strings and Runes</a>
+para mais detalhes.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="kt">rune</span> <span class="o">:=</span> <span class="k">range</span> <span class="s">&#34;go&#34;</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="kt">rune</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><span class="gp">$</span> go run range.go
+<span class="go">soma: 9
+</span><span class="go">índice: 1
+</span><span class="go">a -&gt; apple
+</span><span class="go">b -&gt; banana
+</span><span class="go">key: a
+</span><span class="go">key: b
+</span><span class="go">0 103
+</span><span class="go">1 111</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="functions">Functions</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func main() {\u000A');codeLines.push('    nums :\u003D []int{2, 3, 4}\u000A    sum :\u003D 0\u000A    for _, num :\u003D range nums {\u000A        sum +\u003D num\u000A    }\u000A    fmt.Println(\"soma:\", sum)\u000A');codeLines.push('    for i, num :\u003D range nums {\u000A        if num \u003D\u003D 3 {\u000A            fmt.Println(\"índice:\", i)\u000A        }\u000A    }\u000A');codeLines.push('    kvs :\u003D map[string]string{\"a\": \"apple\", \"b\": \"banana\"}\u000A    for k, v :\u003D range kvs {\u000A        fmt.Printf(\"%s -\u003E %s\\n\", k, v)\u000A    }\u000A');codeLines.push('    for k :\u003D range kvs {\u000A        fmt.Println(\"key:\", k)\u000A    }\u000A');codeLines.push('    for i, rune :\u003D range \"go\" {\u000A        fmt.Println(i, rune)\u000A    }\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>
