@@ -1,6 +1,6 @@
-# Use these commands to run the example.
-# (Note: due to limitation on go playground,
-# this example can only be run on your local machine.)
+# Utilize estes comandos para executar o exemplo.
+# (Note: devida à limitação no playground Go,
+# este exemplo apenas pode ser executado na sua maquina.)
 $ mkdir -p folder
 $ echo "hello go" > folder/single_file.txt
 $ echo "123" > folder/file1.hash

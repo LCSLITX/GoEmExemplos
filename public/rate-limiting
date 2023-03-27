@@ -28,10 +28,10 @@
         <tr>
           <td class="docs">
             <p><a href="https://en.wikipedia.org/wiki/Rate_limiting"><em>Rate limiting</em></a>
-is an important mechanism for controlling resource
-utilization and maintaining quality of service. Go
-elegantly supports rate limiting with goroutines,
-channels, and <a href="tickers">tickers</a>.</p>
+ou limitador de frequência é um mecanismo importante para
+controlar a utilização de recursos e manter a qualidade
+do serviço. Go suporta o rate limiting com goroutines,
+canais e <a href="tickers">tickers</a> de maneira bem elegante.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,7 +45,7 @@ channels, and <a href="tickers">tickers</a>.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/lqf7pC2FUeT"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/2P0THpJQY8f"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -78,10 +78,10 @@ channels, and <a href="tickers">tickers</a>.</p>
         
         <tr>
           <td class="docs">
-            <p>First we&rsquo;ll look at basic rate limiting. Suppose
-we want to limit our handling of incoming requests.
-We&rsquo;ll serve these requests off a channel of the
-same name.</p>
+            <p>Primeiro será apresentado rate limiting básico.
+Suponha que seja necessário limitar o tratamento
+das requisições recebidas, que serão servidas em
+um canal <code>requests</code>.</p>
 
           </td>
           <td class="code leading">
@@ -98,9 +98,9 @@ same name.</p>
         
         <tr>
           <td class="docs">
-            <p>This <code>limiter</code> channel will receive a value
-every 200 milliseconds. This is the regulator in
-our rate limiting scheme.</p>
+            <p>Este canal limitador, ou <code>limiter</code>, receberá um valor
+a cada 200 milisegundos. Este é o regulador no esquema
+de rate limiting.</p>
 
           </td>
           <td class="code leading">
@@ -113,9 +113,10 @@ our rate limiting scheme.</p>
         
         <tr>
           <td class="docs">
-            <p>By blocking on a receive from the <code>limiter</code> channel
-before serving each request, we limit ourselves to
-1 request every 200 milliseconds.</p>
+            <p>Ao bloquear um recebimento do canal limitador
+antes de atender a cada solicitação,
+será tratada 1 solicitação por vez,
+a cada 200 milissegundos.</p>
 
           </td>
           <td class="code leading">
@@ -131,11 +132,13 @@ before serving each request, we limit ourselves to
         
         <tr>
           <td class="docs">
-            <p>We may want to allow short bursts of requests in
-our rate limiting scheme while preserving the
-overall rate limit. We can accomplish this by
-buffering our limiter channel. This <code>burstyLimiter</code>
-channel will allow bursts of up to 3 events.</p>
+            <p>Também é possível permitir envio de lotes de pequena
+quantidade ou <code>short bursts</code> (rajadas curtas) de requisições
+no esquema de rate limiting enquanto se cumpre com a
+limitação de frequência no geral.
+Para fazer isto, é necessário utilizar buffer no canal
+<code>limiter</code>. Este canal <code>burstyLimiter</code> permitirá envios
+de lotes de até 3 requisições.</p>
 
           </td>
           <td class="code leading">
@@ -148,7 +151,8 @@ channel will allow bursts of up to 3 events.</p>
         
         <tr>
           <td class="docs">
-            <p>Fill up the channel to represent allowed bursting.</p>
+            <p>Preenchendo o canal com requisições para representar
+os lotes, ou bursting.</p>
 
           </td>
           <td class="code leading">
@@ -163,8 +167,8 @@ channel will allow bursts of up to 3 events.</p>
         
         <tr>
           <td class="docs">
-            <p>Every 200 milliseconds we&rsquo;ll try to add a new
-value to <code>burstyLimiter</code>, up to its limit of 3.</p>
+            <p>A cada 200 milisegundos, será adicionado um valor
+ao canal <code>burstyLimiter</code>, até o limite de 3.</p>
 
           </td>
           <td class="code leading">
@@ -181,15 +185,15 @@ value to <code>burstyLimiter</code>, up to its limit of 3.</p>
         
         <tr>
           <td class="docs">
-            <p>Now simulate 5 more incoming requests. The first
-3 of these will benefit from the burst capability
-of <code>burstyLimiter</code>.</p>
+            <p>Agora é simulado outras 5 requisições sendo recebidas.
+As 3 primeiras serão beneficiadas pela capacidade do</p>
 
           </td>
           <td class="code">
             
           <pre class="chroma">
-    <span class="nx">burstyRequests</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="c1">//`burstyLimiter`de aceitar requisições em lote .
+</span><span class="c1"></span>    <span class="nx">burstyRequests</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
     <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
         <span class="nx">burstyRequests</span> <span class="o">&lt;-</span> <span class="nx">i</span>
     <span class="p">}</span>
@@ -209,8 +213,9 @@ of <code>burstyLimiter</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Running our program we see the first batch of requests
-handled once every ~200 milliseconds as desired.</p>
+            <p>Ao executar o código é fácil de visualizar o primeiro
+envio de requisições tratadas uma vez a cada
+~200 milisegundos, como esperado.</p>
 
           </td>
           <td class="code leading">
@@ -227,9 +232,10 @@ handled once every ~200 milliseconds as desired.</p>
         
         <tr>
           <td class="docs">
-            <p>For the second batch of requests we serve the first
-3 immediately because of the burstable rate limiting,
-then serve the remaining 2 with ~200ms delays each.</p>
+            <p>Para o segundo conjunto de requisições, são tratadas
+de imediato as 3 primeiras, por conta do limitador
+em lotes e, só então as 2 remanescentes com intervalo
+de ~200 milisegundos entre cada uma.</p>
 
           </td>
           <td class="code">
@@ -258,7 +264,7 @@ then serve the remaining 2 with ~200ms delays each.</p>
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    requests :\u003D make(chan int, 5)\u000A    for i :\u003D 1; i \u003C\u003D 5; i++ {\u000A        requests \u003C- i\u000A    }\u000A    close(requests)\u000A');codeLines.push('    limiter :\u003D time.Tick(200 * time.Millisecond)\u000A');codeLines.push('    for req :\u003D range requests {\u000A        \u003C-limiter\u000A        fmt.Println(\"request\", req, time.Now())\u000A    }\u000A');codeLines.push('    burstyLimiter :\u003D make(chan time.Time, 3)\u000A');codeLines.push('    for i :\u003D 0; i \u003C 3; i++ {\u000A        burstyLimiter \u003C- time.Now()\u000A    }\u000A');codeLines.push('    go func() {\u000A        for t :\u003D range time.Tick(200 * time.Millisecond) {\u000A            burstyLimiter \u003C- t\u000A        }\u000A    }()\u000A');codeLines.push('    burstyRequests :\u003D make(chan int, 5)\u000A    for i :\u003D 1; i \u003C\u003D 5; i++ {\u000A        burstyRequests \u003C- i\u000A    }\u000A    close(burstyRequests)\u000A    for req :\u003D range burstyRequests {\u000A        \u003C-burstyLimiter\u000A        fmt.Println(\"request\", req, time.Now())\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    requests :\u003D make(chan int, 5)\u000A    for i :\u003D 1; i \u003C\u003D 5; i++ {\u000A        requests \u003C- i\u000A    }\u000A    close(requests)\u000A');codeLines.push('    limiter :\u003D time.Tick(200 * time.Millisecond)\u000A');codeLines.push('    for req :\u003D range requests {\u000A        \u003C-limiter\u000A        fmt.Println(\"request\", req, time.Now())\u000A    }\u000A');codeLines.push('    burstyLimiter :\u003D make(chan time.Time, 3)\u000A');codeLines.push('    for i :\u003D 0; i \u003C 3; i++ {\u000A        burstyLimiter \u003C- time.Now()\u000A    }\u000A');codeLines.push('    go func() {\u000A        for t :\u003D range time.Tick(200 * time.Millisecond) {\u000A            burstyLimiter \u003C- t\u000A        }\u000A    }()\u000A');codeLines.push('    //`burstyLimiter`de aceitar requisições em lote .\u000A    burstyRequests :\u003D make(chan int, 5)\u000A    for i :\u003D 1; i \u003C\u003D 5; i++ {\u000A        burstyRequests \u003C- i\u000A    }\u000A    close(burstyRequests)\u000A    for req :\u003D range burstyRequests {\u000A        \u003C-burstyLimiter\u000A        fmt.Println(\"request\", req, time.Now())\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>

@@ -10,5 +10,5 @@ Worker 2 done
 Worker 5 done
 Worker 3 done
 
-# The order of workers starting up and finishing
-# is likely to be different for each invocation.
+# É provável que a ordem de execução e finalização 
+# dos workers seja diferente em cada execução do código.

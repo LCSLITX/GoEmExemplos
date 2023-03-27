@@ -1,8 +1,8 @@
-# Depending on where you run this sample, some of the
-# generated numbers may be different. Note that on
-# the Go playground seeding with `time.Now()` still
-# produces deterministic results due to the way the
-# playground is implemented.
+# A depender de onde esta amostra for executada, alguns 
+# números gerados podem ser diferentes. É importante notar
+# que no [playground de Go](https://go.dev/play/p/C99PXOcv7G0), utilizar seed com `time.Now()`
+# ainda produz resultados determinísticos, pela forma que
+# o playground é implementado.
 $ go run random-numbers.go
 81,87
 0.6645600532184904
@@ -12,6 +12,7 @@ $ go run random-numbers.go
 5,87
 
 
-# See the [`math/rand`](https://pkg.go.dev/math/rand)
-# package docs for references on other random quantities
-# that Go can provide.
+# Veja a documentação do pacote
+# [`math/rand`](https://pkg.go.dev/math/rand)
+# para mais referências sobre outros
+# recursos randômicos que Go pode fornecer.

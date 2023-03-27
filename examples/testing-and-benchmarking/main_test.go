@@ -1,11 +1,13 @@
-// Unit testing is an important part of writing
-// principled Go programs. The `testing` package
-// provides the tools we need to write unit tests
-// and the `go test` command runs tests.
+// Testes unitários é uma parte importante de se
+// escrever programas em Go. O pacote `testing`
+// fornece as ferramentas necessárias para escrever
+// testes unitários e o comando `go test` executa
+// os tests.
 
-// For the sake of demonstration, this code is in package
-// `main`, but it could be any package. Testing code
-// typically lives in the same package as the code it tests.
+// Pela didática da demonstração, este código está no pacote
+// `main`, mas poderia estar em qualquer pacote. Tipicamente,
+// os testes permanecem no mesmo pacote em que o código
+// principal está.
 package main
 
 import (
@@ -13,11 +15,11 @@ import (
 	"testing"
 )
 
-// We'll be testing this simple implementation of an
-// integer minimum. Typically, the code we're testing
-// would be in a source file named something like
-// `intutils.go`, and the test file for it would then
-// be named `intutils_test.go`.
+// Será testada uma implementação simples de uma função
+// que verifica qual inteiro é menor. Usualmente,
+// o código a ser testado ficaria isolado num arquivo
+// com nome similar a `intutils.go`, e outro arquivo apenas
+// para testes, teria o nome parecido com `intutils_test.go`.
 func IntMin(a, b int) int {
 	if a < b {
 		return a
@@ -25,8 +27,8 @@ func IntMin(a, b int) int {
 	return b
 }
 
-// A test is created by writing a function with a name
-// beginning with `Test`.
+// Um teste é criado ao escrever uma função com a
+// palavra `Test` no início do nome.
 func TestIntMinBasic(t *testing.T) {
 	ans := IntMin(2, -2)
 	if ans != -2 {
@@ -37,10 +39,11 @@ func TestIntMinBasic(t *testing.T) {
 	}
 }
 
-// Writing tests can be repetitive, so it's idiomatic to
-// use a *table-driven style*, where test inputs and
-// expected outputs are listed in a table and a single loop
-// walks over them and performs the test logic.
+// Escrever testes pode ser algo repetitivo, então é idiomático
+// usar *table-driven style* ou *estilo orientado a tabela*,
+// em que os inputs de teste e os outputs esperados são listados
+// numa tabela e um simples loop, interage com a tabela e realiza
+// os testes.
 func TestIntMinTableDriven(t *testing.T) {
 	var tests = []struct {
 		a, b int
@@ -54,9 +57,10 @@ func TestIntMinTableDriven(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		// t.Run enables running "subtests", one for each
-		// table entry. These are shown separately
-		// when executing `go test -v`.
+		// t.Run permite a execução de "subtests",
+		// um para cada entrada da tabela. Estes são
+		// exibidos separadamente ao executar o comando
+		// `go test -v`.
 		testname := fmt.Sprintf("%d,%d", tt.a, tt.b)
 		t.Run(testname, func(t *testing.T) {
 			ans := IntMin(tt.a, tt.b)
@@ -67,13 +71,14 @@ func TestIntMinTableDriven(t *testing.T) {
 	}
 }
 
-// Benchmark tests typically go in `_test.go` files and are
-// named beginning with `Benchmark`. The `testing` runner
-// executes each benchmark function several times, increasing
-// `b.N` on each run until it collects a precise measurement.
+// Testes de benchmark também ficam em arquivos `_test.go`
+// e são nomeados com a palavra `Benchmark` no início.
+// A execução do `testing` executa cada função de benchmark várias
+// vezes, aumentando `b.N` em cada execução até que seja realizada
+// uma medida precisa.
 func BenchmarkIntMin(b *testing.B) {
-	// Typically the benchmark runs a function we're
-	// benchmarking in a loop `b.N` times.
+	// Tipicamente o benchmark roda a função que
+	// está a ser avaliada em um loop, por `b.N` vezes.
 	for i := 0; i < b.N; i++ {
 		IntMin(1, 2)
 	}

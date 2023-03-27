@@ -27,9 +27,9 @@
         
         <tr>
           <td class="docs">
-            <p>Go&rsquo;s <code>sort</code> package implements sorting for builtins
-and user-defined types. We&rsquo;ll look at sorting for
-builtins first.</p>
+            <p>O pacote <code>sort</code> de Go implementa ordenação tanto para
+tipos nativos como para tipos definidos pelo usuário.
+Aqui, será apresentado sorteamento para tipos nativos.</p>
 
           </td>
           <td class="code empty leading">
@@ -43,7 +43,7 @@ builtins first.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/_gY0tANzJ4l"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/USRtzXJ1WLz"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -76,10 +76,10 @@ builtins first.</p>
         
         <tr>
           <td class="docs">
-            <p>Sort methods are specific to the builtin type;
-here&rsquo;s an example for strings. Note that sorting is
-in-place, so it changes the given slice and doesn&rsquo;t
-return a new one.</p>
+            <p>Métodos de <code>sort</code> são específicos de tipos nativos;
+aqui está um exemplo para slices de strings. Note que
+a ordenação modifica o original, então atualiza o valor
+da slice e NÃO retorna nova estrutura.</p>
 
           </td>
           <td class="code leading">
@@ -87,14 +87,14 @@ return a new one.</p>
           <pre class="chroma">
     <span class="nx">strs</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;c&#34;</span><span class="p">,</span> <span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="s">&#34;b&#34;</span><span class="p">}</span>
     <span class="nx">sort</span><span class="p">.</span><span class="nf">Strings</span><span class="p">(</span><span class="nx">strs</span><span class="p">)</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Strings:&#34;</span><span class="p">,</span> <span class="nx">strs</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Strings: &#34;</span><span class="p">,</span> <span class="nx">strs</span><span class="p">)</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>An example of sorting <code>int</code>s.</p>
+            <p>Um exemplo de ordenação em slices de <code>int</code>s.</p>
 
           </td>
           <td class="code leading">
@@ -102,22 +102,22 @@ return a new one.</p>
           <pre class="chroma">
     <span class="nx">ints</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
     <span class="nx">sort</span><span class="p">.</span><span class="nf">Ints</span><span class="p">(</span><span class="nx">ints</span><span class="p">)</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Ints:   &#34;</span><span class="p">,</span> <span class="nx">ints</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Ints:    &#34;</span><span class="p">,</span> <span class="nx">ints</span><span class="p">)</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>We can also use <code>sort</code> to check if a slice is
-already in sorted order.</p>
+            <p>Também é possível utilizar o <code>sort</code> para checar se
+uma slice já está ordenada.</p>
 
           </td>
           <td class="code">
             
           <pre class="chroma">
     <span class="nx">s</span> <span class="o">:=</span> <span class="nx">sort</span><span class="p">.</span><span class="nf">IntsAreSorted</span><span class="p">(</span><span class="nx">ints</span><span class="p">)</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Sorted: &#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Ordenado:&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
 <span class="p">}</span>
 </pre>
           </td>
@@ -129,17 +129,18 @@ already in sorted order.</p>
         
         <tr>
           <td class="docs">
-            <p>Running our program prints the sorted string and int
-slices and <code>true</code> as the result of our <code>AreSorted</code> test.</p>
+            <p>Ao executar o código são exibidos os slices de strings,
+bem com de inteiros, ordenados e <code>true</code> como resultado
+do <code>AreSorted</code>.</p>
 
           </td>
           <td class="code">
             
           <pre class="chroma">
 <span class="gp">$</span> go run sorting.go
-<span class="go">Strings: [a b c]
-</span><span class="go">Ints:    [2 4 7]
-</span><span class="go">Sorted:  true</span></pre>
+<span class="go">Strings:  [a b c]
+</span><span class="go">Ints:     [2 4 7]
+</span><span class="go">Ordenado: true</span></pre>
           </td>
         </tr>
         
@@ -158,7 +159,7 @@ slices and <code>true</code> as the result of our <code>AreSorted</code> test.</
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"sort\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    strs :\u003D []string{\"c\", \"a\", \"b\"}\u000A    sort.Strings(strs)\u000A    fmt.Println(\"Strings:\", strs)\u000A');codeLines.push('    ints :\u003D []int{7, 2, 4}\u000A    sort.Ints(ints)\u000A    fmt.Println(\"Ints:   \", ints)\u000A');codeLines.push('    s :\u003D sort.IntsAreSorted(ints)\u000A    fmt.Println(\"Sorted: \", s)\u000A}\u000A');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"sort\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    strs :\u003D []string{\"c\", \"a\", \"b\"}\u000A    sort.Strings(strs)\u000A    fmt.Println(\"Strings: \", strs)\u000A');codeLines.push('    ints :\u003D []int{7, 2, 4}\u000A    sort.Ints(ints)\u000A    fmt.Println(\"Ints:    \", ints)\u000A');codeLines.push('    s :\u003D sort.IntsAreSorted(ints)\u000A    fmt.Println(\"Ordenado:\", s)\u000A}\u000A');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>

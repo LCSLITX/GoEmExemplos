@@ -27,10 +27,11 @@
         
         <tr>
           <td class="docs">
-            <p>Unit testing is an important part of writing
-principled Go programs. The <code>testing</code> package
-provides the tools we need to write unit tests
-and the <code>go test</code> command runs tests.</p>
+            <p>Testes unitários é uma parte importante de se
+escrever programas em Go. O pacote <code>testing</code>
+fornece as ferramentas necessárias para escrever
+testes unitários e o comando <code>go test</code> executa
+os tests.</p>
 
           </td>
           <td class="code empty leading">
@@ -41,13 +42,14 @@ and the <code>go test</code> command runs tests.</p>
         
         <tr>
           <td class="docs">
-            <p>For the sake of demonstration, this code is in package
-<code>main</code>, but it could be any package. Testing code
-typically lives in the same package as the code it tests.</p>
+            <p>Pela didática da demonstração, este código está no pacote
+<code>main</code>, mas poderia estar em qualquer pacote. Tipicamente,
+os testes permanecem no mesmo pacote em que o código
+principal está.</p>
 
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/PlzU16wwEWE"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/1Vh-C6CErtp"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma">
 <span class="kn">package</span> <span class="nx">main</span>
 </pre>
@@ -70,11 +72,11 @@ typically lives in the same package as the code it tests.</p>
         
         <tr>
           <td class="docs">
-            <p>We&rsquo;ll be testing this simple implementation of an
-integer minimum. Typically, the code we&rsquo;re testing
-would be in a source file named something like
-<code>intutils.go</code>, and the test file for it would then
-be named <code>intutils_test.go</code>.</p>
+            <p>Será testada uma implementação simples de uma função
+que verifica qual inteiro é menor. Usualmente,
+o código a ser testado ficaria isolado num arquivo
+com nome similar a <code>intutils.go</code>, e outro arquivo apenas
+para testes, teria o nome parecido com <code>intutils_test.go</code>.</p>
 
           </td>
           <td class="code leading">
@@ -92,8 +94,8 @@ be named <code>intutils_test.go</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>A test is created by writing a function with a name
-beginning with <code>Test</code>.</p>
+            <p>Um teste é criado ao escrever uma função com a
+palavra <code>Test</code> no início do nome.</p>
 
           </td>
           <td class="code leading">
@@ -125,10 +127,11 @@ failures and stop the test immediately.</p>
         
         <tr>
           <td class="docs">
-            <p>Writing tests can be repetitive, so it&rsquo;s idiomatic to
-use a <em>table-driven style</em>, where test inputs and
-expected outputs are listed in a table and a single loop
-walks over them and performs the test logic.</p>
+            <p>Escrever testes pode ser algo repetitivo, então é idiomático
+usar <em>table-driven style</em> ou <em>estilo orientado a tabela</em>,
+em que os inputs de teste e os outputs esperados são listados
+numa tabela e um simples loop, interage com a tabela e realiza
+os testes.</p>
 
           </td>
           <td class="code leading">
@@ -151,9 +154,10 @@ walks over them and performs the test logic.</p>
         
         <tr>
           <td class="docs">
-            <p>t.Run enables running &ldquo;subtests&rdquo;, one for each
-table entry. These are shown separately
-when executing <code>go test -v</code>.</p>
+            <p>t.Run permite a execução de &ldquo;subtests&rdquo;,
+um para cada entrada da tabela. Estes são
+exibidos separadamente ao executar o comando
+<code>go test -v</code>.</p>
 
           </td>
           <td class="code leading">
@@ -184,10 +188,11 @@ when executing <code>go test -v</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Benchmark tests typically go in <code>_test.go</code> files and are
-named beginning with <code>Benchmark</code>. The <code>testing</code> runner
-executes each benchmark function several times, increasing
-<code>b.N</code> on each run until it collects a precise measurement.</p>
+            <p>Testes de benchmark também ficam em arquivos <code>_test.go</code>
+e são nomeados com a palavra <code>Benchmark</code> no início.
+A execução do <code>testing</code> executa cada função de benchmark várias
+vezes, aumentando <code>b.N</code> em cada execução até que seja realizada
+uma medida precisa.</p>
 
           </td>
           <td class="code leading">
@@ -200,8 +205,8 @@ executes each benchmark function several times, increasing
         
         <tr>
           <td class="docs">
-            <p>Typically the benchmark runs a function we&rsquo;re
-benchmarking in a loop <code>b.N</code> times.</p>
+            <p>Tipicamente o benchmark roda a função que
+está a ser avaliada em um loop, por <code>b.N</code> vezes.</p>
 
           </td>
           <td class="code">
@@ -221,7 +226,8 @@ benchmarking in a loop <code>b.N</code> times.</p>
         
         <tr>
           <td class="docs">
-            <p>Run all tests in the current project in verbose mode.</p>
+            <p>Executa todos os testes no projeto atual de maneira
+verbosa.</p>
 
           </td>
           <td class="code leading">
@@ -249,15 +255,16 @@ benchmarking in a loop <code>b.N</code> times.</p>
         
         <tr>
           <td class="docs">
-            <p>Run all benchmarks in the current project. All tests
-are run prior to benchmarks. The <code>bench</code> flag filters
-benchmark function names with a regexp.</p>
+            <p>Executa todos os benchmarks no projeto atual.
+Todos os testes são executados antes dos
+benchmarks. A flag <code>bench</code> filtra funções
+de benchmark pelos nomes com expressão regular.</p>
 
           </td>
           <td class="code">
             
           <pre class="chroma">
-<span class="gp">$</span> go test -bench=.
+<span class="gp">$</span> go test -v -bench=.
 <span class="go">goos: darwin
 </span><span class="go">goarch: arm64
 </span><span class="go">pkg: examples/testing

@@ -27,9 +27,8 @@
         
         <tr>
           <td class="docs">
-            <p>Go&rsquo;s <code>math/rand</code> package provides
-<a href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">pseudorandom number</a>
-generation.</p>
+            <p>O pacote <code>math/rand</code> fornece um gerador de
+<a href="https://pt.wikipedia.org/wiki/Gerador_de_n%C3%BAmeros_pseudoaleat%C3%B3rios">números pseudoaleatórios</a>.</p>
 
           </td>
           <td class="code empty leading">
@@ -43,7 +42,7 @@ generation.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/Enb5uJEx0Bt"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/C99PXOcv7G0"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -77,8 +76,8 @@ generation.</p>
         
         <tr>
           <td class="docs">
-            <p>For example, <code>rand.Intn</code> returns a random <code>int</code> n,
-<code>0 &lt;= n &lt; 100</code>.</p>
+            <p>Por exemplo, <code>rand.Intn</code> retorna um <code>int</code> <code>n</code> aleatório,
+em que <code>0 &lt;= n &lt; 100</code>.</p>
 
           </td>
           <td class="code leading">
@@ -93,8 +92,8 @@ generation.</p>
         
         <tr>
           <td class="docs">
-            <p><code>rand.Float64</code> returns a <code>float64</code> <code>f</code>,
-<code>0.0 &lt;= f &lt; 1.0</code>.</p>
+            <p><code>rand.Float64</code> retorna um <code>float64</code> <code>f</code>,
+em que <code>0.0 &lt;= f &lt; 1.0</code>.</p>
 
           </td>
           <td class="code leading">
@@ -107,8 +106,8 @@ generation.</p>
         
         <tr>
           <td class="docs">
-            <p>This can be used to generate random floats in
-other ranges, for example <code>5.0 &lt;= f' &lt; 10.0</code>.</p>
+            <p>Isto pode ser usado para gerar floats aleatórios em
+outros intervalos, por exemplo <code>5.0 &lt;= f &lt; 10.0</code>.</p>
 
           </td>
           <td class="code leading">
@@ -123,11 +122,14 @@ other ranges, for example <code>5.0 &lt;= f' &lt; 10.0</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>The default number generator is deterministic, so it&rsquo;ll
-produce the same sequence of numbers each time by default.
-To produce varying sequences, give it a seed that changes.
-Note that this is not safe to use for random numbers you
-intend to be secret; use <code>crypto/rand</code> for those.</p>
+            <p>O gerador de números padrão é determinístico,
+isso quer dizer que sempre irá produzir a mesma
+sequência de números a cada vez, por padrão.
+Para produzir números variados, é importante utilizar
+uma <code>seed</code> que também varie. Note que NÃO é seguro
+utilizar este método para números aleatórios que devam
+ser secretos. Se esta for a intenção, recomenda-se a
+utilização de <code>crypto/rand</code>.</p>
 
           </td>
           <td class="code leading">
@@ -141,8 +143,9 @@ intend to be secret; use <code>crypto/rand</code> for those.</p>
         
         <tr>
           <td class="docs">
-            <p>Call the resulting <code>rand.Rand</code> just like the
-functions on the <code>rand</code> package.</p>
+            <p>Chama o <code>rand.Rand</code> resultante da criação anterior,
+da nova instância com seed variante, exatamente como
+a função <code>rand</code> do pacote.</p>
 
           </td>
           <td class="code leading">
@@ -157,8 +160,8 @@ functions on the <code>rand</code> package.</p>
         
         <tr>
           <td class="docs">
-            <p>If you seed a source with the same number, it
-produces the same sequence of random numbers.</p>
+            <p>Se uma seed constante é fornecida, a aleatoriedade
+produz sempre a mesma sequência de números.</p>
 
           </td>
           <td class="code">
@@ -184,11 +187,11 @@ produces the same sequence of random numbers.</p>
         
         <tr>
           <td class="docs">
-            <p>Depending on where you run this sample, some of the
-generated numbers may be different. Note that on
-the Go playground seeding with <code>time.Now()</code> still
-produces deterministic results due to the way the
-playground is implemented.</p>
+            <p>A depender de onde esta amostra for executada, alguns
+números gerados podem ser diferentes. É importante notar
+que no <a href="https://go.dev/play/p/C99PXOcv7G0">playground de Go</a>, utilizar seed com <code>time.Now()</code>
+ainda produz resultados determinísticos, pela forma que
+o playground é implementado.</p>
 
           </td>
           <td class="code leading">
@@ -206,9 +209,10 @@ playground is implemented.</p>
         
         <tr>
           <td class="docs">
-            <p>See the <a href="https://pkg.go.dev/math/rand"><code>math/rand</code></a>
-package docs for references on other random quantities
-that Go can provide.</p>
+            <p>Veja a documentação do pacote
+<a href="https://pkg.go.dev/math/rand"><code>math/rand</code></a>
+para mais referências sobre outros
+recursos randômicos que Go pode fornecer.</p>
 
           </td>
           <td class="code empty">

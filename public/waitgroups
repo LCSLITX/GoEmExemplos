@@ -27,8 +27,8 @@
         
         <tr>
           <td class="docs">
-            <p>To wait for multiple goroutines to finish, we can
-use a <em>wait group</em>.</p>
+            <p>Para aguardar múltiplas goroutines finalizarem,
+é possível utilizar waitgroups.</p>
 
           </td>
           <td class="code empty leading">
@@ -42,7 +42,7 @@ use a <em>wait group</em>.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/S98GjeaGBX0"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/EYd9vC3DPEs"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -65,7 +65,7 @@ use a <em>wait group</em>.</p>
         
         <tr>
           <td class="docs">
-            <p>This is the function we&rsquo;ll run in every goroutine.</p>
+            <p>Essa função será executada em cada goroutines.</p>
 
           </td>
           <td class="code leading">
@@ -79,7 +79,8 @@ use a <em>wait group</em>.</p>
         
         <tr>
           <td class="docs">
-            <p>Sleep to simulate an expensive task.</p>
+            <p>Será utilizado <code>sleep</code> para simular uma
+tarefa extensa.</p>
 
           </td>
           <td class="code leading">
@@ -105,9 +106,11 @@ use a <em>wait group</em>.</p>
         
         <tr>
           <td class="docs">
-            <p>This WaitGroup is used to wait for all the
-goroutines launched here to finish. Note: if a WaitGroup is
-explicitly passed into functions, it should be done <em>by pointer</em>.</p>
+            <p>Este WaitGroup é usado para esperar por todas as
+goroutines lançadas finalizarem.
+Note: se um WaitGroup é explicitamente passado
+para uma função como parâmetro, deve ser feito com
+<em>ponteiro</em>.</p>
 
           </td>
           <td class="code leading">
@@ -120,8 +123,8 @@ explicitly passed into functions, it should be done <em>by pointer</em>.</p>
         
         <tr>
           <td class="docs">
-            <p>Launch several goroutines and increment the WaitGroup
-counter for each.</p>
+            <p>Inicia vãrias goroutines e incrementa o contador do
+WaitGroup para cada uma.</p>
 
           </td>
           <td class="code leading">
@@ -135,9 +138,10 @@ counter for each.</p>
         
         <tr>
           <td class="docs">
-            <p>Avoid re-use of the same <code>i</code> value in each goroutine closure.
-See <a href="https://golang.org/doc/faq#closures_and_goroutines">the FAQ</a>
-for more details.</p>
+            <p>Evite a utilização do mesmo valor de índice em
+cada goroutine closure.
+veja a <a href="https://golang.org/doc/faq#closures_and_goroutines">FAQ</a>
+para mais detalhes.</p>
 
           </td>
           <td class="code leading">
@@ -150,10 +154,10 @@ for more details.</p>
         
         <tr>
           <td class="docs">
-            <p>Wrap the worker call in a closure that makes sure to tell
-the WaitGroup that this worker is done. This way the worker
-itself does not have to be aware of the concurrency primitives
-involved in its execution.</p>
+            <p>Aqui se envelopa a chamada do worker em uma closure
+para informar ao WaitGroup que o worker finalizou a
+tarefa. Desta forma o próprio worker não precisa saber
+da concorrência envolvendo sua execução.</p>
 
           </td>
           <td class="code leading">
@@ -170,8 +174,9 @@ involved in its execution.</p>
         
         <tr>
           <td class="docs">
-            <p>Block until the WaitGroup counter goes back to 0;
-all the workers notified they&rsquo;re done.</p>
+            <p>Bloqueado até que o contador do WaitGroup volte a 0;
+e que todos os workers sejam notificados que eles
+finalizaram.</p>
 
           </td>
           <td class="code leading">
@@ -184,10 +189,10 @@ all the workers notified they&rsquo;re done.</p>
         
         <tr>
           <td class="docs">
-            <p>Note that this approach has no straightforward way
-to propagate errors from workers. For more
-advanced use cases, consider using the
-<a href="https://pkg.go.dev/golang.org/x/sync/errgroup">errgroup package</a>.</p>
+            <p>Note que o código desta forma não possibilita nenhuma
+forma direta para propagar erros dos workers.
+Para mais casos avançados de uso, considere usar o pacote
+<a href="https://pkg.go.dev/golang.org/x/sync/errgroup">errgroup</a>.</p>
 
           </td>
           <td class="code">
@@ -224,8 +229,8 @@ advanced use cases, consider using the
         
         <tr>
           <td class="docs">
-            <p>The order of workers starting up and finishing
-is likely to be different for each invocation.</p>
+            <p>É provável que a ordem de execução e finalização
+dos workers seja diferente em cada execução do código.</p>
 
           </td>
           <td class="code empty">

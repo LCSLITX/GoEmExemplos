@@ -1,13 +1,13 @@
 $ go run string-functions.go
-Contains:   true
-Count:      2
-HasPrefix:  true
-HasSuffix:  true
-Index:      1
-Join:       a-b
-Repeat:     aaaaa
-Replace:    f00
-Replace:    f0o
-Split:      [a b c d e]
-ToLower:    test
-ToUpper:    TEST
+Contem:          true
+Count:           2
+TemPrefixo:      true
+TemSufixo:       true
+Índice:          1
+Join:            a-b
+Repete:          aaaaa
+Substitui:       f00
+Substitui:       f0o
+Separa:          [a b c d e]
+letraMinuscula:  test
+letraMaiuscula:  TEST

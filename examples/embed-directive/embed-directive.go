@@ -1,31 +1,35 @@
-// `//go:embed` is a [compiler
-// directive](https://pkg.go.dev/cmd/compile#hdr-Compiler_Directives) that
-// allows programs to include arbitrary files and folders in the Go binary at
-// build time. Read more about the embed directive
-// [here](https://pkg.go.dev/embed).
+// `//go:embed` é uma diretiva de compilador ou [compiler
+// directive](https://pkg.go.dev/cmd/compile#hdr-Compiler_Directives) que
+// permite programas a inclusão de arquivos e diretórios arbitrários ao
+// binário de Go no momento de build. Leia mais sobre embed directive
+// [aqui](https://pkg.go.dev/embed).
 package main
 
-// Import the `embed` package; if you don't use any exported
-// identifiers from this package, you can do a blank import with `_ "embed"`.
+// Importação do pacote `embed`; Se não for utilizado
+// nenhum identificador exportado por esse pacote, é
+// possível usar um import em branco com`_ "embed"`.
 import (
 	"embed"
 )
 
-// `embed` directives accept paths relative to the directory containing the
-// Go source file. This directive embeds the contents of the file into the
-// `string` variable immediately following it.
+// `embed` directives aceitam caminhos relativos para o
+// diretório contendo o código fonte de um programa em
+// Go. Esta diretiva _embeds_ ou _incorpora_  o conteúdo
+// do arquivo numa variável `string` imediatamente após
+// a diretiva.
 //
 //go:embed folder/single_file.txt
 var fileString string
 
-// Or embed the contents of the file into a `[]byte`.
+// Ou incorporam os conteúdos do arquivo em um `[]byte`.
 //
 //go:embed folder/single_file.txt
 var fileByte []byte
 
-// We can also embed multiple files or even folders with wildcards. This uses
-// a variable of the [embed.FS type](https://pkg.go.dev/embed#FS), which
-// implements a simple virtual file system.
+// Também é possível incorporar múltiplos arquivos ou
+// até mesmo diretórios com `wildcards`. Este utiliza
+// a variável do tipo [embed.FS](https://pkg.go.dev/embed#FS),
+// o qual implementa um simples sistema de arquivo virtual.
 //
 //go:embed folder/single_file.txt
 //go:embed folder/*.hash
@@ -33,11 +37,11 @@ var folder embed.FS
 
 func main() {
 
-	// Print out the contents of `single_file.txt`.
+	// Imprime o conteúdo de `single_file.txt`.
 	print(fileString)
 	print(string(fileByte))
 
-	// Retrieve some files from the embedded folder.
+	// Recupera alguns arquivos do diretório incorporado.
 	content1, _ := folder.ReadFile("folder/file1.hash")
 	print(string(content1))
 

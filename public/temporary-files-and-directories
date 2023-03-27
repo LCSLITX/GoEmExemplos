@@ -27,26 +27,17 @@
         
         <tr>
           <td class="docs">
-            <p>Throughout program execution, we often want to create
-data that isn&rsquo;t needed after the program exits.
-<em>Temporary files and directories</em> are useful for this
-purpose since they don&rsquo;t pollute the file system over
-time.</p>
+            <p>Muitas vezes, ao longo da execução de um programa, é preciso
+criar dados que não são necessários após seu encerramento.
+<em>Arquivos e diretórios temporários</em> são úteis para esta
+finalidade, pois não poluem o sistema de arquivos
+permanentemente.</p>
 
           </td>
-          <td class="code empty leading">
-            
-          
-          </td>
-        </tr>
-        
-        <tr>
-          <td class="docs">
-            
-          </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/hVcPg9RH3_V"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
-          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+            <a target="_blank" href="https://go.dev/play/p/P0QuqppmLd3"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+          <pre class="chroma">
+<span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
         </tr>
@@ -94,11 +85,11 @@ time.</p>
         
         <tr>
           <td class="docs">
-            <p>The easiest way to create a temporary file is by
-calling <code>os.CreateTemp</code>. It creates a file <em>and</em>
-opens it for reading and writing. We provide <code>&quot;&quot;</code>
-as the first argument, so <code>os.CreateTemp</code> will
-create the file in the default location for our OS.</p>
+            <p>A maneira mais fácil de criar um arquivo temporário é
+com <code>os.CreateTemp</code>. eta função cria um arquivo e
+abre para leitura e escrita. Ao fornecer <code>&quot;&quot;</code> como o
+primeiro argumento, a função irá criar o arquivo no
+local padrão do sistema operacional.</p>
 
           </td>
           <td class="code leading">
@@ -112,12 +103,14 @@ create the file in the default location for our OS.</p>
         
         <tr>
           <td class="docs">
-            <p>Display the name of the temporary file. On
-Unix-based OSes the directory will likely be <code>/tmp</code>.
-The file name starts with the prefix given as the
-second argument to <code>os.CreateTemp</code> and the rest
-is chosen automatically to ensure that concurrent
-calls will always create different file names.</p>
+            <p>Este trecho exibe o nome do arquivo temporário.
+Em Sistemas Operacionais baseados em Unix, o
+diretório em que o artquivo será criado, provavelmente,
+é o <code>/tmp</code>. O nome do arquivo começa com o prefixo
+passado como segundo argumento para <code>os.CreateTemp</code> e o
+resto é escolhido automaticamente para garantir que
+eventuais chamadas concorrentes sempre criarão nomes
+de arquivos diferentes.</p>
 
           </td>
           <td class="code leading">
@@ -130,10 +123,11 @@ calls will always create different file names.</p>
         
         <tr>
           <td class="docs">
-            <p>Clean up the file after we&rsquo;re done. The OS is
-likely to clean up temporary files by itself after
-some time, but it&rsquo;s good practice to do this
-explicitly.</p>
+            <p>Limpa o arquivo depois de finalizada a execução.
+É provável que o Sistema Operacional tenha uma
+rotina para limpar arquivos temporários
+esporadicamente, mas é uma boa prática fazer isso
+explicitamente ao final do código.</p>
 
           </td>
           <td class="code leading">
@@ -146,7 +140,7 @@ explicitly.</p>
         
         <tr>
           <td class="docs">
-            <p>We can write some data to the file.</p>
+            <p>É possível escrever dados no arquivo.</p>
 
           </td>
           <td class="code leading">
@@ -160,11 +154,12 @@ explicitly.</p>
         
         <tr>
           <td class="docs">
-            <p>If we intend to write many temporary files, we may
-prefer to create a temporary <em>directory</em>.
-<code>os.MkdirTemp</code>&rsquo;s arguments are the same as
-<code>CreateTemp</code>&rsquo;s, but it returns a directory <em>name</em>
-rather than an open file.</p>
+            <p>Se a intenção for escrever muitos arquivos
+temporários, é preferível criar um diretório
+temporário. A função <code>os.MkdirTemp</code> recebe os
+mesmos argumentos que a <code>CreateTemp</code>, mas
+retorna um nome de diretório, ao invés de
+um arquivo aberto.</p>
 
           </td>
           <td class="code leading">
@@ -190,8 +185,9 @@ rather than an open file.</p>
         
         <tr>
           <td class="docs">
-            <p>Now we can synthesize temporary file names by
-prefixing them with our temporary directory.</p>
+            <p>Agora é possível sintetizar os nomes de arquivos
+temporários ao incluir como prefixo o diretório
+temporário.</p>
 
           </td>
           <td class="code">
@@ -236,7 +232,7 @@ prefixing them with our temporary directory.</p>
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"os\"\u000A    \"path/filepath\"\u000A)\u000A');codeLines.push('func check(e error) {\u000A    if e !\u003D nil {\u000A        panic(e)\u000A    }\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    f, err :\u003D os.CreateTemp(\"\", \"sample\")\u000A    check(err)\u000A');codeLines.push('    fmt.Println(\"Temp file name:\", f.Name())\u000A');codeLines.push('    defer os.Remove(f.Name())\u000A');codeLines.push('    _, err \u003D f.Write([]byte{1, 2, 3, 4})\u000A    check(err)\u000A');codeLines.push('    dname, err :\u003D os.MkdirTemp(\"\", \"sampledir\")\u000A    check(err)\u000A    fmt.Println(\"Temp dir name:\", dname)\u000A');codeLines.push('    defer os.RemoveAll(dname)\u000A');codeLines.push('    fname :\u003D filepath.Join(dname, \"file1\")\u000A    err \u003D os.WriteFile(fname, []byte{1, 2}, 0666)\u000A    check(err)\u000A}\u000A');codeLines.push('');
+      codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"os\"\u000A    \"path/filepath\"\u000A)\u000A');codeLines.push('func check(e error) {\u000A    if e !\u003D nil {\u000A        panic(e)\u000A    }\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    f, err :\u003D os.CreateTemp(\"\", \"sample\")\u000A    check(err)\u000A');codeLines.push('    fmt.Println(\"Temp file name:\", f.Name())\u000A');codeLines.push('    defer os.Remove(f.Name())\u000A');codeLines.push('    _, err \u003D f.Write([]byte{1, 2, 3, 4})\u000A    check(err)\u000A');codeLines.push('    dname, err :\u003D os.MkdirTemp(\"\", \"sampledir\")\u000A    check(err)\u000A    fmt.Println(\"Temp dir name:\", dname)\u000A');codeLines.push('    defer os.RemoveAll(dname)\u000A');codeLines.push('    fname :\u003D filepath.Join(dname, \"file1\")\u000A    err \u003D os.WriteFile(fname, []byte{1, 2}, 0666)\u000A    check(err)\u000A}\u000A');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>

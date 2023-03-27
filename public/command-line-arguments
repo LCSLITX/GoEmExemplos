@@ -27,10 +27,11 @@
         
         <tr>
           <td class="docs">
-            <p><a href="https://en.wikipedia.org/wiki/Command-line_interface#Arguments"><em>Command-line arguments</em></a>
-are a common way to parameterize execution of programs.
-For example, <code>go run hello.go</code> uses <code>run</code> and
-<code>hello.go</code> arguments to the <code>go</code> program.</p>
+            <p><a href="https://en.wikipedia.org/wiki/Command-line_interface#Arguments"><em>Command-line arguments</em></a>,
+ou argumentos de linha de comando,
+são uma forma comum de parametrizar execução de programas.
+Por exemplo <code>go run hello.go</code> usa como argumentos <code>run</code> e
+<code>hello.go</code> juntamente com o comando <code>go</code>.</p>
 
           </td>
           <td class="code empty leading">
@@ -44,7 +45,7 @@ For example, <code>go run hello.go</code> uses <code>run</code> and
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/UYCEvh9d2Zb"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/MwBlP0j-wwC"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -77,10 +78,10 @@ For example, <code>go run hello.go</code> uses <code>run</code> and
         
         <tr>
           <td class="docs">
-            <p><code>os.Args</code> provides access to raw command-line
-arguments. Note that the first value in this slice
-is the path to the program, and <code>os.Args[1:]</code>
-holds the arguments to the program.</p>
+            <p><code>os.Args</code> fornece acesso aos argumentos <code>raw</code>, ou crus
+passados em linha de comando. Note que o primeiro valor
+na slice é o caminho para o programa e <code>os.Args[1:]</code>
+possui os argumentos de fato.</p>
 
           </td>
           <td class="code leading">
@@ -94,7 +95,8 @@ holds the arguments to the program.</p>
         
         <tr>
           <td class="docs">
-            <p>You can get individual args with normal indexing.</p>
+            <p>É possível acessar argumentos individualmente com
+indexação normal.</p>
 
           </td>
           <td class="code leading">
@@ -125,8 +127,9 @@ holds the arguments to the program.</p>
         
         <tr>
           <td class="docs">
-            <p>To experiment with command-line arguments it&rsquo;s best to
-build a binary with <code>go build</code> first.</p>
+            <p>Para testar os argumentos de linha de comando,
+é melhor criar um binário com o comando <code>go build</code>
+antes.</p>
 
           </td>
           <td class="code leading">
@@ -142,8 +145,8 @@ build a binary with <code>go build</code> first.</p>
         
         <tr>
           <td class="docs">
-            <p>Next we&rsquo;ll look at more advanced command-line processing
-with flags.</p>
+            <p>Em seguida será apresentada a utilização
+de flags com linha de comando.</p>
 
           </td>
           <td class="code empty">

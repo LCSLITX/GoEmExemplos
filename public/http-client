@@ -27,14 +27,14 @@
         
         <tr>
           <td class="docs">
-            <p>The Go standard library comes with excellent support
-for HTTP clients and servers in the <code>net/http</code>
-package. In this example we&rsquo;ll use it to issue simple
-HTTP requests.</p>
+            <p>A biblioteca padrão de Go, oferece um excelente suporte
+para clientes HTTP e servidores no pacote <code>net/http</code>.
+Neste exemplo, será usado o pacote para enviar
+simples requisições HTTP.</p>
 
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/vFW_el7oHMk"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/ZuXJz77LHYg"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma">
 <span class="kn">package</span> <span class="nx">main</span>
 </pre>
@@ -69,11 +69,11 @@ HTTP requests.</p>
         
         <tr>
           <td class="docs">
-            <p>Issue an HTTP GET request to a server. <code>http.Get</code> is a
-convenient shortcut around creating an <code>http.Client</code>
-object and calling its <code>Get</code> method; it uses the
-<code>http.DefaultClient</code> object which has useful default
-settings.</p>
+            <p>Envia uma requisição HTTP com método GET para um
+servidor. <code>http.Get</code> é um atalho conveniente para
+criar um objeto <code>http.Client</code> e chamar seu método
+<code>Get</code>; É utilizado o objeto <code>http.DefaultClient</code>
+que tem algumas configurações padrão úteis.</p>
 
           </td>
           <td class="code leading">
@@ -90,7 +90,7 @@ settings.</p>
         
         <tr>
           <td class="docs">
-            <p>Print the HTTP response status.</p>
+            <p>Imprime o status da resposta HTTP.</p>
 
           </td>
           <td class="code leading">
@@ -103,7 +103,7 @@ settings.</p>
         
         <tr>
           <td class="docs">
-            <p>Print the first 5 lines of the response body.</p>
+            <p>Imprime as primeiras 5 linhas do corpo da resposta.</p>
 
           </td>
           <td class="code leading">

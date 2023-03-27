@@ -1,10 +1,10 @@
-# Running our program shows a list sorted by string
-# length, as desired.
+# Ao executar o código é exibida uma lista ordenada
+# de strings pelo seu tamanho, conforme esperado.
 $ go run sorting-by-functions.go 
 [kiwi peach banana]
 
-# By following this same pattern of creating a custom
-# type, implementing the three `Interface` methods on that
-# type, and then calling sort.Sort on a collection of that
-# custom type, we can sort Go slices by arbitrary
-# functions.
+# Seguindo este mesmo padrão de criação de um tipo 
+# personalizado, implementando os três métodos da
+# interface daquele tipo, e então chamando sort.Sort
+# numa coleção do respetivo tipo personalizado,
+# é possível ordenar slices com funções arbitrárias.

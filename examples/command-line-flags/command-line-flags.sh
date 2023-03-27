@@ -1,10 +1,10 @@
-# To experiment with the command-line flags program it's
-# best to first compile it and then run the resulting
-# binary directly.
+# Para testar o programa das flags, é melhor
+# é melhor criar um binário com o comando `go build`
+# antes.
 $ go build command-line-flags.go
 
-# Try out the built program by first giving it values for
-# all flags.
+# Execute o programa passando valores para
+# todas as flags.
 $ ./command-line-flags -word=opt -numb=7 -fork -svar=flag
 word: opt
 numb: 7
@@ -12,8 +12,9 @@ fork: true
 svar: flag
 tail: []
 
-# Note that if you omit flags they automatically take
-# their default values.
+# Note que, se alguma flag for omitida, elas
+# automaticamente são iniciadas com os valores
+# padrão estipulados.
 $ ./command-line-flags -word=opt
 word: opt
 numb: 42
@@ -21,16 +22,15 @@ fork: false
 svar: bar
 tail: []
 
-# Trailing positional arguments can be provided after
-# any flags.
+# argumentos podem ser fornecidos depois das flags.
 $ ./command-line-flags -word=opt a1 a2 a3
 word: opt
 ...
 tail: [a1 a2 a3]
 
-# Note that the `flag` package requires all flags to
-# appear before positional arguments (otherwise the flags
-# will be interpreted as positional arguments).
+# Note que o pacote `flag` requer que todas as flags
+# sejam usadas antes de argumentos. Do contrário, as
+# flags serão interpretadas como argumentos.
 $ ./command-line-flags -word=opt a1 a2 a3 -numb=7
 word: opt
 numb: 42
@@ -38,8 +38,8 @@ fork: false
 svar: bar
 tail: [a1 a2 a3 -numb=7]
 
-# Use `-h` or `--help` flags to get automatically
-# generated help text for the command-line program.
+# Usa-se as flags `-h` ou `--help` para acessar
+# um texto de auxílio à utilização do programa.
 $ ./command-line-flags -h
 Usage of ./command-line-flags:
   -fork=false: a bool
@@ -47,9 +47,10 @@ Usage of ./command-line-flags:
   -svar="bar": a string var
   -word="foo": a string
 
-# If you provide a flag that wasn't specified to the
-# `flag` package, the program will print an error message
-# and show the help text again.
+# Se for utilizada uma flag que não foi 
+# especificada no pacote `flag`, o programa
+# irá exibir uma mensagem de erro
+# juntamente com um texto de auxílio.
 $ ./command-line-flags -wat
 flag provided but not defined: -wat
 Usage of ./command-line-flags:

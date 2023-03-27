@@ -27,8 +27,8 @@
         
         <tr>
           <td class="docs">
-            <p>In this example we&rsquo;ll look at how to implement
-a <em>worker pool</em> using goroutines and channels.</p>
+            <p>Neste exemplo, será apresentado como implementar
+uma <em>worker pool</em> usando goroutines e canais.</p>
 
           </td>
           <td class="code empty leading">
@@ -42,7 +42,7 @@ a <em>worker pool</em> using goroutines and channels.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/hiSJJsYZJKL"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/BEu3LMHRs6C"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -64,11 +64,11 @@ a <em>worker pool</em> using goroutines and channels.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s the worker, of which we&rsquo;ll run several
-concurrent instances. These workers will receive
-work on the <code>jobs</code> channel and send the corresponding
-results on <code>results</code>. We&rsquo;ll sleep a second per job to
-simulate an expensive task.</p>
+            <p>Aqui está um worker, a partir do qual executará várias
+instâncias concorrentes. Estes workers receberão tarefas
+pelo canal <code>jobs</code> a enviarão o resultado correspondente
+pelo canal <code>results</code>. Será utilizado <code>time.Sleep</code> para
+simular uma tarefa extensa.</p>
 
           </td>
           <td class="code leading">
@@ -99,9 +99,9 @@ simulate an expensive task.</p>
         
         <tr>
           <td class="docs">
-            <p>In order to use our pool of workers we need to send
-them work and collect their results. We make 2
-channels for this.</p>
+            <p>Para usar os workers, é preciso enviar as tarefas
+a serem executadas e coletar os resultados, para
+isso são criados os dois canais com <code>make</code>.</p>
 
           </td>
           <td class="code leading">
@@ -116,8 +116,8 @@ channels for this.</p>
         
         <tr>
           <td class="docs">
-            <p>This starts up 3 workers, initially blocked
-because there are no jobs yet.</p>
+            <p>Isto inicia 3 workers, inicialmente bloqueados porque
+ainda não há tarefas.</p>
 
           </td>
           <td class="code leading">
@@ -132,14 +132,24 @@ because there are no jobs yet.</p>
         
         <tr>
           <td class="docs">
-            <p>Here we send 5 <code>jobs</code> and then <code>close</code> that
-channel to indicate that&rsquo;s all the work we have.</p>
+            <p>Aqui são enviadas 5 tarefas e então o canal é fechado
+para indicar que essas são todas as tarefas a serem
+executadas.</p>
 
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
           </td>
           <td class="code leading">
             
-          <pre class="chroma">
-    <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;=</span> <span class="nx">numJobs</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+          <pre class="chroma">    <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;=</span> <span class="nx">numJobs</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
         <span class="nx">jobs</span> <span class="o">&lt;-</span> <span class="nx">j</span>
     <span class="p">}</span>
     <span class="nb">close</span><span class="p">(</span><span class="nx">jobs</span><span class="p">)</span>
@@ -149,10 +159,10 @@ channel to indicate that&rsquo;s all the work we have.</p>
         
         <tr>
           <td class="docs">
-            <p>Finally we collect all the results of the work.
-This also ensures that the worker goroutines have
-finished. An alternative way to wait for multiple
-goroutines is to use a <a href="waitgroups">WaitGroup</a>.</p>
+            <p>Finalmente são coletados todos os resultados das tarefas.
+Isso também assegura que todas as goroutines dos workers
+estão finalizadas. Um método alternativo de aguardar
+várias goroutines é com <a href="waitgroups">WaitGroup</a>.</p>
 
           </td>
           <td class="code">
@@ -172,10 +182,11 @@ goroutines is to use a <a href="waitgroups">WaitGroup</a>.</p>
         
         <tr>
           <td class="docs">
-            <p>Our running program shows the 5 jobs being executed by
-various workers. The program only takes about 2 seconds
-despite doing about 5 seconds of total work because
-there are 3 workers operating concurrently.</p>
+            <p>O programa executado exibe 5 tarefas sendo executadas
+por vários workers. O programa leva apenas 2 segundos
+para finalizar, ainda que as tarefas totalizem 5
+segundos, por ter 3 workers trabalhando
+concorrentemente.</p>
 
           </td>
           <td class="code leading">
@@ -220,7 +231,7 @@ there are 3 workers operating concurrently.</p>
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func worker(id int, jobs \u003C-chan int, results chan\u003C- int) {\u000A    for j :\u003D range jobs {\u000A        fmt.Println(\"worker\", id, \"started  job\", j)\u000A        time.Sleep(time.Second)\u000A        fmt.Println(\"worker\", id, \"finished job\", j)\u000A        results \u003C- j * 2\u000A    }\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    const numJobs \u003D 5\u000A    jobs :\u003D make(chan int, numJobs)\u000A    results :\u003D make(chan int, numJobs)\u000A');codeLines.push('    for w :\u003D 1; w \u003C\u003D 3; w++ {\u000A        go worker(w, jobs, results)\u000A    }\u000A');codeLines.push('    for j :\u003D 1; j \u003C\u003D numJobs; j++ {\u000A        jobs \u003C- j\u000A    }\u000A    close(jobs)\u000A');codeLines.push('    for a :\u003D 1; a \u003C\u003D numJobs; a++ {\u000A        \u003C-results\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func worker(id int, jobs \u003C-chan int, results chan\u003C- int) {\u000A    for j :\u003D range jobs {\u000A        fmt.Println(\"worker\", id, \"started  job\", j)\u000A        time.Sleep(time.Second)\u000A        fmt.Println(\"worker\", id, \"finished job\", j)\u000A        results \u003C- j * 2\u000A    }\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    const numJobs \u003D 5\u000A    jobs :\u003D make(chan int, numJobs)\u000A    results :\u003D make(chan int, numJobs)\u000A');codeLines.push('    for w :\u003D 1; w \u003C\u003D 3; w++ {\u000A        go worker(w, jobs, results)\u000A    }\u000A');codeLines.push('');codeLines.push('    for j :\u003D 1; j \u003C\u003D numJobs; j++ {\u000A        jobs \u003C- j\u000A    }\u000A    close(jobs)\u000A');codeLines.push('    for a :\u003D 1; a \u003C\u003D numJobs; a++ {\u000A        \u003C-results\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>

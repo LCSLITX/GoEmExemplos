@@ -1,11 +1,11 @@
-// Go provides built-in support for [base64
+// Go fornece suporte nativo para [base64
 // encoding/decoding](https://en.wikipedia.org/wiki/Base64).
 
 package main
 
-// This syntax imports the `encoding/base64` package with
-// the `b64` name instead of the default `base64`. It'll
-// save us some space below.
+// Esta sintaxe importa o pacote `encoding/base64` com o
+// nome `b64` ao invés do nome padrão `base64`.
+// Isso poupará algum espaço abaixo.
 import (
 	b64 "encoding/base64"
 	"fmt"
@@ -13,25 +13,25 @@ import (
 
 func main() {
 
-	// Here's the `string` we'll encode/decode.
+	// Aqui está a `string` que será objeto de encode/decode.
 	data := "abc123!?$*&()'-=@~"
 
-	// Go supports both standard and URL-compatible
-	// base64. Here's how to encode using the standard
-	// encoder. The encoder requires a `[]byte` so we
-	// convert our `string` to that type.
+	// Go suporta tanto padrão quanto base64 compatível
+	// com URL. Aqui está como realizar encode usando o
+	// encoder padrão. O encoder requer `[]byte` então
+	// antes é convertida a string para este tipo.
 	sEnc := b64.StdEncoding.EncodeToString([]byte(data))
 	fmt.Println(sEnc)
 
-	// Decoding may return an error, which you can check
-	// if you don't already know the input to be
-	// well-formed.
+	// Realizar o Decode pode retornar um erro,
+	// o qual pode ser checado se ainda não se sabe
+	// se o input está bem formatado.
 	sDec, _ := b64.StdEncoding.DecodeString(sEnc)
 	fmt.Println(string(sDec))
 	fmt.Println()
 
-	// This encodes/decodes using a URL-compatible base64
-	// format.
+	// Este encode/decode está usando base-64 compatível
+	// com URL.
 	uEnc := b64.URLEncoding.EncodeToString([]byte(data))
 	fmt.Println(uEnc)
 	uDec, _ := b64.URLEncoding.DecodeString(uEnc)

@@ -14,7 +14,7 @@
           
           
           if (e.key == "ArrowRight") {
-              window.location.href = 'spawning-processes-(invocando-processos)';
+              window.location.href = 'spawning-processes';
           }
           
       }
@@ -27,16 +27,16 @@
         
         <tr>
           <td class="docs">
-            <p>In the previous example we looked at setting up a simple
-<a href="http-servers">HTTP server</a>. HTTP servers are useful for
-demonstrating the usage of <code>context.Context</code> for
-controlling cancellation. A <code>Context</code> carries deadlines,
-cancellation signals, and other request-scoped values
-across API boundaries and goroutines.</p>
+            <p>No exemplo anterior foi apresentado como configurar um simples
+<a href="http-server">servidor HTTP</a>. Os servidores HTTP são úteis para
+demonstrar o uso de <code>context.Context</code> e controle de cancelamento.
+Um <code>Contexto</code> carrega deadlines, sinais de cancelamento
+e outros valores do escopo da requisição através da API
+e goroutines.</p>
 
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/0_bu1o8rIBO"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/eRjzFS16jBu"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma">
 <span class="kn">package</span> <span class="nx">main</span>
 </pre>
@@ -71,9 +71,9 @@ across API boundaries and goroutines.</p>
         
         <tr>
           <td class="docs">
-            <p>A <code>context.Context</code> is created for each request by
-the <code>net/http</code> machinery, and is available with
-the <code>Context()</code> method.</p>
+            <p>Um <code>context.Context</code> é criado para cada request
+pelo próprio pacote <code>net/http</code>, e fica disponível
+com o método <code>Context()</code>.</p>
 
           </td>
           <td class="code leading">
@@ -88,11 +88,12 @@ the <code>Context()</code> method.</p>
         
         <tr>
           <td class="docs">
-            <p>Wait for a few seconds before sending a reply to the
-client. This could simulate some work the server is
-doing. While working, keep an eye on the context&rsquo;s
-<code>Done()</code> channel for a signal that we should cancel
-the work and return as soon as possible.</p>
+            <p>Aguarda alguns segundos antes de enviar a resposta
+para o cliente, para simular algum trabalho que o
+servidor possa fazer. Enquanto trabalha, acompanha
+o canal <code>Done()</code> do Contexto, para esperar por um
+sinal de cancelamento e retornar a resposta o mais
+rápido possível.</p>
 
           </td>
           <td class="code leading">
@@ -108,9 +109,8 @@ the work and return as soon as possible.</p>
         
         <tr>
           <td class="docs">
-            <p>The context&rsquo;s <code>Err()</code> method returns an error
-that explains why the <code>Done()</code> channel was
-closed.</p>
+            <p>O método <code>Err()</code> do contexto retorna um erro
+que explica porque o canal <code>Done()</code> foi fechado.</p>
 
           </td>
           <td class="code leading">
@@ -139,8 +139,8 @@ closed.</p>
         
         <tr>
           <td class="docs">
-            <p>As before, we register our handler on the &ldquo;/hello&rdquo;
-route, and start serving.</p>
+            <p>Como antes, o handler é registrado na rota &ldquo;/hello&rdquo;
+e o servidor é iniciado em seguida.</p>
 
           </td>
           <td class="code">
@@ -159,7 +159,7 @@ route, and start serving.</p>
         
         <tr>
           <td class="docs">
-            <p>Run the server in the background.</p>
+            <p>Executa o servidor em background.</p>
 
           </td>
           <td class="code leading">
@@ -171,9 +171,9 @@ route, and start serving.</p>
         
         <tr>
           <td class="docs">
-            <p>Simulate a client request to <code>/hello</code>, hitting
-Ctrl+C shortly after starting to signal
-cancellation.</p>
+            <p>Simula uma requisição de cliente para <code>/hello</code>,
+e logo após, utiliza Ctrl+C para enviar sinal
+de cancelamento.</p>
 
           </td>
           <td class="code">
@@ -191,7 +191,7 @@ cancellation.</p>
       
       
       <p class="next">
-        Próximo exemplo: <a href="spawning-processes-(invocando-processos)">Spawning Processes (Invocando processos)</a>.
+        Próximo exemplo: <a href="spawning-processes">Spawning Processes</a>.
       </p>
       
 

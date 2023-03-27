@@ -1,13 +1,13 @@
-// [_SHA256 hashes_](https://en.wikipedia.org/wiki/SHA-2) are
-// frequently used to compute short identities for binary
-// or text blobs. For example, TLS/SSL certificates use SHA256
-// to compute a certificate's signature. Here's how to compute
-// SHA256 hashes in Go.
+// [_SHA256 hashes_](https://en.wikipedia.org/wiki/SHA-2) são
+// frequentemente utilizadas para computar identidades em binário
+// ou pequenos textos. Por exemplo, certificados TLS/SSL usam SHA256
+// para computar a assinatura do certificado. Aqui estã como computar
+// hashes SHA256 em Go.
 
 package main
 
-// Go implements several hash functions in various
-// `crypto/*` packages.
+// Go implementa várias funções hash em seus respectivos
+// pacotes `crypto/*`.
 import (
 	"crypto/sha256"
 	"fmt"
@@ -16,16 +16,16 @@ import (
 func main() {
 	s := "sha256 this string"
 
-	// Here we start with a new hash.
+	// Aqui é iniciado uma nova hash.
 	h := sha256.New()
 
-	// `Write` expects bytes. If you have a string `s`,
-	// use `[]byte(s)` to coerce it to bytes.
+	// `Write` espera bytes. É possível utilizar `[]byte(s)`
+	// em uma string `s` para converte-la para bytes.
 	h.Write([]byte(s))
 
-	// This gets the finalized hash result as a byte
-	// slice. The argument to `Sum` can be used to append
-	// to an existing byte slice: it usually isn't needed.
+	// Aqui o resultado da hash é retornado como slice de bytes.
+	// O argumento passado para `Sum` pode ser usado para acrescentar
+	// algo para um hash em slice de byte já existente.
 	bs := h.Sum(nil)
 
 	fmt.Println(s)

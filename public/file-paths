@@ -27,14 +27,15 @@
         
         <tr>
           <td class="docs">
-            <p>The <code>filepath</code> package provides functions to parse
-and construct <em>file paths</em> in a way that is portable
-between operating systems; <code>dir/file</code> on Linux vs.
-<code>dir\file</code> on Windows, for example.</p>
+            <p>O pacote <code>filepath</code> fornece funções para parsear
+e construir <em>file paths</em>, ou caminhos de arquivos,
+de uma maneira flexível que pode ser utilizado
+em vários sistemas operacionais; <code>dir/file</code> no
+Linux vs. <code>dir\file</code> no Windows, por exemplo.</p>
 
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/5h3lUytvmyO"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/k3thwnDRPgF"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma">
 <span class="kn">package</span> <span class="nx">main</span>
 </pre>
@@ -69,9 +70,10 @@ between operating systems; <code>dir/file</code> on Linux vs.
         
         <tr>
           <td class="docs">
-            <p><code>Join</code> should be used to construct paths in a
-portable way. It takes any number of arguments
-and constructs a hierarchical path from them.</p>
+            <p><code>Join</code> deve ser usado para construir caminhos
+de forma flexível. Pode receber qualquer número
+de argumentos e constrói um caminho com hierarquia
+a partir deles.</p>
 
           </td>
           <td class="code leading">
@@ -85,11 +87,12 @@ and constructs a hierarchical path from them.</p>
         
         <tr>
           <td class="docs">
-            <p>You should always use <code>Join</code> instead of
-concatenating <code>/</code>s or <code>\</code>s manually. In addition
-to providing portability, <code>Join</code> will also
-normalize paths by removing superfluous separators
-and directory changes.</p>
+            <p>Sempre deve ser utilizado o <code>Join</code> ao invés de
+concatenar <code>/</code> ou <code>\</code> manualmente. Em adição
+a a tornar flexível e utilizável em mais de um
+sistema operacional, <code>Join</code> também irá normalizar
+os caminhos, removendo separadores superfluos e
+mudanças de diretório.</p>
 
           </td>
           <td class="code leading">
@@ -103,9 +106,9 @@ and directory changes.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Dir</code> and <code>Base</code> can be used to split a path to the
-directory and the file. Alternatively, <code>Split</code> will
-return both in the same call.</p>
+            <p><code>Dir</code> e <code>Base</code> podem se rusados para dividir o caminho
+para o diretório e para o arquivo. Alternativamente,
+<code>Split</code> retornará ambos em uma mesma chamada.</p>
 
           </td>
           <td class="code leading">
@@ -119,7 +122,7 @@ return both in the same call.</p>
         
         <tr>
           <td class="docs">
-            <p>We can check whether a path is absolute.</p>
+            <p>É possível checar se um caminho é absoluto.</p>
 
           </td>
           <td class="code leading">
@@ -144,8 +147,9 @@ return both in the same call.</p>
         
         <tr>
           <td class="docs">
-            <p>Some file names have extensions following a dot. We
-can split the extension out of such names with <code>Ext</code>.</p>
+            <p>Alguns nomes de arquivos tem extenção seguida
+de um ponto. É possível separar a extensão do
+resto do nome com <code>Ext</code>.</p>
 
           </td>
           <td class="code leading">
@@ -159,8 +163,8 @@ can split the extension out of such names with <code>Ext</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>To find the file&rsquo;s name with the extension removed,
-use <code>strings.TrimSuffix</code>.</p>
+            <p>Para encontrar nomes de arquivos com extensão
+usa-se <code>strings.TrimSuffix</code>.</p>
 
           </td>
           <td class="code leading">
@@ -173,9 +177,9 @@ use <code>strings.TrimSuffix</code>.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Rel</code> finds a relative path between a <em>base</em> and a
-<em>target</em>. It returns an error if the target cannot
-be made relative to base.</p>
+            <p><code>Rel</code> encontra o caminho relativo entre <em>base</em> e
+<em>alvo</em>, ou <em>target</em>. Retorna erro se o alvo não
+pode ser acessar a partir de base.</p>
 
           </td>
           <td class="code leading">

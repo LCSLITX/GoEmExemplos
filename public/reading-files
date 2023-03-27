@@ -27,9 +27,9 @@
         
         <tr>
           <td class="docs">
-            <p>Reading and writing files are basic tasks needed for
-many Go programs. First we&rsquo;ll look at some examples of
-reading files.</p>
+            <p>Ler e escrever arquivos são tarefas básicas que podem ser
+necessárias em muitos programas.
+Primeiro será apresentado como ler arquivos.</p>
 
           </td>
           <td class="code empty leading">
@@ -43,7 +43,7 @@ reading files.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/DF2Wo8nDKaF"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/LXqUA0K30Wp"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -67,8 +67,8 @@ reading files.</p>
         
         <tr>
           <td class="docs">
-            <p>Reading files requires checking most calls for errors.
-This helper will streamline our error checks below.</p>
+            <p>Ler arquivos requer checagem de erros.
+Esta função auxiliar ajudará a realizar a verificação.</p>
 
           </td>
           <td class="code leading">
@@ -96,8 +96,8 @@ This helper will streamline our error checks below.</p>
         
         <tr>
           <td class="docs">
-            <p>Perhaps the most basic file reading task is
-slurping a file&rsquo;s entire contents into memory.</p>
+            <p>A forma mais simples de ler um arquivo é capturar
+o seu conteúdo e deixa-lo disponível em memória.</p>
 
           </td>
           <td class="code leading">
@@ -112,9 +112,9 @@ slurping a file&rsquo;s entire contents into memory.</p>
         
         <tr>
           <td class="docs">
-            <p>You&rsquo;ll often want more control over how and what
-parts of a file are read. For these tasks, start
-by <code>Open</code>ing a file to obtain an <code>os.File</code> value.</p>
+            <p>Geralmente é necessário ter mais controle sobre como
+e quais partes do arquivo são lidas. Para estas situações,
+inicia-se abrindo um arquivo para obter o valor <code>os.File</code>.</p>
 
           </td>
           <td class="code leading">
@@ -128,9 +128,9 @@ by <code>Open</code>ing a file to obtain an <code>os.File</code> value.</p>
         
         <tr>
           <td class="docs">
-            <p>Read some bytes from the beginning of the file.
-Allow up to 5 to be read but also note how many
-actually were read.</p>
+            <p>Este trecho lê alguns bytes do início do arquivo.
+Permite que até 5 sejam lidos, mas é importante
+notar quantos foram lidos de fato.</p>
 
           </td>
           <td class="code leading">
@@ -146,8 +146,8 @@ actually were read.</p>
         
         <tr>
           <td class="docs">
-            <p>You can also <code>Seek</code> to a known location in the file
-and <code>Read</code> from there.</p>
+            <p>Também é posssível procurar, <code>Seek</code>, uma localização
+no arquivo e iniciar a leitura a partir dela.</p>
 
           </td>
           <td class="code leading">
@@ -166,10 +166,10 @@ and <code>Read</code> from there.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>io</code> package provides some functions that may
-be helpful for file reading. For example, reads
-like the ones above can be more robustly
-implemented with <code>ReadAtLeast</code>.</p>
+            <p>O pacote <code>io</code> fornece algumas funções que podem
+ser úteis para a leitura de arquivos. Por exemplo,
+leituras como as acima, podem ser implementadas
+de maneira bem robusta com <code>ReadAtLeast</code>.</p>
 
           </td>
           <td class="code leading">
@@ -187,8 +187,8 @@ implemented with <code>ReadAtLeast</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>There is no built-in rewind, but <code>Seek(0, 0)</code>
-accomplishes this.</p>
+            <p>Não há nenhuma forma nativa de rebobinar, mas
+<code>Seek(0, 0)</code> atinge esse objetivo.</p>
 
           </td>
           <td class="code leading">
@@ -202,10 +202,10 @@ accomplishes this.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>bufio</code> package implements a buffered
-reader that may be useful both for its efficiency
-with many small reads and because of the additional
-reading methods it provides.</p>
+            <p>O pacote <code>bufio</code> implementa um leitor <code>buffered</code>
+que pode ser útil tanto para eficiência quanto
+para muitas leituras pequenas por conta dos
+métodos de leitura adicionais que são fornecidos.</p>
 
           </td>
           <td class="code leading">
@@ -221,8 +221,9 @@ reading methods it provides.</p>
         
         <tr>
           <td class="docs">
-            <p>Close the file when you&rsquo;re done (usually this would
-be scheduled immediately after <code>Open</code>ing with
+            <p>É necessário fechar os arquivos com <code>Close</code>
+ao terminar de manipulá-lo (geralmente isso
+é feito imediatamente depois de abrir, com    o
 <code>defer</code>).</p>
 
           </td>
@@ -259,7 +260,8 @@ be scheduled immediately after <code>Open</code>ing with
         
         <tr>
           <td class="docs">
-            <p>Next we&rsquo;ll look at writing files.</p>
+            <p>Em seguida será apresentado como escrever
+em arquivos.</p>
 
           </td>
           <td class="code empty">

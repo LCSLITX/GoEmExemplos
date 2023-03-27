@@ -1,20 +1,19 @@
-# Running the program shows that we pick up the value
-# for `FOO` that we set in the program, but that
-# `BAR` is empty.
+# Executando o programa, é exibido  que o valor de `FOO`
+# é o definido no código, mas BAR está vazio.
 $ go run environment-variables.go
 FOO: 1
 BAR: 
 
-# The list of keys in the environment will depend on your
-# particular machine.
+# A lista de chaves no ambiente vai variar
+# a depender da sua máquina.
 TERM_PROGRAM
 PATH
 SHELL
 ...
 FOO
 
-# If we set `BAR` in the environment first, the running
-# program picks that value up.
+# É possível definir o valor para uma variável ao executar
+# o programa, assim `BAR` terá um valor.
 $ BAR=2 go run environment-variables.go
 FOO: 1
 BAR: 2
