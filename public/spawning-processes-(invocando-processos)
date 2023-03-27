@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Em Exemplos: Spawning Processes (Invocando processos)</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'context';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'executing-processes';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="spawning-processes-(invocando-processos)">
+      <h2><a href="./">Go Em Exemplos</a>: Spawning Processes (Invocando processos)</h2>
+      
+      
+      <p class="next">
+        Próximo exemplo: <a href="executing-processes">Executing Processes</a>.
+      </p>
+      
+
+    <p class="footer">
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

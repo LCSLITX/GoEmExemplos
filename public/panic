@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: Panic</title>
+    <title>Go Em Exemplos: Panic</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -21,16 +21,17 @@
   </script>
   <body>
     <div class="example" id="panic">
-      <h2><a href="./">Go by Example</a>: Panic</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Panic</h2>
       
       <table>
         
         <tr>
           <td class="docs">
-            <p>A <code>panic</code> typically means something went unexpectedly
-wrong. Mostly we use it to fail fast on errors that
-shouldn&rsquo;t occur during normal operation, or that we
-aren&rsquo;t prepared to handle gracefully.</p>
+            <p>Um <code>panic</code> tipicamente significa que acontenceu algum
+erro inesperado. Geralmente é utilizado para falhar
+rapidamente em erros que não deviam ocorrer durante
+uma operação normal, ou que não está sendo tratado
+de maneira <em>graciosa</em> ou apropriada.</p>
 
           </td>
           <td class="code empty leading">
@@ -44,7 +45,7 @@ aren&rsquo;t prepared to handle gracefully.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/9-2vCvRuhmE"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/04lGLJP-UHb"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -74,25 +75,26 @@ aren&rsquo;t prepared to handle gracefully.</p>
         
         <tr>
           <td class="docs">
-            <p>We&rsquo;ll use panic throughout this site to check for
-unexpected errors. This is the only program on the
-site designed to panic.</p>
+            <p>O panic será utilizado por todo o site para checar por
+erros inesperados. Este é o único código em todo o site
+especificamente desenhado para causar um panic.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-    <span class="nb">panic</span><span class="p">(</span><span class="s">&#34;a problem&#34;</span><span class="p">)</span>
+    <span class="nb">panic</span><span class="p">(</span><span class="s">&#34;uhhh... Houston, we have a problem.&#34;</span><span class="p">)</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>A common use of panic is to abort if a function
-returns an error value that we don&rsquo;t know how to
-(or want to) handle. Here&rsquo;s an example of
-<code>panic</code>king if we get an unexpected error when creating a new file.</p>
+            <p>Um uso comum do panic é para abortar a execução
+de determinado código se uma função retorna um
+erro que não é tratado. Aqui está um exemplo
+simulado de <code>panic</code> ao receber um erro inesperado
+ao se criar um novo arquivo.</p>
 
           </td>
           <td class="code">
@@ -113,9 +115,10 @@ returns an error value that we don&rsquo;t know how to
         
         <tr>
           <td class="docs">
-            <p>Running this program will cause it to panic, print
-an error message and goroutine traces, and exit with
-a non-zero status.</p>
+            <p>Ao executar este código ocorrerá um panic e será
+exibido no console uma mensagem de erro, um
+&ldquo;rastro&rdquo; de execução da goroutine, e saída,
+ou exit, com código diferente de zero.</p>
 
           </td>
           <td class="code empty leading">
@@ -126,17 +129,18 @@ a non-zero status.</p>
         
         <tr>
           <td class="docs">
-            <p>When first panic in <code>main</code> fires, the program exits
-without reaching the rest of the code. If you&rsquo;d like
-to see the program try to create a temp file, comment
-the first panic out.</p>
+            <p>Quando o primeiro panic na função main dispara,
+o código é interrompido, sem continuar até o
+final da execução. Para visualizar o que ocorre
+no segundo panic deste exemplo, é necessário
+comentar o primeiro panic.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
 <span class="gp">$</span> go run panic.go
-<span class="go">panic: a problem</span></pre>
+<span class="go">panic: uhhh... Houston, we have a problem.</span></pre>
           </td>
         </tr>
         
@@ -148,17 +152,16 @@ the first panic out.</p>
             
           <pre class="chroma"><span class="go">goroutine 1 [running]:
 </span><span class="go">main.main()
-</span><span class="go">    /.../panic.go:12 +0x47
-</span><span class="go">...
+</span><span class="go">    /.../panic.go:16 +0x27
 </span><span class="go">exit status 2</span></pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>Note that unlike some languages which use exceptions
-for handling of many errors, in Go it is idiomatic
-to use error-indicating return values wherever possible.</p>
+            <p>Note que, diferentemente de outras linguagens que
+usam exceções para tratar erros, em Go é idiomático
+usar retornos indicativos de erro sempre que possível.</p>
 
           </td>
           <td class="code empty">
@@ -171,18 +174,18 @@ to use error-indicating return values wherever possible.</p>
       
       
       <p class="next">
-        Next example: <a href="defer">Defer</a>.
+        Próximo exemplo: <a href="defer">Defer</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
     </p>
 
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"os\"\u000A');codeLines.push('func main() {\u000A');codeLines.push('    panic(\"a problem\")\u000A');codeLines.push('    _, err :\u003D os.Create(\"/tmp/file\")\u000A    if err !\u003D nil {\u000A        panic(err)\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');codeLines.push('');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"os\"\u000A');codeLines.push('func main() {\u000A');codeLines.push('    panic(\"uhhh... Houston, we have a problem.\")\u000A');codeLines.push('    _, err :\u003D os.Create(\"/tmp/file\")\u000A    if err !\u003D nil {\u000A        panic(err)\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');codeLines.push('');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>

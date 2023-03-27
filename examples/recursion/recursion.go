@@ -1,13 +1,13 @@
-// Go supports
-// <a href="https://en.wikipedia.org/wiki/Recursion_(computer_science)"><em>recursive functions</em></a>.
-// Here's a classic example.
+// Go suporta
+// <a href="https://en.wikipedia.org/wiki/Recursion_(computer_science)"><em>funções recursivas</em></a>.
 
 package main
 
 import "fmt"
 
-// This `fact` function calls itself until it reaches the
-// base case of `fact(0)`.
+// Esta função `fact` chama a si mesma várias vezes,
+// decrementando o parâmetro passado a cada chamada,
+// até que atinja o caso base `fact(0)`.
 func fact(n int) int {
 	if n == 0 {
 		return 1
@@ -18,9 +18,9 @@ func fact(n int) int {
 func main() {
 	fmt.Println(fact(7))
 
-	// Closures can also be recursive, but this requires the
-	// closure to be declared with a typed `var` explicitly
-	// before it's defined.
+	// Closures também podem ser recursivos, mas isso requer que
+	// sejam declarados explicitamente com uma variável tipada `var`
+	// antes de ser definido.
 	var fib func(n int) int
 
 	fib = func(n int) int {
@@ -28,8 +28,8 @@ func main() {
 			return n
 		}
 
-		// Since `fib` was previously declared in `main`, Go
-		// knows which function to call with `fib` here.
+		// `fib` foi anteriormente declarada dentro de `main`,
+		// então será executada normalmente.
 		return fib(n-1) + fib(n-2)
 	}
 

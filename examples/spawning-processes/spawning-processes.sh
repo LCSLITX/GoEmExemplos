@@ -1,11 +1,12 @@
-# The spawned programs return output that is the same
-# as if we had run them directly from the command-line.
+# Os processos invocados retornam o mesmo output que  
+# retornaria se fosse executado diretamente da
+# linha de comando.
 $ go run spawning-processes.go 
 > date
 Thu 05 May 2022 10:10:12 PM PDT
 
-# date doesn't have a `-x` flag so it will exit with
-# an error message and non-zero return code.
+# `date` não possui uma flag `-x`, então será finalizado
+# com mensagem de erro e código de retorno não-zero.
 command exited with rc = 1
 > grep hello
 hello grep

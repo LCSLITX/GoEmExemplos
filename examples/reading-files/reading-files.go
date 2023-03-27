@@ -1,6 +1,6 @@
-// Reading and writing files are basic tasks needed for
-// many Go programs. First we'll look at some examples of
-// reading files.
+// Ler e escrever arquivos são tarefas básicas que podem ser
+// necessárias em muitos programas.
+// Primeiro será apresentado como ler arquivos.
 
 package main
 
@@ -11,8 +11,8 @@ import (
 	"os"
 )
 
-// Reading files requires checking most calls for errors.
-// This helper will streamline our error checks below.
+// Ler arquivos requer checagem de erros.
+// Esta função auxiliar ajudará a realizar a verificação.
 func check(e error) {
 	if e != nil {
 		panic(e)
@@ -21,28 +21,28 @@ func check(e error) {
 
 func main() {
 
-	// Perhaps the most basic file reading task is
-	// slurping a file's entire contents into memory.
+	// A forma mais simples de ler um arquivo é capturar
+	// o seu conteúdo e deixa-lo disponível em memória.
 	dat, err := os.ReadFile("/tmp/dat")
 	check(err)
 	fmt.Print(string(dat))
 
-	// You'll often want more control over how and what
-	// parts of a file are read. For these tasks, start
-	// by `Open`ing a file to obtain an `os.File` value.
+	// Geralmente é necessário ter mais controle sobre como
+	// e quais partes do arquivo são lidas. Para estas situações,
+	// inicia-se abrindo um arquivo para obter o valor `os.File`.
 	f, err := os.Open("/tmp/dat")
 	check(err)
 
-	// Read some bytes from the beginning of the file.
-	// Allow up to 5 to be read but also note how many
-	// actually were read.
+	// Este trecho lê alguns bytes do início do arquivo.
+	// Permite que até 5 sejam lidos, mas é importante
+	// notar quantos foram lidos de fato.
 	b1 := make([]byte, 5)
 	n1, err := f.Read(b1)
 	check(err)
 	fmt.Printf("%d bytes: %s\n", n1, string(b1[:n1]))
 
-	// You can also `Seek` to a known location in the file
-	// and `Read` from there.
+	// Também é posssível procurar, `Seek`, uma localização
+	// no arquivo e iniciar a leitura a partir dela.
 	o2, err := f.Seek(6, 0)
 	check(err)
 	b2 := make([]byte, 2)
@@ -51,10 +51,10 @@ func main() {
 	fmt.Printf("%d bytes @ %d: ", n2, o2)
 	fmt.Printf("%v\n", string(b2[:n2]))
 
-	// The `io` package provides some functions that may
-	// be helpful for file reading. For example, reads
-	// like the ones above can be more robustly
-	// implemented with `ReadAtLeast`.
+	// O pacote `io` fornece algumas funções que podem
+	// ser úteis para a leitura de arquivos. Por exemplo,
+	// leituras como as acima, podem ser implementadas
+	// de maneira bem robusta com `ReadAtLeast`.
 	o3, err := f.Seek(6, 0)
 	check(err)
 	b3 := make([]byte, 2)
@@ -62,22 +62,23 @@ func main() {
 	check(err)
 	fmt.Printf("%d bytes @ %d: %s\n", n3, o3, string(b3))
 
-	// There is no built-in rewind, but `Seek(0, 0)`
-	// accomplishes this.
+	// Não há nenhuma forma nativa de rebobinar, mas
+	// `Seek(0, 0)` atinge esse objetivo.
 	_, err = f.Seek(0, 0)
 	check(err)
 
-	// The `bufio` package implements a buffered
-	// reader that may be useful both for its efficiency
-	// with many small reads and because of the additional
-	// reading methods it provides.
+	// O pacote `bufio` implementa um leitor `buffered`
+	// que pode ser útil tanto para eficiência quanto
+	// para muitas leituras pequenas por conta dos
+	// métodos de leitura adicionais que são fornecidos.
 	r4 := bufio.NewReader(f)
 	b4, err := r4.Peek(5)
 	check(err)
 	fmt.Printf("5 bytes: %s\n", string(b4))
 
-	// Close the file when you're done (usually this would
-	// be scheduled immediately after `Open`ing with
+	// É necessário fechar os arquivos com `Close`
+	// ao terminar de manipulá-lo (geralmente isso
+	// é feito imediatamente depois de abrir, com	o
 	// `defer`).
 	f.Close()
 }

@@ -1,12 +1,11 @@
-// In the previous example we used explicit locking with
-// [mutexes](mutexes) to synchronize access to shared state
-// across multiple goroutines. Another option is to use the
-// built-in synchronization features of  goroutines and
-// channels to achieve the same result. This channel-based
-// approach aligns with Go's ideas of sharing memory by
-// communicating and having each piece of data owned
-// by exactly 1 goroutine.
-
+// No exemplo anterior foi utilizado travamento explícito com
+// [mutexes](mutexes) para sincronizar acesso compartilhado a
+// estados entre múltiplas goroutines. Outra opção é utilizar
+// recursos de sincronização nativa das goroutines e canais
+// para atingir o mesmo objetivo. Esta forma baseada em canais
+// está alinhada com as ideias de comunicação através do
+// compartilhamento de memória de Go, de forma que cada dado
+// seja acessado por exatamente uma goroutine.
 package main
 
 import (
@@ -16,14 +15,13 @@ import (
 	"time"
 )
 
-// In this example our state will be owned by a single
-// goroutine. This will guarantee that the data is never
-// corrupted with concurrent access. In order to read or
-// write that state, other goroutines will send messages
-// to the owning goroutine and receive corresponding
-// replies. These `readOp` and `writeOp` `struct`s
-// encapsulate those requests and a way for the owning
-// goroutine to respond.
+// Neste exemplo o estado será pertencente a uma única
+// goroutine (proprietária). Isso garante que o dado nunca
+// seja corrompido com acesso concorrente. Para ler ou escrever
+// neste estado, outras goroutines enviarão requisições para a
+// goroutine proprietária e receberão as respostas correspondentes.
+// As structs `readOp` e `writeOp` encapsulam estas requisições
+// e uma forma para a goroutine proprietária responder.
 type readOp struct {
 	key  int
 	resp chan int
@@ -36,25 +34,25 @@ type writeOp struct {
 
 func main() {
 
-	// As before we'll count how many operations we perform.
+	// Serão contadas quantas operações são realizadas.
 	var readOps uint64
 	var writeOps uint64
 
-	// The `reads` and `writes` channels will be used by
-	// other goroutines to issue read and write requests,
-	// respectively.
+	// Os canais `reads` e `writes` serão utilizados por outras
+	// goroutines para emitir requisições de leitura e
+	// escrita respectivamente.
 	reads := make(chan readOp)
 	writes := make(chan writeOp)
 
-	// Here is the goroutine that owns the `state`, which
-	// is a map as in the previous example but now private
-	// to the stateful goroutine. This goroutine repeatedly
-	// selects on the `reads` and `writes` channels,
-	// responding to requests as they arrive. A response
-	// is executed by first performing the requested
-	// operation and then sending a value on the response
-	// channel `resp` to indicate success (and the desired
-	// value in the case of `reads`).
+	// Aqui está a goroutine que possui o estado, que é um
+	// map, como no exemplo anterior, mas agora privado à
+	// _stateful goroutine_. Esta goroutine possui um
+	// `select` que, repetidamente verifica os canais `reads`
+	// e `writes`, e responde aos requests conforme são
+	// recebidos. A execução acontece primeiro realizando
+	// a operação solicitada e então enviando o valor no canal
+	// de respostas `resp` para indicar sucesso (e o valor desejado
+	// no caso de ser uma operação de leitura `reads`).
 	go func() {
 		var state = make(map[int]int)
 		for {
@@ -68,11 +66,11 @@ func main() {
 		}
 	}()
 
-	// This starts 100 goroutines to issue reads to the
-	// state-owning goroutine via the `reads` channel.
-	// Each read requires constructing a `readOp`, sending
-	// it over the `reads` channel, and then receiving the
-	// result over the provided `resp` channel.
+	// Este trecho inicia 100 goroutines que solicitam leituras
+	// para a goroutine proprietária do estado, via canal `reads`.
+	// Cada leitura requer a construção da struct `readOp`, bem como
+	// envio da operação pelo canal `reads` e, então, receber
+	// o resultado pelo canal `resp`.
 	for r := 0; r < 100; r++ {
 		go func() {
 			for {
@@ -87,8 +85,8 @@ func main() {
 		}()
 	}
 
-	// We start 10 writes as well, using a similar
-	// approach.
+	// Aqui são iniciadas 10 escritas de forma similar
+	// à leitura.
 	for w := 0; w < 10; w++ {
 		go func() {
 			for {
@@ -104,10 +102,12 @@ func main() {
 		}()
 	}
 
-	// Let the goroutines work for a second.
+	// O time.Sleep serve apenas para deixar
+	// as goroutines trabalharem por um segundo.
 	time.Sleep(time.Second)
 
-	// Finally, capture and report the op counts.
+	// Finalmente, as operações realizadas são capturadas
+	// e a contagem reportada.
 	readOpsFinal := atomic.LoadUint64(&readOps)
 	fmt.Println("readOps:", readOpsFinal)
 	writeOpsFinal := atomic.LoadUint64(&writeOps)

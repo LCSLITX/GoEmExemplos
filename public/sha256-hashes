@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: SHA256 Hashes</title>
+    <title>Go Em Exemplos: SHA256 Hashes</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -21,17 +21,17 @@
   </script>
   <body>
     <div class="example" id="sha256-hashes">
-      <h2><a href="./">Go by Example</a>: SHA256 Hashes</h2>
+      <h2><a href="./">Go Em Exemplos</a>: SHA256 Hashes</h2>
       
       <table>
         
         <tr>
           <td class="docs">
-            <p><a href="https://en.wikipedia.org/wiki/SHA-2"><em>SHA256 hashes</em></a> are
-frequently used to compute short identities for binary
-or text blobs. For example, TLS/SSL certificates use SHA256
-to compute a certificate&rsquo;s signature. Here&rsquo;s how to compute
-SHA256 hashes in Go.</p>
+            <p><a href="https://en.wikipedia.org/wiki/SHA-2"><em>SHA256 hashes</em></a> são
+frequentemente utilizadas para computar identidades em binário
+ou pequenos textos. Por exemplo, certificados TLS/SSL usam SHA256
+para computar a assinatura do certificado. Aqui estã como computar
+hashes SHA256 em Go.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,7 +45,7 @@ SHA256 hashes in Go.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/IHM1lZVm_Jm"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/MX-9a5Lh_3n"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -53,8 +53,8 @@ SHA256 hashes in Go.</p>
         
         <tr>
           <td class="docs">
-            <p>Go implements several hash functions in various
-<code>crypto/*</code> packages.</p>
+            <p>Go implementa várias funções hash em seus respectivos
+pacotes <code>crypto/*</code>.</p>
 
           </td>
           <td class="code leading">
@@ -82,7 +82,7 @@ SHA256 hashes in Go.</p>
         
         <tr>
           <td class="docs">
-            <p>Here we start with a new hash.</p>
+            <p>Aqui é iniciado uma nova hash.</p>
 
           </td>
           <td class="code leading">
@@ -95,8 +95,8 @@ SHA256 hashes in Go.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Write</code> expects bytes. If you have a string <code>s</code>,
-use <code>[]byte(s)</code> to coerce it to bytes.</p>
+            <p><code>Write</code> espera bytes. É possível utilizar <code>[]byte(s)</code>
+em uma string <code>s</code> para converte-la para bytes.</p>
 
           </td>
           <td class="code leading">
@@ -109,9 +109,9 @@ use <code>[]byte(s)</code> to coerce it to bytes.</p>
         
         <tr>
           <td class="docs">
-            <p>This gets the finalized hash result as a byte
-slice. The argument to <code>Sum</code> can be used to append
-to an existing byte slice: it usually isn&rsquo;t needed.</p>
+            <p>Aqui o resultado da hash é retornado como slice de bytes.
+O argumento passado para <code>Sum</code> pode ser usado para acrescentar
+algo para um hash em slice de byte já existente.</p>
 
           </td>
           <td class="code leading">
@@ -141,8 +141,7 @@ to an existing byte slice: it usually isn&rsquo;t needed.</p>
         
         <tr>
           <td class="docs">
-            <p>Running the program computes the hash and prints it in
-a human-readable hex format.</p>
+            <p>Ao executar o código, é exibida a hash em formato hex</p>
 
           </td>
           <td class="code leading">
@@ -156,10 +155,10 @@ a human-readable hex format.</p>
         
         <tr>
           <td class="docs">
-            <p>You can compute other hashes using a similar pattern to
-the one shown above. For example, to compute
-SHA512 hashes import <code>crypto/sha512</code> and use
-<code>sha512.New()</code>.</p>
+            <p>Também é possível computar outras hashes usando padrão
+similar visto anteriormente. Por exemplo, para computar
+hashes SHA512 é preciso importar <code>crypto/sha512</code> e
+utilizar <code>sha512.New()</code>.</p>
 
           </td>
           <td class="code empty leading">
@@ -170,8 +169,8 @@ SHA512 hashes import <code>crypto/sha512</code> and use
         
         <tr>
           <td class="docs">
-            <p>Note that if you need cryptographically secure hashes,
-you should carefully research
+            <p>Note que se você precisa de hashes criptograficamente
+seguras é bom pesquisar um pouco sobre
 <a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">hash strength</a>!</p>
 
           </td>
@@ -185,12 +184,12 @@ you should carefully research
       
       
       <p class="next">
-        Next example: <a href="base64-encoding">Base64 Encoding</a>.
+        Próximo exemplo: <a href="base64-encoding">Base64 Encoding</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
     </p>
 
     </div>

@@ -1,7 +1,7 @@
-// In a [previous](range) example we saw how `for` and
-// `range` provide iteration over basic data structures.
-// We can also use this syntax to iterate over
-// values received from a channel.
+// Em um exemplo [anterior](range) foi apresentado como `for` e
+// `range` podem iterar estruturas de dados básicas.
+// Também é possível usar esta sintaxe para iterar sobre
+// valores recebidos em um canal.
 
 package main
 
@@ -9,17 +9,17 @@ import "fmt"
 
 func main() {
 
-	// We'll iterate over 2 values in the `queue` channel.
-	queue := make(chan string, 2)
-	queue <- "one"
-	queue <- "two"
-	close(queue)
+	// Vamos iterar sobre 2 valores no canal `fila`.
+	fila := make(chan string, 2)
+	fila <- "one"
+	fila <- "two"
+	close(fila)
 
-	// This `range` iterates over each element as it's
-	// received from `queue`. Because we `close`d the
-	// channel above, the iteration terminates after
-	// receiving the 2 elements.
-	for elem := range queue {
+	// Este `range` itera sobre cada um dos elementos
+	// na medida que são recebidos de `fila`.
+	// Como o canal é fechado, com `close`, a iteração finaliza
+	// depois de recebidos os dois elementos.
+	for elem := range fila {
 		fmt.Println(elem)
 	}
 }

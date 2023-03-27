@@ -1,4 +1,4 @@
-// Go supports _methods_ defined on struct types.
+// Go suporta _métodos_ definidos em structs.
 
 package main
 
@@ -8,30 +8,30 @@ type rect struct {
 	width, height int
 }
 
-// This `area` method has a _receiver type_ of `*rect`.
+// O método `area` tem um _receiver type_ de `*rect`.
 func (r *rect) area() int {
 	return r.width * r.height
 }
 
-// Methods can be defined for either pointer or value
-// receiver types. Here's an example of a value receiver.
-func (r rect) perim() int {
+// Métodos podem ser definidos tanto com _receiver types_ que são
+// ponteiros ou valores. Aqui está um exemplo de receiver de valor.
+func (r rect) perimetro() int {
 	return 2*r.width + 2*r.height
 }
 
 func main() {
 	r := rect{width: 10, height: 5}
 
-	// Here we call the 2 methods defined for our struct.
+	// Aqui são chamados dois métodos definidos para a struct.
 	fmt.Println("area: ", r.area())
-	fmt.Println("perim:", r.perim())
+	fmt.Println("perimetro:", r.perimetro())
 
-	// Go automatically handles conversion between values
-	// and pointers for method calls. You may want to use
-	// a pointer receiver type to avoid copying on method
-	// calls or to allow the method to mutate the
-	// receiving struct.
+	// Go faz automaticamente conversões entre valores e
+	// ponteiros para chamadas de métodos. Geralmente se
+	// usa um _pointer receiver_ para se evitar a necessidade
+	// de passar uma cópia da struct como parâmetro da função
+	// ou para permitir que o método altere a struct.
 	rp := &r
 	fmt.Println("area: ", rp.area())
-	fmt.Println("perim:", rp.perim())
+	fmt.Println("perimetro:", rp.perimetro())
 }

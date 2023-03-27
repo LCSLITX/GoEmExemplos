@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: Time Formatting / Parsing</title>
+    <title>Go Em Exemplos: Time Formatting / Parsing</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -21,14 +21,14 @@
   </script>
   <body>
     <div class="example" id="time-formatting-parsing">
-      <h2><a href="./">Go by Example</a>: Time Formatting / Parsing</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Time Formatting / Parsing</h2>
       
       <table>
         
         <tr>
           <td class="docs">
-            <p>Go supports time formatting and parsing via
-pattern-based layouts.</p>
+            <p>Go suporta formatação de tempo e parseamento
+via layouts baseados em padrões.</p>
 
           </td>
           <td class="code empty leading">
@@ -42,7 +42,7 @@ pattern-based layouts.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/BoZYtr_2j66"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/gD9m3xBL3oL"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -76,9 +76,9 @@ pattern-based layouts.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s a basic example of formatting a time
-according to RFC3339, using the corresponding layout
-constant.</p>
+            <p>Aqui está um exemplo básico de formatação de tempo
+de acordo com RFC3339, usando a constante com layout
+correspondente.</p>
 
           </td>
           <td class="code leading">
@@ -92,7 +92,7 @@ constant.</p>
         
         <tr>
           <td class="docs">
-            <p>Time parsing uses the same layout values as <code>Format</code>.</p>
+            <p>O parseamento de tempo usa o mesmo valor de layout que <code>Format</code>.</p>
 
           </td>
           <td class="code leading">
@@ -108,13 +108,13 @@ constant.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Format</code> and <code>Parse</code> use example-based layouts. Usually
-you&rsquo;ll use a constant from <code>time</code> for these layouts, but
-you can also supply custom layouts. Layouts must use the
-reference time <code>Mon Jan 2 15:04:05 MST 2006</code> to show the
-pattern with which to format/parse a given time/string.
-The example time must be exactly as shown: the year 2006,
-15 for the hour, Monday for the day of the week, etc.</p>
+            <p><code>Format</code> e <code>Parse</code> usam layouts baseados em exemplo. Geralmente
+serão utilizadas constantes de <code>time</code> para estes layouts, mas
+também é possível fornecer layouts personalizados. Os Layouts precisam
+usar o tempo referência <code>Mon Jan 2 15:04:05 MST 2006</code> para exibir o
+padrão com o qual será formatado/parseado um determinado tempo/string.
+O exemplo de tempo deve ser exatamente como mostrado: o ano 2006,
+15 horas, Monday (segunda-feira) para o dia da semana, etc.</p>
 
           </td>
           <td class="code leading">
@@ -132,9 +132,9 @@ The example time must be exactly as shown: the year 2006,
         
         <tr>
           <td class="docs">
-            <p>For purely numeric representations you can also
-use standard string formatting with the extracted
-components of the time value.</p>
+            <p>Para representações puramente numericas, também é
+possível usar o padrão string, com os componentes
+extraídos do valor <code>tempo</code>.</p>
 
           </td>
           <td class="code leading">
@@ -149,8 +149,8 @@ components of the time value.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Parse</code> will return an error on malformed input
-explaining the parsing problem.</p>
+            <p><code>Parse</code> retornará um erro caso a entrada esteja
+mal formada, explicando o problema ao parsear.</p>
 
           </td>
           <td class="code">
@@ -190,12 +190,12 @@ explaining the parsing problem.</p>
       
       
       <p class="next">
-        Next example: <a href="random-numbers">Random Numbers</a>.
+        Próximo exemplo: <a href="random-numbers">Random Numbers</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
     </p>
 
     </div>

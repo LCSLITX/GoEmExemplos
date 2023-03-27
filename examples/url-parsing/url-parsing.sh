@@ -1,5 +1,5 @@
-# Running our URL parsing program shows all the different
-# pieces that we extracted.
+# Executando o código de parseamento de URLs, são exibidas
+# todas as partes extraídas.
 $ go run url-parsing.go 
 postgres
 user:pass
@@ -10,6 +10,7 @@ host.com
 5432
 /path
 f
-k=v
-map[k:[v]]
-v
+chave=valor&outrachave=outrovalor
+map[chave:[valor] outrachave:[outrovalor]]
+[valor]
+valor

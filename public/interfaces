@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: Interfaces</title>
+    <title>Go Em Exemplos: Interfaces</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -21,14 +21,14 @@
   </script>
   <body>
     <div class="example" id="interfaces">
-      <h2><a href="./">Go by Example</a>: Interfaces</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Interfaces</h2>
       
       <table>
         
         <tr>
           <td class="docs">
-            <p><em>Interfaces</em> are named collections of method
-signatures.</p>
+            <p><em>Interfaces</em> são coleções nomeadas de assinaturas
+de métodos.</p>
 
           </td>
           <td class="code empty leading">
@@ -42,7 +42,7 @@ signatures.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/XJASG4MxBQr"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/vVgXX_-NkPa"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -64,15 +64,15 @@ signatures.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s a basic interface for geometric shapes.</p>
+            <p>Aqui está uma interface básica para formas geométricas.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-<span class="kd">type</span> <span class="nx">geometry</span> <span class="kd">interface</span> <span class="p">{</span>
+<span class="kd">type</span> <span class="nx">geometria</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nf">area</span><span class="p">()</span> <span class="kt">float64</span>
-    <span class="nf">perim</span><span class="p">()</span> <span class="kt">float64</span>
+    <span class="nf">perimetro</span><span class="p">()</span> <span class="kt">float64</span>
 <span class="p">}</span>
 </pre>
           </td>
@@ -80,18 +80,18 @@ signatures.</p>
         
         <tr>
           <td class="docs">
-            <p>For our example we&rsquo;ll implement this interface on
-<code>rect</code> and <code>circle</code> types.</p>
+            <p>Para o exemplo, será implementado esta interface nos
+tipos <code>retangulo</code> e <code>circulo</code>.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-<span class="kd">type</span> <span class="nx">rect</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span> <span class="kt">float64</span>
+<span class="kd">type</span> <span class="nx">retangulo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">largura</span><span class="p">,</span> <span class="nx">altura</span> <span class="kt">float64</span>
 <span class="p">}</span>
-<span class="kd">type</span> <span class="nx">circle</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">radius</span> <span class="kt">float64</span>
+<span class="kd">type</span> <span class="nx">circulo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">raio</span> <span class="kt">float64</span>
 <span class="p">}</span>
 </pre>
           </td>
@@ -99,19 +99,19 @@ signatures.</p>
         
         <tr>
           <td class="docs">
-            <p>To implement an interface in Go, we just need to
-implement all the methods in the interface. Here we
-implement <code>geometry</code> on <code>rect</code>s.</p>
+            <p>Para implementar uma interface em Go, apenas é necessário
+implementar a uma struct todos os métodos constantes numa
+interface. Aqui é implementada a interface <code>geometria</code> em <code>retangulo</code>.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-<span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="nx">rect</span><span class="p">)</span> <span class="nf">area</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">r</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="nx">r</span><span class="p">.</span><span class="nx">height</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="nx">retangulo</span><span class="p">)</span> <span class="nf">area</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">r</span><span class="p">.</span><span class="nx">largura</span> <span class="o">*</span> <span class="nx">r</span><span class="p">.</span><span class="nx">altura</span>
 <span class="p">}</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="nx">rect</span><span class="p">)</span> <span class="nf">perim</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="nx">r</span><span class="p">.</span><span class="nx">width</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="nx">r</span><span class="p">.</span><span class="nx">height</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="nx">retangulo</span><span class="p">)</span> <span class="nf">perimetro</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="nx">r</span><span class="p">.</span><span class="nx">largura</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="nx">r</span><span class="p">.</span><span class="nx">altura</span>
 <span class="p">}</span>
 </pre>
           </td>
@@ -119,17 +119,17 @@ implement <code>geometry</code> on <code>rect</code>s.</p>
         
         <tr>
           <td class="docs">
-            <p>The implementation for <code>circle</code>s.</p>
+            <p>E aqui, a implementação em <code>circulo</code>.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">circle</span><span class="p">)</span> <span class="nf">area</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">math</span><span class="p">.</span><span class="nx">Pi</span> <span class="o">*</span> <span class="nx">c</span><span class="p">.</span><span class="nx">radius</span> <span class="o">*</span> <span class="nx">c</span><span class="p">.</span><span class="nx">radius</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">circulo</span><span class="p">)</span> <span class="nf">area</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">math</span><span class="p">.</span><span class="nx">Pi</span> <span class="o">*</span> <span class="nx">c</span><span class="p">.</span><span class="nx">raio</span> <span class="o">*</span> <span class="nx">c</span><span class="p">.</span><span class="nx">raio</span>
 <span class="p">}</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">circle</span><span class="p">)</span> <span class="nf">perim</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">math</span><span class="p">.</span><span class="nx">Pi</span> <span class="o">*</span> <span class="nx">c</span><span class="p">.</span><span class="nx">radius</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">circulo</span><span class="p">)</span> <span class="nf">perimetro</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">math</span><span class="p">.</span><span class="nx">Pi</span> <span class="o">*</span> <span class="nx">c</span><span class="p">.</span><span class="nx">raio</span>
 <span class="p">}</span>
 </pre>
           </td>
@@ -137,19 +137,20 @@ implement <code>geometry</code> on <code>rect</code>s.</p>
         
         <tr>
           <td class="docs">
-            <p>If a variable has an interface type, then we can call
-methods that are in the named interface. Here&rsquo;s a
-generic <code>measure</code> function taking advantage of this
-to work on any <code>geometry</code>.</p>
+            <p>Se uma variável tem um tipo interface, então é possível
+chamar os métodos constantes daquela interface.
+Aqui uma função genérica <code>medir</code>, usando este conceito
+para funcionar com qualquer struct que implemente a
+interface <code>geometria</code>.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-<span class="kd">func</span> <span class="nf">measure</span><span class="p">(</span><span class="nx">g</span> <span class="nx">geometry</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">medir</span><span class="p">(</span><span class="nx">g</span> <span class="nx">geometria</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">g</span><span class="p">)</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">g</span><span class="p">.</span><span class="nf">area</span><span class="p">())</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">g</span><span class="p">.</span><span class="nf">perim</span><span class="p">())</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">g</span><span class="p">.</span><span class="nf">perimetro</span><span class="p">())</span>
 <span class="p">}</span>
 </pre>
           </td>
@@ -162,25 +163,25 @@ to work on any <code>geometry</code>.</p>
           <td class="code leading">
             
           <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">r</span> <span class="o">:=</span> <span class="nx">rect</span><span class="p">{</span><span class="nx">width</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nx">height</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
-    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">circle</span><span class="p">{</span><span class="nx">radius</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+    <span class="nx">r</span> <span class="o">:=</span> <span class="nx">retangulo</span><span class="p">{</span><span class="nx">largura</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nx">altura</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">circulo</span><span class="p">{</span><span class="nx">raio</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>The <code>circle</code> and <code>rect</code> struct types both
-implement the <code>geometry</code> interface so we can use
-instances of
-these structs as arguments to <code>measure</code>.</p>
+            <p>Ambas as structs <code>circulo</code> e <code>retangulo</code> implementam
+a interface <code>geometria</code>, então é possível utilizar
+instâncias destas structs como argumentos para a função
+<code>medir</code>.</p>
 
           </td>
           <td class="code">
             
           <pre class="chroma">
-    <span class="nf">measure</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
-    <span class="nf">measure</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+    <span class="nf">medir</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+    <span class="nf">medir</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
 <span class="p">}</span>
 </pre>
           </td>
@@ -208,8 +209,8 @@ these structs as arguments to <code>measure</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>To learn more about Go&rsquo;s interfaces, check out this
-<a href="https://jordanorelli.tumblr.com/post/32665860244/how-to-use-interfaces-in-go">great blog post</a>.</p>
+            <p>Para aprender mais sobre Interfaces em Go, veja
+este <a href="https://jordanorelli.tumblr.com/post/32665860244/how-to-use-interfaces-in-go">post</a>.</p>
 
           </td>
           <td class="code empty">
@@ -222,18 +223,18 @@ these structs as arguments to <code>measure</code>.</p>
       
       
       <p class="next">
-        Next example: <a href="struct-embedding">Struct Embedding</a>.
+        Próximo exemplo: <a href="struct-embedding">Struct Embedding</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
     </p>
 
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"math\"\u000A)\u000A');codeLines.push('type geometry interface {\u000A    area() float64\u000A    perim() float64\u000A}\u000A');codeLines.push('type rect struct {\u000A    width, height float64\u000A}\u000Atype circle struct {\u000A    radius float64\u000A}\u000A');codeLines.push('func (r rect) area() float64 {\u000A    return r.width * r.height\u000A}\u000Afunc (r rect) perim() float64 {\u000A    return 2*r.width + 2*r.height\u000A}\u000A');codeLines.push('func (c circle) area() float64 {\u000A    return math.Pi * c.radius * c.radius\u000A}\u000Afunc (c circle) perim() float64 {\u000A    return 2 * math.Pi * c.radius\u000A}\u000A');codeLines.push('func measure(g geometry) {\u000A    fmt.Println(g)\u000A    fmt.Println(g.area())\u000A    fmt.Println(g.perim())\u000A}\u000A');codeLines.push('func main() {\u000A    r :\u003D rect{width: 3, height: 4}\u000A    c :\u003D circle{radius: 5}\u000A');codeLines.push('    measure(r)\u000A    measure(c)\u000A}\u000A');codeLines.push('');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"math\"\u000A)\u000A');codeLines.push('type geometria interface {\u000A    area() float64\u000A    perimetro() float64\u000A}\u000A');codeLines.push('type retangulo struct {\u000A    largura, altura float64\u000A}\u000Atype circulo struct {\u000A    raio float64\u000A}\u000A');codeLines.push('func (r retangulo) area() float64 {\u000A    return r.largura * r.altura\u000A}\u000Afunc (r retangulo) perimetro() float64 {\u000A    return 2*r.largura + 2*r.altura\u000A}\u000A');codeLines.push('func (c circulo) area() float64 {\u000A    return math.Pi * c.raio * c.raio\u000A}\u000Afunc (c circulo) perimetro() float64 {\u000A    return 2 * math.Pi * c.raio\u000A}\u000A');codeLines.push('func medir(g geometria) {\u000A    fmt.Println(g)\u000A    fmt.Println(g.area())\u000A    fmt.Println(g.perimetro())\u000A}\u000A');codeLines.push('func main() {\u000A    r :\u003D retangulo{largura: 3, altura: 4}\u000A    c :\u003D circulo{raio: 5}\u000A');codeLines.push('    medir(r)\u000A    medir(c)\u000A}\u000A');codeLines.push('');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>

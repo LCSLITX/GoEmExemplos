@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: Line Filters</title>
+    <title>Go Em Exemplos: Line Filters</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -21,16 +21,17 @@
   </script>
   <body>
     <div class="example" id="line-filters">
-      <h2><a href="./">Go by Example</a>: Line Filters</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Line Filters</h2>
       
       <table>
         
         <tr>
           <td class="docs">
-            <p>A <em>line filter</em> is a common type of program that reads
-input on stdin, processes it, and then prints some
-derived result to stdout. <code>grep</code> and <code>sed</code> are common
-line filters.</p>
+            <p>Um <em>line filter</em>, ou filtro de linha, é um tipo comum
+de software que lê o input em <code>stdin</code>, processa,
+e então imprime um resultado em <code>stdout</code>.
+Os comandos <code>grep</code> e <code>sed</code> do Linux são exemplos
+de line filters.</p>
 
           </td>
           <td class="code empty leading">
@@ -41,13 +42,14 @@ line filters.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s an example line filter in Go that writes a
-capitalized version of all input text. You can use this
-pattern to write your own Go line filters.</p>
+            <p>Aqui está um exemplo de filtro de linha em Go,
+que escreve uma versão em letras maiusculas do
+texto de entrada. Este padrão pode ser utilizado
+para escrever novos filtros de linha.</p>
 
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/kNcupWRsYPP"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/whH3pEZaEbe"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma">
 <span class="kn">package</span> <span class="nx">main</span>
 </pre>
@@ -83,10 +85,11 @@ pattern to write your own Go line filters.</p>
         
         <tr>
           <td class="docs">
-            <p>Wrapping the unbuffered <code>os.Stdin</code> with a buffered
-scanner gives us a convenient <code>Scan</code> method that
-advances the scanner to the next token; which is
-the next line in the default scanner.</p>
+            <p>Envelopar o <code>os.Stdin</code> <code>unbuffered</code> com um
+scanner <code>buffered</code> resulta em um método
+conveniente de <code>Scan</code> que avança o scanner para
+o próximo token; que é a próxima linha em um scanner
+padrão.</p>
 
           </td>
           <td class="code leading">
@@ -99,8 +102,8 @@ the next line in the default scanner.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Text</code> returns the current token, here the next line,
-from the input.</p>
+            <p><code>Text</code> retorna o token atual, a próxima
+linha do input.</p>
 
           </td>
           <td class="code leading">
@@ -123,7 +126,7 @@ from the input.</p>
         
         <tr>
           <td class="docs">
-            <p>Write out the uppercased line.</p>
+            <p>Escreve a linha com letras maiusculas.</p>
 
           </td>
           <td class="code leading">
@@ -137,8 +140,8 @@ from the input.</p>
         
         <tr>
           <td class="docs">
-            <p>Check for errors during <code>Scan</code>. End of file is
-expected and not reported by <code>Scan</code> as an error.</p>
+            <p>Verfica erros durante o <code>Scan</code>. O final do arquivo
+é esperado pelo <code>Scan</code> e não reportado como um erro.</p>
 
           </td>
           <td class="code">
@@ -159,8 +162,9 @@ expected and not reported by <code>Scan</code> as an error.</p>
         
         <tr>
           <td class="docs">
-            <p>To try out our line filter, first make a file with a few
-lowercase lines.</p>
+            <p>Para executar o filtro de linha, primeiro
+crie um arquivo de texto com linhas em
+letras minusculas.</p>
 
           </td>
           <td class="code leading">
@@ -173,7 +177,8 @@ lowercase lines.</p>
         
         <tr>
           <td class="docs">
-            <p>Then use the line filter to get uppercase lines.</p>
+            <p>Então use o filtro de linha para ter as
+linhas em letras maiusculas.</p>
 
           </td>
           <td class="code">
@@ -189,12 +194,12 @@ lowercase lines.</p>
       
       
       <p class="next">
-        Next example: <a href="file-paths">File Paths</a>.
+        Próximo exemplo: <a href="file-paths">File Paths</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
     </p>
 
     </div>

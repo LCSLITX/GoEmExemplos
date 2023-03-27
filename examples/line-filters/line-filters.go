@@ -1,11 +1,13 @@
-// A _line filter_ is a common type of program that reads
-// input on stdin, processes it, and then prints some
-// derived result to stdout. `grep` and `sed` are common
-// line filters.
+// Um _line filter_, ou filtro de linha, é um tipo comum
+// de software que lê o input em `stdin`, processa,
+// e então imprime um resultado em `stdout`.
+// Os comandos `grep` e `sed` do Linux são exemplos
+// de line filters.
 
-// Here's an example line filter in Go that writes a
-// capitalized version of all input text. You can use this
-// pattern to write your own Go line filters.
+// Aqui está um exemplo de filtro de linha em Go,
+// que escreve uma versão em letras maiusculas do
+// texto de entrada. Este padrão pode ser utilizado
+// para escrever novos filtros de linha.
 package main
 
 import (
@@ -17,23 +19,24 @@ import (
 
 func main() {
 
-	// Wrapping the unbuffered `os.Stdin` with a buffered
-	// scanner gives us a convenient `Scan` method that
-	// advances the scanner to the next token; which is
-	// the next line in the default scanner.
+	// Envelopar o `os.Stdin` `unbuffered` com um
+	// scanner `buffered` resulta em um método
+	// conveniente de `Scan` que avança o scanner para
+	// o próximo token; que é a próxima linha em um scanner
+	// padrão.
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for scanner.Scan() {
-		// `Text` returns the current token, here the next line,
-		// from the input.
+		// `Text` retorna o token atual, a próxima
+		// linha do input.
 		ucl := strings.ToUpper(scanner.Text())
 
-		// Write out the uppercased line.
+		// Escreve a linha com letras maiusculas.
 		fmt.Println(ucl)
 	}
 
-	// Check for errors during `Scan`. End of file is
-	// expected and not reported by `Scan` as an error.
+	// Verfica erros durante o `Scan`. O final do arquivo
+	// é esperado pelo `Scan` e não reportado como um erro.
 	if err := scanner.Err(); err != nil {
 		fmt.Fprintln(os.Stderr, "error:", err)
 		os.Exit(1)

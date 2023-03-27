@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: Spawning Processes</title>
+    <title>Go Em Exemplos: Spawning Processes</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -14,21 +14,21 @@
           
           
           if (e.key == "ArrowRight") {
-              window.location.href = 'execing-processes';
+              window.location.href = 'executing-processes';
           }
           
       }
   </script>
   <body>
     <div class="example" id="spawning-processes">
-      <h2><a href="./">Go by Example</a>: Spawning Processes</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Spawning Processes</h2>
       
       <table>
         
         <tr>
           <td class="docs">
-            <p>Sometimes our Go programs need to spawn other, non-Go
-processes.</p>
+            <p>Por vezes é necessário que programas em
+Go invoquem processos ou programas <em>não-Go</em>.</p>
 
           </td>
           <td class="code empty leading">
@@ -42,7 +42,7 @@ processes.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/rmnQdR-dMWU"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/XUr6jr8RcdL"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -76,10 +76,10 @@ processes.</p>
         
         <tr>
           <td class="docs">
-            <p>We&rsquo;ll start with a simple command that takes no
-arguments or input and just prints something to
-stdout. The <code>exec.Command</code> helper creates an object
-to represent this external process.</p>
+            <p>De início será utilizado um simples comando que não recebe
+nenhum argumento ou input e apenas imprime algo no <code>stdout</code>.
+O comando <code>exec.Command</code> cria um objeto para representar
+este processo externo.</p>
 
           </td>
           <td class="code leading">
@@ -92,10 +92,10 @@ to represent this external process.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>Output</code> method runs the command, waits for it
-to finish and collects its standard output.
- If there were no errors, <code>dateOut</code> will hold bytes
-with the date info.</p>
+            <p>O método <code>Output</code> executa o comando, aguarda sua finalização
+e coleta o output padrão.
+Se não houver nenhum erro, <code>dateOut</code> terá os bytes com informação
+da data.</p>
 
           </td>
           <td class="code leading">
@@ -113,11 +113,11 @@ with the date info.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Output</code> and other methods of <code>Command</code> will return
-<code>*exec.Error</code> if there was a problem executing the
-command (e.g. wrong path), and <code>*exec.ExitError</code>
-if the command ran but exited with a non-zero return
-code.</p>
+            <p><code>Output</code> e outros métodos de <code>Command</code> retornarão
+um <code>*exec.Error</code> se houver algum problema ao executar
+o comando, como por exemplo caminho errado, e
+<code>*exec.ExitError</code> se o comando foi executado mas
+retornou com um código não-zero.</p>
 
           </td>
           <td class="code leading">
@@ -140,9 +140,10 @@ code.</p>
         
         <tr>
           <td class="docs">
-            <p>Next we&rsquo;ll look at a slightly more involved case
-where we pipe data to the external process on its
-<code>stdin</code> and collect the results from its <code>stdout</code>.</p>
+            <p>Agora será apresentado um caso um pouco mais complexo
+em que é enviado um dado para o processo externo em seu
+<code>stdin</code>, através de um pipe e coletado o resultado a
+partir de seu <code>stdout</code> também a partir de um pipe.</p>
 
           </td>
           <td class="code leading">
@@ -155,10 +156,10 @@ where we pipe data to the external process on its
         
         <tr>
           <td class="docs">
-            <p>Here we explicitly grab input/output pipes, start
-the process, write some input to it, read the
-resulting output, and finally wait for the process
-to exit.</p>
+            <p>Aqui se instancia os pipes, inicializa o próprio
+processo, então escreve e envia algum input, lê o
+resultado de saída e, finalmente, aguarda o processo
+finalizar.</p>
 
           </td>
           <td class="code leading">
@@ -177,11 +178,11 @@ to exit.</p>
         
         <tr>
           <td class="docs">
-            <p>We omitted error checks in the above example, but
-you could use the usual <code>if err != nil</code> pattern for
-all of them. We also only collect the <code>StdoutPipe</code>
-results, but you could collect the <code>StderrPipe</code> in
-exactly the same way.</p>
+            <p>Verificação de erros foram omitidas no exemplo acima,
+mas é possível utilizar o padrão usual <code>if err != nil</code>
+para todos eles. Também foi coletado apenas o resultado
+de <code>StdoutPipe</code>, mas é possível também coletar de
+<code>StderrPipe</code> exatamente do mesmo jeito.</p>
 
           </td>
           <td class="code leading">
@@ -195,12 +196,11 @@ exactly the same way.</p>
         
         <tr>
           <td class="docs">
-            <p>Note that when spawning commands we need to
-provide an explicitly delineated command and
-argument array, vs. being able to just pass in one
-command-line string. If you want to spawn a full
-command with a string, you can use <code>bash</code>&rsquo;s <code>-c</code>
-option:</p>
+            <p>Note que, ao invocar comandos, é necessário fornecer
+um comando explicitamente delineado e um array de argumentos
+ao invés de passar apenas uma string de linha de comando
+command-line string. Se a intenção for gerar um comando
+com uma string, é possível utilizar a flag <code>-c</code> do <code>bash</code>.</p>
 
           </td>
           <td class="code">
@@ -224,8 +224,9 @@ option:</p>
         
         <tr>
           <td class="docs">
-            <p>The spawned programs return output that is the same
-as if we had run them directly from the command-line.</p>
+            <p>Os processos invocados retornam o mesmo output que<br />
+retornaria se fosse executado diretamente da
+linha de comando.</p>
 
           </td>
           <td class="code leading">
@@ -239,8 +240,8 @@ as if we had run them directly from the command-line.</p>
         
         <tr>
           <td class="docs">
-            <p>date doesn&rsquo;t have a <code>-x</code> flag so it will exit with
-an error message and non-zero return code.</p>
+            <p><code>date</code> não possui uma flag <code>-x</code>, então será finalizado
+com mensagem de erro e código de retorno não-zero.</p>
 
           </td>
           <td class="code leading">
@@ -269,12 +270,12 @@ an error message and non-zero return code.</p>
       
       
       <p class="next">
-        Next example: <a href="execing-processes">Exec'ing Processes</a>.
+        Próximo exemplo: <a href="executing-processes">Executing Processes</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
     </p>
 
     </div>

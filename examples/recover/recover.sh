@@ -1,3 +1,3 @@
 $ go run recover.go
 Recovered. Error:
- a problem
+ uhhh... Houston?

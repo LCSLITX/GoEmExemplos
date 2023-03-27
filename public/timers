@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: Timers</title>
+    <title>Go Em Exemplos: Timers</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -21,17 +21,18 @@
   </script>
   <body>
     <div class="example" id="timers">
-      <h2><a href="./">Go by Example</a>: Timers</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Timers</h2>
       
       <table>
         
         <tr>
           <td class="docs">
-            <p>We often want to execute Go code at some point in the
-future, or repeatedly at some interval. Go&rsquo;s built-in
-<em>timer</em> and <em>ticker</em> features make both of these tasks
-easy. We&rsquo;ll look first at timers and then
-at <a href="tickers">tickers</a>.</p>
+            <p>As vezes, é necessário executar código em algum momento
+futuro, ou repetidamente com algum intervalo. Go conta
+com as ferramentas nativas <em>timer</em> e <em>ticker</em>. Ambos os
+recursos tornam a tarefa fácil.
+Primeiro será apresentado o recurso timer e posteriormente
+o <a href="tickers">ticker</a>.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,7 +46,7 @@ at <a href="tickers">tickers</a>.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/gF7VLRz3URM"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/CdTPmKvmUI2"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -78,10 +79,11 @@ at <a href="tickers">tickers</a>.</p>
         
         <tr>
           <td class="docs">
-            <p>Timers represent a single event in the future. You
-tell the timer how long you want to wait, and it
-provides a channel that will be notified at that
-time. This timer will wait 2 seconds.</p>
+            <p>Timers representam um único evento no futuro.
+Ao timer é informado quanto tempo se pretende esperar
+e o recurso providencia um canal que será notificado
+ao esgotar o tempo estipulado.
+Este timer irá aguardar 2 segundos.</p>
 
           </td>
           <td class="code leading">
@@ -94,9 +96,9 @@ time. This timer will wait 2 seconds.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>&lt;-timer1.C</code> blocks on the timer&rsquo;s channel <code>C</code>
-until it sends a value indicating that the timer
-fired.</p>
+            <p>O <code>&lt;-timer1.C</code> bloqueia no canal <code>C</code> de Timer
+até que envie um valor indicando que o tempo
+foi atingido.</p>
 
           </td>
           <td class="code leading">
@@ -110,10 +112,10 @@ fired.</p>
         
         <tr>
           <td class="docs">
-            <p>If you just wanted to wait, you could have used
-<code>time.Sleep</code>. One reason a timer may be useful is
-that you can cancel the timer before it fires.
-Here&rsquo;s an example of that.</p>
+            <p>Se a intenção for apenas aguardar, é possível utilizar
+<code>time.Sleep</code>. Uma razão para o timer ser útil é que ele
+pode ser cancelado antes o tempo esgotar.
+Aqui está um exemplo.</p>
 
           </td>
           <td class="code leading">
@@ -134,8 +136,9 @@ Here&rsquo;s an example of that.</p>
         
         <tr>
           <td class="docs">
-            <p>Give the <code>timer2</code> enough time to fire, if it ever
-was going to, to show it is in fact stopped.</p>
+            <p>Ao dar tempo suficiente para o <code>timer2</code> ser disparado,
+é fácil concluir que ele foi, de fato, parado, pois
+não disparou.</p>
 
           </td>
           <td class="code">
@@ -153,9 +156,9 @@ was going to, to show it is in fact stopped.</p>
         
         <tr>
           <td class="docs">
-            <p>The first timer will fire ~2s after we start the
-program, but the second should be stopped before it has
-a chance to fire.</p>
+            <p>O primeiro timer será disparado aproximadamente 2
+segundos após a execução do código. Mas o segundo
+deve parar antes de ter a chance de disparar.</p>
 
           </td>
           <td class="code">
@@ -171,12 +174,12 @@ a chance to fire.</p>
       
       
       <p class="next">
-        Next example: <a href="tickers">Tickers</a>.
+        Próximo exemplo: <a href="tickers">Tickers</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
     </p>
 
     </div>

@@ -1,4 +1,5 @@
-# Run all tests in the current project in verbose mode.
+# Executa todos os testes no projeto atual de maneira
+# verbosa.
 $ go test -v
 == RUN   TestIntMinBasic
 --- PASS: TestIntMinBasic (0.00s)
@@ -17,10 +18,11 @@ $ go test -v
 PASS
 ok  	examples/testing-and-benchmarking	0.023s
 
-# Run all benchmarks in the current project. All tests
-# are run prior to benchmarks. The `bench` flag filters
-# benchmark function names with a regexp.
-$ go test -bench=.
+# Executa todos os benchmarks no projeto atual. 
+# Todos os testes são executados antes dos
+# benchmarks. A flag `bench` filtra funções
+# de benchmark pelos nomes com expressão regular.
+$ go test -v -bench=.
 goos: darwin
 goarch: arm64
 pkg: examples/testing

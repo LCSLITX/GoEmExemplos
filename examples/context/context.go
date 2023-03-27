@@ -1,9 +1,9 @@
-// In the previous example we looked at setting up a simple
-// [HTTP server](http-servers). HTTP servers are useful for
-// demonstrating the usage of `context.Context` for
-// controlling cancellation. A `Context` carries deadlines,
-// cancellation signals, and other request-scoped values
-// across API boundaries and goroutines.
+// No exemplo anterior foi apresentado como configurar um simples
+// [servidor HTTP](http-server). Os servidores HTTP são úteis para
+// demonstrar o uso de `context.Context` e controle de cancelamento.
+// Um `Contexto` carrega deadlines, sinais de cancelamento
+// e outros valores do escopo da requisição através da API
+// e goroutines.
 package main
 
 import (
@@ -14,25 +14,25 @@ import (
 
 func hello(w http.ResponseWriter, req *http.Request) {
 
-	// A `context.Context` is created for each request by
-	// the `net/http` machinery, and is available with
-	// the `Context()` method.
+	// Um `context.Context` é criado para cada request
+	// pelo próprio pacote `net/http`, e fica disponível
+	// com o método `Context()`.
 	ctx := req.Context()
 	fmt.Println("server: hello handler started")
 	defer fmt.Println("server: hello handler ended")
 
-	// Wait for a few seconds before sending a reply to the
-	// client. This could simulate some work the server is
-	// doing. While working, keep an eye on the context's
-	// `Done()` channel for a signal that we should cancel
-	// the work and return as soon as possible.
+	// Aguarda alguns segundos antes de enviar a resposta
+	// para o cliente, para simular algum trabalho que o
+	// servidor possa fazer. Enquanto trabalha, acompanha
+	// o canal `Done()` do Contexto, para esperar por um
+	// sinal de cancelamento e retornar a resposta o mais
+	// rápido possível.
 	select {
 	case <-time.After(10 * time.Second):
 		fmt.Fprintf(w, "hello\n")
 	case <-ctx.Done():
-		// The context's `Err()` method returns an error
-		// that explains why the `Done()` channel was
-		// closed.
+		// O método `Err()` do contexto retorna um erro
+		// que explica porque o canal `Done()` foi fechado.
 		err := ctx.Err()
 		fmt.Println("server:", err)
 		internalError := http.StatusInternalServerError
@@ -42,8 +42,8 @@ func hello(w http.ResponseWriter, req *http.Request) {
 
 func main() {
 
-	// As before, we register our handler on the "/hello"
-	// route, and start serving.
+	// Como antes, o handler é registrado na rota "/hello"
+	// e o servidor é iniciado em seguida.
 	http.HandleFunc("/hello", hello)
 	http.ListenAndServe(":8090", nil)
 }

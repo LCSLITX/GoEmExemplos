@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: Base64 Encoding</title>
+    <title>Go Em Exemplos: Base64 Encoding</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -21,13 +21,13 @@
   </script>
   <body>
     <div class="example" id="base64-encoding">
-      <h2><a href="./">Go by Example</a>: Base64 Encoding</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Base64 Encoding</h2>
       
       <table>
         
         <tr>
           <td class="docs">
-            <p>Go provides built-in support for <a href="https://en.wikipedia.org/wiki/Base64">base64
+            <p>Go fornece suporte nativo para <a href="https://en.wikipedia.org/wiki/Base64">base64
 encoding/decoding</a>.</p>
 
           </td>
@@ -42,7 +42,7 @@ encoding/decoding</a>.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/yztzkirFEvv"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/MHtfC5gM2o2"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -50,9 +50,9 @@ encoding/decoding</a>.</p>
         
         <tr>
           <td class="docs">
-            <p>This syntax imports the <code>encoding/base64</code> package with
-the <code>b64</code> name instead of the default <code>base64</code>. It&rsquo;ll
-save us some space below.</p>
+            <p>Esta sintaxe importa o pacote <code>encoding/base64</code> com o
+nome <code>b64</code> ao invés do nome padrão <code>base64</code>.
+Isso poupará algum espaço abaixo.</p>
 
           </td>
           <td class="code leading">
@@ -79,7 +79,7 @@ save us some space below.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s the <code>string</code> we&rsquo;ll encode/decode.</p>
+            <p>Aqui está a <code>string</code> que será objeto de encode/decode.</p>
 
           </td>
           <td class="code leading">
@@ -92,10 +92,10 @@ save us some space below.</p>
         
         <tr>
           <td class="docs">
-            <p>Go supports both standard and URL-compatible
-base64. Here&rsquo;s how to encode using the standard
-encoder. The encoder requires a <code>[]byte</code> so we
-convert our <code>string</code> to that type.</p>
+            <p>Go suporta tanto padrão quanto base64 compatível
+com URL. Aqui está como realizar encode usando o
+encoder padrão. O encoder requer <code>[]byte</code> então
+antes é convertida a string para este tipo.</p>
 
           </td>
           <td class="code leading">
@@ -109,9 +109,9 @@ convert our <code>string</code> to that type.</p>
         
         <tr>
           <td class="docs">
-            <p>Decoding may return an error, which you can check
-if you don&rsquo;t already know the input to be
-well-formed.</p>
+            <p>Realizar o Decode pode retornar um erro,
+o qual pode ser checado se ainda não se sabe
+se o input está bem formatado.</p>
 
           </td>
           <td class="code leading">
@@ -126,8 +126,8 @@ well-formed.</p>
         
         <tr>
           <td class="docs">
-            <p>This encodes/decodes using a URL-compatible base64
-format.</p>
+            <p>Este encode/decode está usando base-64 compatível
+com URL.</p>
 
           </td>
           <td class="code">
@@ -148,9 +148,11 @@ format.</p>
         
         <tr>
           <td class="docs">
-            <p>The string encodes to slightly different values with the
-standard and URL base64 encoders (trailing <code>+</code> vs <code>-</code>)
-but they both decode to the original string as desired.</p>
+            <p>As strings resultantes de ambos os métodos de encode,
+padrão e compatível com URL, são um pouco diferentes
+entre si (variando <code>+</code> e <code>-</code> ao final) mas se for
+realizado decode, ambas retornam a mesma string
+original, como esperado.</p>
 
           </td>
           <td class="code leading">
@@ -177,12 +179,12 @@ but they both decode to the original string as desired.</p>
       
       
       <p class="next">
-        Next example: <a href="reading-files">Reading Files</a>.
+        Próximo exemplo: <a href="reading-files">Reading Files</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
     </p>
 
     </div>

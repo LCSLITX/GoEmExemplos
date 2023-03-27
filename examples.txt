@@ -75,6 +75,6 @@ HTTP Client
 HTTP Server
 Context
 Spawning Processes
-Exec'ing Processes
+Executing Processes
 Signals
 Exit

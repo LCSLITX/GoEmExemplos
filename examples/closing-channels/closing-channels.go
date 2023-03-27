@@ -1,50 +1,51 @@
-// _Closing_ a channel indicates that no more values
-// will be sent on it. This can be useful to communicate
-// completion to the channel's receivers.
+// Fechar um canal indica que mais nenhum valor
+// será enviado para ele. Isto pode ser útil para
+// comunicar a finalização dos recebimentos.
 
 package main
 
 import "fmt"
 
-// In this example we'll use a `jobs` channel to
-// communicate work to be done from the `main()` goroutine
-// to a worker goroutine. When we have no more jobs for
-// the worker we'll `close` the `jobs` channel.
+// Neste exemplo será usado um canal `tarefas` para
+// comunicar tarefa a ser executada pela função `main()`
+// para uma worker goroutine. Ao não ter mais tarefas
+// para a worker, o canal será fechado com `close`.
 func main() {
-	jobs := make(chan int, 5)
-	done := make(chan bool)
+	tarefas := make(chan int, 5)
+	pronto := make(chan bool)
 
-	// Here's the worker goroutine. It repeatedly receives
-	// from `jobs` with `j, more := <-jobs`. In this
-	// special 2-value form of receive, the `more` value
-	// will be `false` if `jobs` has been `close`d and all
-	// values in the channel have already been received.
-	// We use this to notify on `done` when we've worked
-	// all our jobs.
+	// Aqui está a worker goroutine. Ela repetidamente recebe
+	// do canal `tarefas` com `t, mais := <-tarefas`. Nesta forma de
+	// recebimento de dois valores, o valor `mais` será falso se
+	// `tarefas` foi fechado e todos os valores do canal já
+	// tiverem sido recebidos.
+	// Isto é utilizado para notificar ao `done` quando todas as
+	// tarefas já foram executadas.
+	// Importante notar que `tarefas` é um canal `buffered`.
 	go func() {
 		for {
-			j, more := <-jobs
-			if more {
-				fmt.Println("received job", j)
+			t, mais := <-tarefas
+			if mais {
+				fmt.Println("received job", t)
 			} else {
-				fmt.Println("received all jobs")
-				done <- true
+				fmt.Println("received all tarefas")
+				pronto <- true
 				return
 			}
 		}
 	}()
 
-	// This sends 3 jobs to the worker over the `jobs`
-	// channel, then closes it.
-	for j := 1; j <= 3; j++ {
-		jobs <- j
-		fmt.Println("sent job", j)
+	// Isto envia 3 tarefas para a worker goroutine pelo canal
+	// `tarefas` e então o fecha.
+	for t := 1; t <= 3; t++ {
+		tarefas <- t
+		fmt.Println("sent job", t)
 	}
-	close(jobs)
-	fmt.Println("sent all jobs")
+	close(tarefas)
+	fmt.Println("sent all tarefas")
 
-	// We await the worker using the
-	// [synchronization](channel-synchronization) approach
-	// we saw earlier.
-	<-done
+	// A execução é aguardada utilizando a
+	// [sincronização](channel-synchronization),
+	// como apresentado anteriormente.
+	<-pronto
 }

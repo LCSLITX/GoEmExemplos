@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: Range over Channels</title>
+    <title>Go Em Exemplos: Range over Channels</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -21,16 +21,16 @@
   </script>
   <body>
     <div class="example" id="range-over-channels">
-      <h2><a href="./">Go by Example</a>: Range over Channels</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Range over Channels</h2>
       
       <table>
         
         <tr>
           <td class="docs">
-            <p>In a <a href="range">previous</a> example we saw how <code>for</code> and
-<code>range</code> provide iteration over basic data structures.
-We can also use this syntax to iterate over
-values received from a channel.</p>
+            <p>Em um exemplo <a href="range">anterior</a> foi apresentado como <code>for</code> e
+<code>range</code> podem iterar estruturas de dados básicas.
+Também é possível usar esta sintaxe para iterar sobre
+valores recebidos em um canal.</p>
 
           </td>
           <td class="code empty leading">
@@ -44,7 +44,7 @@ values received from a channel.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/yQMclmwOYs9"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/f7op2ojaac_v"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -74,32 +74,32 @@ values received from a channel.</p>
         
         <tr>
           <td class="docs">
-            <p>We&rsquo;ll iterate over 2 values in the <code>queue</code> channel.</p>
+            <p>Vamos iterar sobre 2 valores no canal <code>fila</code>.</p>
 
           </td>
           <td class="code leading">
             
           <pre class="chroma">
-    <span class="nx">queue</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="nx">queue</span> <span class="o">&lt;-</span> <span class="s">&#34;one&#34;</span>
-    <span class="nx">queue</span> <span class="o">&lt;-</span> <span class="s">&#34;two&#34;</span>
-    <span class="nb">close</span><span class="p">(</span><span class="nx">queue</span><span class="p">)</span>
+    <span class="nx">fila</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nx">fila</span> <span class="o">&lt;-</span> <span class="s">&#34;one&#34;</span>
+    <span class="nx">fila</span> <span class="o">&lt;-</span> <span class="s">&#34;two&#34;</span>
+    <span class="nb">close</span><span class="p">(</span><span class="nx">fila</span><span class="p">)</span>
 </pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>This <code>range</code> iterates over each element as it&rsquo;s
-received from <code>queue</code>. Because we <code>close</code>d the
-channel above, the iteration terminates after
-receiving the 2 elements.</p>
+            <p>Este <code>range</code> itera sobre cada um dos elementos
+na medida que são recebidos de <code>fila</code>.
+Como o canal é fechado, com <code>close</code>, a iteração finaliza
+depois de recebidos os dois elementos.</p>
 
           </td>
           <td class="code">
             
           <pre class="chroma">
-    <span class="k">for</span> <span class="nx">elem</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">queue</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="nx">elem</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">fila</span> <span class="p">{</span>
         <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">elem</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -125,9 +125,9 @@ receiving the 2 elements.</p>
         
         <tr>
           <td class="docs">
-            <p>This example also showed that it&rsquo;s possible to close
-a non-empty channel but still have the remaining
-values be received.</p>
+            <p>Este exemplo também  demonstra que é possível fechar
+um canal não vazio, mas ainda ter disponíveis os valores
+restantes para serem recebidos.</p>
 
           </td>
           <td class="code empty">
@@ -140,18 +140,18 @@ values be received.</p>
       
       
       <p class="next">
-        Next example: <a href="timers">Timers</a>.
+        Próximo exemplo: <a href="timers">Timers</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
     </p>
 
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func main() {\u000A');codeLines.push('    queue :\u003D make(chan string, 2)\u000A    queue \u003C- \"one\"\u000A    queue \u003C- \"two\"\u000A    close(queue)\u000A');codeLines.push('    for elem :\u003D range queue {\u000A        fmt.Println(elem)\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func main() {\u000A');codeLines.push('    fila :\u003D make(chan string, 2)\u000A    fila \u003C- \"one\"\u000A    fila \u003C- \"two\"\u000A    close(fila)\u000A');codeLines.push('    for elem :\u003D range fila {\u000A        fmt.Println(elem)\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>

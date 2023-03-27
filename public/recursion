@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: Recursion</title>
+    <title>Go Em Exemplos: Recursion</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -21,15 +21,14 @@
   </script>
   <body>
     <div class="example" id="recursion">
-      <h2><a href="./">Go by Example</a>: Recursion</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Recursion</h2>
       
       <table>
         
         <tr>
           <td class="docs">
-            <p>Go supports
-<a href="https://en.wikipedia.org/wiki/Recursion_(computer_science)"><em>recursive functions</em></a>.
-Here&rsquo;s a classic example.</p>
+            <p>Go suporta
+<a href="https://en.wikipedia.org/wiki/Recursion_(computer_science)"><em>funções recursivas</em></a>.</p>
 
           </td>
           <td class="code empty leading">
@@ -43,7 +42,7 @@ Here&rsquo;s a classic example.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/MBTKk9VpAiK"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/Axz1DFIaluy"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -62,8 +61,9 @@ Here&rsquo;s a classic example.</p>
         
         <tr>
           <td class="docs">
-            <p>This <code>fact</code> function calls itself until it reaches the
-base case of <code>fact(0)</code>.</p>
+            <p>Esta função <code>fact</code> chama a si mesma várias vezes,
+decrementando o parâmetro passado a cada chamada,
+até que atinja o caso base <code>fact(0)</code>.</p>
 
           </td>
           <td class="code leading">
@@ -93,9 +93,9 @@ base case of <code>fact(0)</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Closures can also be recursive, but this requires the
-closure to be declared with a typed <code>var</code> explicitly
-before it&rsquo;s defined.</p>
+            <p>Closures também podem ser recursivos, mas isso requer que
+sejam declarados explicitamente com uma variável tipada <code>var</code>
+antes de ser definido.</p>
 
           </td>
           <td class="code leading">
@@ -122,8 +122,8 @@ before it&rsquo;s defined.</p>
         
         <tr>
           <td class="docs">
-            <p>Since <code>fib</code> was previously declared in <code>main</code>, Go
-knows which function to call with <code>fib</code> here.</p>
+            <p><code>fib</code> foi anteriormente declarada dentro de <code>main</code>,
+então será executada normalmente.</p>
 
           </td>
           <td class="code leading">
@@ -167,12 +167,12 @@ knows which function to call with <code>fib</code> here.</p>
       
       
       <p class="next">
-        Next example: <a href="pointers">Pointers</a>.
+        Próximo exemplo: <a href="pointers">Pointers</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
     </p>
 
     </div>

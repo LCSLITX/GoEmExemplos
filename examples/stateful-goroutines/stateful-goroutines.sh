@@ -1,15 +1,17 @@
-# Running our program shows that the goroutine-based
-# state management example completes about 80,000
-# total operations.
+# Ao executar este código, é exibido que o exemplo de
+# gerenciamento de estado baseado em goroutine completa
+# cerca de 80.000 operações no total.
 $ go run stateful-goroutines.go
 readOps: 71708
 writeOps: 7177
 
-# For this particular case the goroutine-based approach
-# was a bit more involved than the mutex-based one. It
-# might be useful in certain cases though, for example
-# where you have other channels involved or when managing
-# multiple such mutexes would be error-prone. You should
-# use whichever approach feels most natural, especially
-# with respect to understanding the correctness of your
-# program.
+# Para este caso em particular, o exemplo baseado em 
+# goroutines é um pouco mais acoplado que o baseado em
+# mutex. Embora possa ser útil em alguns casos, como 
+# por exemplo onde exista outros canais envolvidos ou 
+# ao gerenciar múltiplos mutex, que seria mais propenso 
+# a erros. O correto é utilizar a forma que for mais 
+# natural, especialmente no que diz respeito à comprensão
+# da forma que faça mais sentido para a realidade do
+# código.
+

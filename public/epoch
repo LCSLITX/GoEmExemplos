@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: Epoch</title>
+    <title>Go Em Exemplos: Epoch</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -21,16 +21,16 @@
   </script>
   <body>
     <div class="example" id="epoch">
-      <h2><a href="./">Go by Example</a>: Epoch</h2>
+      <h2><a href="./">Go Em Exemplos</a>: Epoch</h2>
       
       <table>
         
         <tr>
           <td class="docs">
-            <p>A common requirement in programs is getting the number
-of seconds, milliseconds, or nanoseconds since the
-<a href="https://en.wikipedia.org/wiki/Unix_time">Unix epoch</a>.
-Here&rsquo;s how to do it in Go.</p>
+            <p>Algo muito comum em diversos softwares é a necessidade
+de saber o número de segundos, milisegundos ou nanosegundos
+desde a <a href="https://pt.wikipedia.org/wiki/Era_Unix">era Unix</a>.
+Aqui está como isso pode ser feito em Go.</p>
 
           </td>
           <td class="code empty leading">
@@ -44,7 +44,7 @@ Here&rsquo;s how to do it in Go.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/lRmD1EWHHPz"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/9CLJOjytYrH"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -77,9 +77,10 @@ Here&rsquo;s how to do it in Go.</p>
         
         <tr>
           <td class="docs">
-            <p>Use <code>time.Now</code> with <code>Unix</code>, <code>UnixMilli</code> or <code>UnixNano</code>
-to get elapsed time since the Unix epoch in seconds,
-milliseconds or nanoseconds, respectively.</p>
+            <p>O <code>time.Now</code> com <code>Unix</code>, <code>UnixMilli</code> ou <code>UnixNano</code>
+retornam o tempo transcorrido desde a Era Unix,
+em segundos, milisegundos ou nanosegundos,
+respectivamente.</p>
 
           </td>
           <td class="code leading">
@@ -106,8 +107,8 @@ milliseconds or nanoseconds, respectively.</p>
         
         <tr>
           <td class="docs">
-            <p>You can also convert integer seconds or nanoseconds
-since the epoch into the corresponding <code>time</code>.</p>
+            <p>Também é possível converter segundos ou nanosegundos
+de inteiros para o <code>time</code> ou tempo correspondente.</p>
 
           </td>
           <td class="code">
@@ -142,8 +143,9 @@ since the epoch into the corresponding <code>time</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Next we&rsquo;ll look at another time-related task: time
-parsing and formatting.</p>
+            <p>Em seguida será apresentado outro assunto
+relacionado a tempo:
+formatação e parseamente de tempo.</p>
 
           </td>
           <td class="code empty">
@@ -156,12 +158,12 @@ parsing and formatting.</p>
       
       
       <p class="next">
-        Next example: <a href="time-formatting-parsing">Time Formatting / Parsing</a>.
+        Próximo exemplo: <a href="time-formatting-parsing">Time Formatting / Parsing</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
     </p>
 
     </div>

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: XML</title>
+    <title>Go Em Exemplos: XML</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -21,14 +21,14 @@
   </script>
   <body>
     <div class="example" id="xml">
-      <h2><a href="./">Go by Example</a>: XML</h2>
+      <h2><a href="./">Go Em Exemplos</a>: XML</h2>
       
       <table>
         
         <tr>
           <td class="docs">
-            <p>Go offers built-in support for XML and XML-like
-formats with the <code>encoding.xml</code> package.</p>
+            <p>Go oferece suporte nativo para formato XML
+e formatos semelhates com o pacote <code>encoding.xml</code>.</p>
 
           </td>
           <td class="code empty leading">
@@ -42,7 +42,7 @@ formats with the <code>encoding.xml</code> package.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/OVq7kNMk0GR"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/sKtablef4Pv"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -64,13 +64,13 @@ formats with the <code>encoding.xml</code> package.</p>
         
         <tr>
           <td class="docs">
-            <p>Plant will be mapped to XML. Similarly to the
-JSON examples, field tags contain directives for the
-encoder and decoder. Here we use some special features
-of the XML package: the <code>XMLName</code> field name dictates
-the name of the XML element representing this struct;
-<code>id,attr</code> means that the <code>Id</code> field is an XML
-<em>attribute</em> rather than a nested element.</p>
+            <p>A struct Plant será mapeada para XML. Similar aos
+exemplos JSON, as tags dos campos possuem diretivas
+para o encoder e decoder. Aqui são usados alguns
+recursos especiais do pacote XML: O campo <code>XMLName</code>
+dita o nome do elemento XML representando a struct;
+<code>id,attr</code> significa que o campo <code>Id</code> é um <em>attributo</em>
+XML ao invés de um elemento aninhado.</p>
 
           </td>
           <td class="code leading">
@@ -115,9 +115,9 @@ the name of the XML element representing this struct;
         
         <tr>
           <td class="docs">
-            <p>Emit XML representing our plant; using
-<code>MarshalIndent</code> to produce a more
-human-readable output.</p>
+            <p>Gera um XML representando a struct plant;
+ao usar <code>MarshalIndent</code>, é produzida uma saída
+mais legível para humanos.</p>
 
           </td>
           <td class="code leading">
@@ -131,8 +131,8 @@ human-readable output.</p>
         
         <tr>
           <td class="docs">
-            <p>To add a generic XML header to the output, append
-it explicitly.</p>
+            <p>Para adicionar um header XML genérico à saída,
+é necessário acrescentar explícitamente.</p>
 
           </td>
           <td class="code leading">
@@ -145,10 +145,10 @@ it explicitly.</p>
         
         <tr>
           <td class="docs">
-            <p>Use <code>Unmarshal</code> to parse a stream of bytes with XML
-into a data structure. If the XML is malformed or
-cannot be mapped onto Plant, a descriptive error
-will be returned.</p>
+            <p>O <code>Unmarshal</code> pode ser usado para parsear um stream
+de bytes com XML em uma estrutura de dados. Se o XML
+estiver mal formado ou não puder ser mapeado na estrutura
+plant, um erro descritivo será retornado.</p>
 
           </td>
           <td class="code leading">
@@ -177,8 +177,8 @@ will be returned.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>parent&gt;child&gt;plant</code> field tag tells the encoder
-to nest all <code>plant</code>s under <code>&lt;parent&gt;&lt;child&gt;...</code></p>
+            <p>O tag <code>parent&gt;child&gt;plant</code> do campo Plants, diz ao encoder
+para aninhar todas as plantas sob <code>&lt;parent&gt;&lt;child&gt;...</code></p>
 
           </td>
           <td class="code leading">
@@ -263,12 +263,12 @@ to nest all <code>plant</code>s under <code>&lt;parent&gt;&lt;child&gt;...</code
       
       
       <p class="next">
-        Next example: <a href="time">Time</a>.
+        Próximo exemplo: <a href="time">Time</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      Por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | traduzido por <a href="https://github.com/lucassauro">Lucassauro</a> | <a href="https://github.com/lucassauro/gobyexample">contribua</a> | <a href="https://github.com/mmcgrana/gobyexample#license">licença</a>
     </p>
 
     </div>

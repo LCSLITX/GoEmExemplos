@@ -1,9 +1,9 @@
-// Some command-line tools, like the `go` tool or `git`
-// have many *subcommands*, each with its own set of
-// flags. For example, `go build` and `go get` are two
-// different subcommands of the `go` tool.
-// The `flag` package lets us easily define simple
-// subcommands that have their own flags.
+// Alguns programas de linha de comando, como o próprio `go` ou `git`
+// possuem muitos *subcomandos*, cada um com seu próprio conjunto
+// de flags. Por exemplo, `go build` e `go get` são dois subcomandos
+// diferentes de `go`.
+// O pacote `flag` permite definir subcomandos com seu próprio
+// conjunto de flags.
 
 package main
 
@@ -15,30 +15,30 @@ import (
 
 func main() {
 
-	// We declare a subcommand using the `NewFlagSet`
-	// function, and proceed to define new flags specific
-	// for this subcommand.
+	// Um subcomando é declarado usando a função `NewFlagSet`
+	// e, em seguida, se prossegue com a definição das
+	// flags específicas para este subcomando.
 	fooCmd := flag.NewFlagSet("foo", flag.ExitOnError)
 	fooEnable := fooCmd.Bool("enable", false, "enable")
 	fooName := fooCmd.String("name", "", "name")
 
-	// For a different subcommand we can define different
-	// supported flags.
+	// Para diferentes subcomandos podem ser definidas
+	// diferentes flags suportadas.
 	barCmd := flag.NewFlagSet("bar", flag.ExitOnError)
 	barLevel := barCmd.Int("level", 0, "level")
 
-	// The subcommand is expected as the first argument
-	// to the program.
+	// O subcomando é esperado como primeiro argumento
+	// do programa.
 	if len(os.Args) < 2 {
 		fmt.Println("expected 'foo' or 'bar' subcommands")
 		os.Exit(1)
 	}
 
-	// Check which subcommand is invoked.
+	// Verifica qual subcomando é utilizado.
 	switch os.Args[1] {
 
-	// For every subcommand, we parse its own flags and
-	// have access to trailing positional arguments.
+	// Para cada subcomando, são parseadas suas próprias flags e
+	// tem acesso aos eventuais argumentos adicionais ao final.
 	case "foo":
 		fooCmd.Parse(os.Args[2:])
 		fmt.Println("subcommand 'foo'")
