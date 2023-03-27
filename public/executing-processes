@@ -27,15 +27,15 @@
         
         <tr>
           <td class="docs">
-            <p>In the previous example we looked at
-<a href="spawning-processes">spawning external processes</a>. We
-do this when we need an external process accessible to
-a running Go process. Sometimes we just want to
-completely replace the current Go process with another
-(perhaps non-Go) one. To do this we&rsquo;ll use Go&rsquo;s
-implementation of the classic
-<a href="https://en.wikipedia.org/wiki/Exec_(operating_system)"><code>exec</code></a>
-function.</p>
+            <p>No exemplo anterior foi apresentada uma forma de
+<a href="spawning-processes">invocar processos externos</a>.
+Isto é feito quando é necessário um processo externo
+acessível a um programa Go sendo executado.
+Algumas vezes, no entanto, é necessário substituir
+completamente o processo Go corrente, por um outro
+(talvez até não-Go). Para fazer isto, será utilizada
+a implementação da clássica função
+<a href="https://en.wikipedia.org/wiki/Exec_(operating_system)"><code>exec</code></a>.</p>
 
           </td>
           <td class="code empty leading">
@@ -49,7 +49,7 @@ function.</p>
             
           </td>
           <td class="code leading">
-            <a target="_blank" href="https://go.dev/play/p/s9qg7olf1dM"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
+            <a target="_blank" href="https://go.dev/play/p/RiRb_XI_1PA"><img title="Executar código em nova aba" src="play.png" class="run" /></a><img title="Copiar código" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -83,9 +83,9 @@ function.</p>
         
         <tr>
           <td class="docs">
-            <p>For our example we&rsquo;ll exec <code>ls</code>. Go requires an
-absolute path to the binary we want to execute, so
-we&rsquo;ll use <code>exec.LookPath</code> to find it (probably
+            <p>Para este exemplo, será executado <code>ls</code>. Go requer um
+caminho absoluto para o binário que se pretende executar,
+então será usado <code>exec.LookPath</code> para localizar (provavelmente será
 <code>/bin/ls</code>).</p>
 
           </td>
@@ -102,10 +102,10 @@ we&rsquo;ll use <code>exec.LookPath</code> to find it (probably
         
         <tr>
           <td class="docs">
-            <p><code>Exec</code> requires arguments in slice form (as
-opposed to one big string). We&rsquo;ll give <code>ls</code> a few
-common arguments. Note that the first argument should
-be the program name.</p>
+            <p><code>Exec</code> requer argumentos no formato de slice (e
+não na forma de string). Será passado ao <code>ls</code>
+alguns argumentos comuns. Note que o primeiro
+argumento deve ser o nome do programa.</p>
 
           </td>
           <td class="code leading">
@@ -118,9 +118,9 @@ be the program name.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Exec</code> also needs a set of <a href="environment-variables">environment variables</a>
-to use. Here we just provide our current
-environment.</p>
+            <p><code>Exec</code> também necessita um conjunto de <a href="environment-variables">variáveis de ambiente</a>
+para usar. Aqui é fornecido o ambiente atual
+por completo.</p>
 
           </td>
           <td class="code leading">
@@ -133,11 +133,11 @@ environment.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s the actual <code>syscall.Exec</code> call. If this call is
-successful, the execution of our process will end
-here and be replaced by the <code>/bin/ls -a -l -h</code>
-process. If there is an error we&rsquo;ll get a return
-value.</p>
+            <p>Aqui está a chamada à <code>syscall.Exec</code>. Se esta
+chamada for bem sucedida, a execução do processo
+terminará e será substituído pelo processo
+<code>/bin/ls -a -l -h</code>. Se houver algum erro, será
+retornado um valor.</p>
 
           </td>
           <td class="code">
@@ -158,7 +158,7 @@ value.</p>
         
         <tr>
           <td class="docs">
-            <p>When we run our program it is replaced by <code>ls</code>.</p>
+            <p>Ao rodar o programa, ele é substituído pelo <code>ls</code>.</p>
 
           </td>
           <td class="code leading">
@@ -174,10 +174,11 @@ value.</p>
         
         <tr>
           <td class="docs">
-            <p>Note that Go does not offer a classic Unix <code>fork</code>
-function. Usually this isn&rsquo;t an issue though, since
-starting goroutines, spawning processes, and exec&rsquo;ing
-processes covers most use cases for <code>fork</code>.</p>
+            <p>Note que Go não oferece a função <code>fork</code>,
+clássica do Unix. Usualmente isto não é um
+problema, porque goroutines, invocação e
+executação de processos cobrem a maioria dos
+casos de uso de <code>fork</code>.</p>
 
           </td>
           <td class="code empty">
