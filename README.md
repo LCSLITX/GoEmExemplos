@@ -2,6 +2,7 @@
 
 Este repositório contém conteúdos e ferramentas de build para o site [Go Em Exemplos](https://lcslitx.github.io/GoEmExemplos/),
 um site que ensina Go com exemplos comentados.
+
 ### Vista Geral
 
 O site Go Em Exemplos é construído extraindo o código e os
@@ -20,21 +21,19 @@ Brasileiro é servida pelo [Github Pages](https://pages.github.com/).
 
 ### Building
 
-[![Build](https://github.com/mmcgrana/gobyexample/actions/workflows/test.yml/badge.svg)](https://github.com/mmcgrana/gobyexample/actions/workflows/test.yml)
-
 Para realizar o build do site, é necessário ter Go instalado. Execute:
 
 ```console
 $ tools/build
 ```
 
-Ou, para realizar o build continuamente em um loop:
+Ou para realizar o build continuamente em um loop:
 
 ```console
 $ tools/build-loop
 ```
 
-Para hospedar o site no localhost:
+Para hospedar o site localmente:
 
 ```
 $ tools/serve
@@ -105,7 +104,3 @@ Alguns dos exemplos demonstram execução de código concorrente, o qual tem uma
 De maneira similar, exemplos que iteram sobre maps podem produzir itens em ordens diferentes da que se está obtendo na sua máquina. Isto acontece porque a ordem de iteração nos maps de Go [não são específicas e não tem garantia de serem iguais às iterações anteriores ou posteriores](https://go.dev/ref/spec#RangeClause).
 
 Isto não significa que há algo de errado com o exemplo. Tipicamente, o código neste exemplos não são sensíveis à ordem do output; se o código é sensível à essa ordem, provavelmente trata-se de um bug, então sinta-se livre para reportar.
-
-
-
-
